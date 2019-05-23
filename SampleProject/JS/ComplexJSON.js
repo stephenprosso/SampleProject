@@ -45,7 +45,7 @@ var start = function () {
         '}';
 
     var myObj = JSON.parse(myJSON);
-
+    //setting variables with data
     document.getElementById("Cart").innerHTML = myObj.DisplayData[0].Cart;
     console.log(myObj.DisplayData[0].Cart);
     console.log(myObj.Action);

@@ -34,6 +34,8 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
+                <asp:ScriptReference Name="application.js" Assembly="System.Web" Path="~/Scripts/application.js" />
+
             </Scripts>
         </asp:ScriptManager>
 
@@ -80,6 +82,7 @@
             </div>
         </div>
         <div class="container body-content">
+            <asp:HiddenField ID="nothingToSeeHere" runat="server" Value="" ClientIDMode="static" />
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

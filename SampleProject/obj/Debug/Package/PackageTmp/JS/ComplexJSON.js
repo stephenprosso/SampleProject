@@ -1,8 +1,8 @@
 ﻿function sendCartNum() {
 
-    var cartNUm = document.getElementById('MainContent_cartNumTB').value;
+    var cartNum = document.getElementById('MainContent_Content_cartNumTB').value;
 
-    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNUm });
+    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum });
     console.log(data);
     console.log("send data");
     //ws.send(data);
@@ -11,11 +11,11 @@
 
 function sendLPN() {
 
-    var cartNUm = document.getElementById('MainContent_cartNumTB').value;
-    var LPN = document.getElementById('MainContent_LPNTB').value;
+    var cartNum = document.getElementById('MainContent_Content_cartNumTB').value;
+    var LPN = document.getElementById('MainContent_Content_LPNTB').value;
 
 
-    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNUm, "LPN": LPN });
+    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum, "LPN": LPN });
     console.log(data);
     console.log("send data");
     //ws.send(data);
@@ -24,7 +24,7 @@ function sendLPN() {
 
 var start = function () {
 
-    var myJSON = '{"Action": "CartSetup", "SubAction": "ScanTote", "OverallTC": false, "ErrorMessage": "", "UserResponse": "", "DisplayData":' +
+    var myJSON = '{"Action": "CartSetup", "SubAction": "Scan", "OverallTC": false, "ErrorMessage": "", "UserResponse": "", "DisplayData":' +
         '[' +
         '{ "Cart": "666", "Part": "777", "Part Desc 1": "", "Part Desc 2": "", "User Field": "", "HostLocation": "", "PoweredPIKLocation": "", "TotalPickQty": "5", "StartingAisle": "" }' +
         '], "AlphaPos":' +
@@ -156,13 +156,13 @@ var start = function () {
 
         $("#CartSetupTitle").css('display', 'block');
         $("#CartSetupTBs").css('display', 'block');
-        document.getElementById("MainContent_cartNumTB").focus();
+        document.getElementById("MainContent_Content_cartNumTB").focus();
     }
     if (action === "CartSetup" && subAction === "ScanTote") {
         $("#CartSetupTitle").css('display', 'block');
         $("#CartSetupTBs").css('display', 'block');
-        document.getElementById("MainContent_cartNumTB").value = cartNumTB;
-        document.getElementById("MainContent_LPNTB").focus();
+        document.getElementById("MainContent_Content_cartNumTB").value = cartNumTB;
+        document.getElementById("MainContent_Content_LPNTB").focus();
 
     };
     //if statements for Action = Pick
@@ -173,16 +173,16 @@ var start = function () {
         $("#CartPickingTBs").css('display', 'block');
 
         $("#pickDiv").css('display', 'block');
-        document.getElementById("MainContent_ToteScanTB").focus();
+        document.getElementById("MainContent_Content_ToteScanTB").focus();
         $("#button-div").css('display', 'block');
         if (pos1 === "1") {
-            document.getElementById("TBID1").style.backgroundColor = "Green";
+            //document.getElementById("TBID1").style.backgroundColor = "Green";
             //document.getElementById("TBID1").value = orderNum1;
             document.getElementById("TBID1").value = pos1LPN;
 
 
         } if (pos2 === "2") {
-            document.getElementById("TBID2").style.backgroundColor = "Pink";
+            //document.getElementById("TBID2").style.backgroundColor = "Pink";
             //document.getElementById("TBID2").value = orderNum2;
             document.getElementById("TBID2").value = pos2LPN;
 

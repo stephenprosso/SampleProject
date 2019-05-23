@@ -1,8 +1,8 @@
 ﻿function sendCartNum() {
 
-    var cartNUm = document.getElementById('MainContent_Content_cartNumTB').value;
+    var cartNum = document.getElementById('MainContent_Content_cartNumTB').value;
 
-    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNUm });
+    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum });
     console.log(data);
     console.log("send data");
     //ws.send(data);
@@ -11,11 +11,11 @@
 
 function sendLPN() {
 
-    var cartNUm = document.getElementById('MainContent_Content_cartNumTB').value;
+    var cartNum = document.getElementById('MainContent_Content_cartNumTB').value;
     var LPN = document.getElementById('MainContent_Content_LPNTB').value;
 
 
-    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNUm, "LPN": LPN });
+    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum, "LPN": LPN });
     console.log(data);
     console.log("send data");
     //ws.send(data);
@@ -176,13 +176,13 @@ var start = function () {
         document.getElementById("MainContent_Content_ToteScanTB").focus();
         $("#button-div").css('display', 'block');
         if (pos1 === "1") {
-            document.getElementById("TBID1").style.backgroundColor = "Green";
+            //document.getElementById("TBID1").style.backgroundColor = "Green";
             //document.getElementById("TBID1").value = orderNum1;
             document.getElementById("TBID1").value = pos1LPN;
 
 
         } if (pos2 === "2") {
-            document.getElementById("TBID2").style.backgroundColor = "Pink";
+            //document.getElementById("TBID2").style.backgroundColor = "Pink";
             //document.getElementById("TBID2").value = orderNum2;
             document.getElementById("TBID2").value = pos2LPN;
 

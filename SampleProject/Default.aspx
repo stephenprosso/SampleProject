@@ -38,6 +38,8 @@
         //    }
 
         //};
+
+
         var start = function () {
             var inc = document.getElementById('incomming');
             var wsImpl = window.WebSocket || window.MozWebSocket;

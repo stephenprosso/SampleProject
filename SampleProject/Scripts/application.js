@@ -22,4 +22,5 @@
         var obj = JSON.parse(evt.data);
 
 
-    };
+    }
+}

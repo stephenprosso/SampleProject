@@ -81,13 +81,15 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
             <asp:HiddenField ID="nothingToSeeHere" runat="server" Value="" ClientIDMode="static" />
+
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - DoveTree Canyon Software</p>
+                <pre id="incomming"></pre>
             </footer>
         </div>
 

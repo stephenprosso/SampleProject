@@ -35,7 +35,7 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
                 <asp:ScriptReference Name="application.js" Assembly="System.Web" Path="~/Scripts/application.js" />
-
+                
             </Scripts>
         </asp:ScriptManager>
 

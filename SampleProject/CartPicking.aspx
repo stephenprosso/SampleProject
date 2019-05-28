@@ -4,8 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 
-    <%--    <script src="JS/PromatV2.js">
-    </script>--%>
+
     <script src="JS/complexJSON.js">
     </script>
     <script type="text/javascript">

@@ -258,6 +258,8 @@
             </div>
         </div>
         <div class="row text-center">
+            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
         </div>
     </div>
     <%--    <pre id="incomming"></pre>--%>

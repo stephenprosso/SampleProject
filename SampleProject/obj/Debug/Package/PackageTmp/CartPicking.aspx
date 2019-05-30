@@ -4,8 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 
-    <%--    <script src="JS/PromatV2.js">
-    </script>--%>
+
     <script src="JS/complexJSON.js">
     </script>
     <script type="text/javascript">
@@ -15,6 +14,45 @@
 
     <br />
     <br />
+     <div class="container" id="LoginDiv" style="display: none">
+        <div class="row">
+            <div class="col-md text-center">
+                <h2>Websocket Login</h2>
+                <br />
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                Username:
+            <input type="text" size="30" name="Username" id="UserID">
+                <br>
+                <br>
+                Password:
+            <input type="password" size="30" name="Password" id="PWD">
+                <br>
+                <br>
+            </div>
+
+
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <dx:BootstrapButton ID="sendUserNameAndPassword" runat="server" AutoPostBack="false" Text="Send Login">
+                    <ClientSideEvents Click="wssend" />
+
+                </dx:BootstrapButton>
+                <br />
+                <br />
+                <dx:BootstrapButton ID="test" runat="server" AutoPostBack="false" Text="Test Conneciton">
+                    <ClientSideEvents Click="test" />
+
+                </dx:BootstrapButton>
+
+            </div>
+        </div>
+    </div>
     <div class="row text-center">
         <div class="col-sm-4"></div>
         <div class="col-sm-4" id="CartSetupTitle" style="display: none">
@@ -259,6 +297,7 @@
             </div>
         </div>
         <div class="row text-center">
+           
         </div>
     </div>
     <%--    <pre id="incomming"></pre>--%>

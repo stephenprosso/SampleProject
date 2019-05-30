@@ -251,3 +251,7 @@ R:\Visual Studios\SampleProject\SampleProject\bin\System.Numerics.Vectors.xml
 R:\Visual Studios\SampleProject\SampleProject\bin\System.Runtime.CompilerServices.Unsafe.xml
 R:\Visual Studios\SampleProject\SampleProject\bin\System.Text.Encodings.Web.xml
 R:\Visual Studios\SampleProject\SampleProject\bin\System.Threading.Tasks.Extensions.xml
+R:\Visual Studios\SampleProject\SampleProject\bin\EntityFramework.dll
+R:\Visual Studios\SampleProject\SampleProject\bin\EntityFramework.SqlServer.dll
+R:\Visual Studios\SampleProject\SampleProject\bin\EntityFramework.xml
+R:\Visual Studios\SampleProject\SampleProject\bin\EntityFramework.SqlServer.xml

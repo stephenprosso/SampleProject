@@ -14,7 +14,7 @@
 
     <br />
     <br />
-     <div class="container" id="LoginDiv">
+     <div class="container" id="LoginDiv" style="display: none">
         <div class="row">
             <div class="col-md text-center">
                 <h2>Websocket Login</h2>

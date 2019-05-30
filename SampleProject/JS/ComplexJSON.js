@@ -165,6 +165,10 @@ var start = function () {
         document.getElementById("MainContent_Content_LPNTB").focus();
 
     };
+    if (action === "Login") {
+
+        $("#LoginDiv").css('display', 'block');
+    }
     //if statements for Action = Pick
     if (action === "Pick") {
         

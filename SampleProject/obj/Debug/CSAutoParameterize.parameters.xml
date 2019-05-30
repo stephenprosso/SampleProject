@@ -3,4 +3,7 @@
   <parameter name="ConnectToAgron-Web.config Connection String" description="ConnectToAgron Connection String used in web.config by the application to access the database." defaultValue="Dsn=Agron;uid=agron;pwd=agron" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="R:\\Visual\ Studios\\SampleProject\\SampleProject\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnectToAgron']/@connectionString" />
   </parameter>
+  <parameter name="SampleProjectContext-Web.config Connection String" description="SampleProjectContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=SampleProjectContext-20190528082910; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|SampleProjectContext-20190528082910.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="R:\\Visual\ Studios\\SampleProject\\SampleProject\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SampleProjectContext']/@connectionString" />
+  </parameter>
 </parameters>

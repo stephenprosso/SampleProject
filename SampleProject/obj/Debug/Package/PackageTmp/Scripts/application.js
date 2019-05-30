@@ -8,7 +8,7 @@
     //inc.innerHTML += "connecting to server ..<br/>";
     var cart = new URLSearchParams(window.location.search).get("cart");
     // create a new websocket and connect
-    window.ws = new wsImpl('ws://192.168.128.152:8181/');
+    window.ws = new wsImpl('ws://echo.websocket.org/');
     //window.ws = new wsImpl('ws://192.168.128.237:8181/' + cart);
     console.log(wsImpl);
     console.log(cart);

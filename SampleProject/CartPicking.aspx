@@ -108,7 +108,7 @@
         </div>
 
 
-        <div class="row text-center">
+        <div class="row text-center" id="toteDiv">
             <div class="col-sm-3">
             </div>
             <div class="body">

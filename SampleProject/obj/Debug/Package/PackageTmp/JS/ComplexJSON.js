@@ -164,7 +164,8 @@ var start = function () {
         document.getElementById("MainContent_Content_cartNumTB").value = cartNumTB;
         document.getElementById("MainContent_Content_LPNTB").focus();
 
-    };
+    }
+
     if (action === "Login") {
 
         $("#LoginDiv").css('display', 'block');

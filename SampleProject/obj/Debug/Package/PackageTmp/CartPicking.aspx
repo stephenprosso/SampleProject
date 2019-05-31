@@ -1,4 +1,4 @@
-﻿<%@ Page Title="CartPicking" Language="C#" MasterPageFile="~/NestedMasterPage1.Master" AutoEventWireup="true" CodeBehind="CartPicking.aspx.cs" Inherits="SampleProject.PromatV2" %>
+﻿<%@ Page Title="CartPicking" Language="C#" MasterPageFile="~/site.Master" AutoEventWireup="true" CodeBehind="CartPicking.aspx.cs" Inherits="SampleProject.PromatV2" %>
 
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 

@@ -44,6 +44,26 @@ var start = function () {
         ']' +
         '}';
 
+    var newJSON = '{"Action": "", "SubAction": "", "Cart": "", "CartPositions": "", "OverallTC": false, "ErrorMessage": "", "UserResponse1": "", "UserResponse2": "", "UserResponse3": "", "DisplayData":' +
+        '[' +
+        '{"Part": "", "PartDesc1": "", "PartDesc2": "", "UserField": "", "Location": "", "DirectionalDisplay": "", "TotalPickQty": "5", "StartingAisle": "", "FullTote": "", "FullToteQty": "", "NewToteQty": ""}' +
+        '], "BatchData":' +
+        '[' +
+        '{ "RemainingPickLines": "", "RemainingLocs": "", "CurrentPicksPerHourRate": "" },' +
+        '],"AlphaPos":' +
+        '[' +
+        '{ "Pos": "1", "Message": "", "Color": 1, "BlinkSpeed": 0, "Buzzer": true, "Enable": true },' +
+        '{ "Pos": "2", "Message": "", "Color": 1, "BlinkSpeed": 0, "Buzzer": false, "Enable": true }' +
+        '], "BatchPos:' +
+        '[' +
+        '{ "Pos": "1", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
+        '{ "Pos": "2", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
+        '{ "Pos": "3", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
+        '{ "Pos": "4", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
+        '{ "Pos": "5", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true }' +
+        '],' +
+        '}';
+
     var myObj = JSON.parse(myJSON);
     //setting variables with data
     document.getElementById("Cart").innerHTML = myObj.DisplayData[0].Cart;

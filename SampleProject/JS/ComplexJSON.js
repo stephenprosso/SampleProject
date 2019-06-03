@@ -24,7 +24,7 @@ function sendLPN() {
 
 var start = function () {
 
-    var myJSON = '{"Action": "Login", "SubAction": "Scan", "OverallTC": false, "ErrorMessage": "", "UserResponse": "", "DisplayData":' +
+    var myJSON = '{"Action": "Pick", "SubAction": "Scan", "OverallTC": false, "ErrorMessage": "", "UserResponse": "", "DisplayData":' +
         '[' +
         '{ "Cart": "666", "Part": "777", "Part Desc 1": "", "Part Desc 2": "", "User Field": "", "HostLocation": "", "PoweredPIKLocation": "", "TotalPickQty": "5", "StartingAisle": "" }' +
         '], "AlphaPos":' +

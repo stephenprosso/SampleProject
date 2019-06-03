@@ -200,7 +200,7 @@ var start = function () {
         $("#CartPickingTBs").css('display', 'block');
 
         $("#pickDiv").css('display', 'block');
-        document.getElementById("MainContent_Content_ToteScanTB").focus();
+        document.getElementById("Content_ToteScanTB").focus();
         $("#button-div").css('display', 'block');
         if (pos1 === "1") {
             //document.getElementById("TBID1").style.backgroundColor = "Green";

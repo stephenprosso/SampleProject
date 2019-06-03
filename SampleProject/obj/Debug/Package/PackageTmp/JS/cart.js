@@ -1,6 +1,64 @@
-﻿function sendCartNum() {
+﻿var start = function () {
+    var inc = document.getElementById('incomming');
+    var wsImpl = window.WebSocket || window.MozWebSocket;
+    var form = document.getElementById('sendForm');
+    var input = document.getElementById('sendText');
 
-    var cartNum = document.getElementById('MainContent_Content_cartNumTB').value;
+    //inc.innerHTML += "connecting to server ..<br/>";
+
+    // create a new websocket and connect
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    window.ws = new wsImpl('ws://192.168.128.152:8181/');
+    //window.ws = new wsImpl('ws://192.168.128.237:8181/' + cart);
+    console.log(wsImpl);
+    console.log(cart);
+    // when data is comming from the server, this metod is called
+    ws.onmessage = function (evt) {
+
+
+        inc.innerHTML += evt.data + '<br/>';
+
+
+        var obj = JSON.parse(evt.data);
+
+
+    };
+
+    // when the connection is established, this method is called
+    ws.onopen = function () {
+        inc.innerHTML += '.. connection open<br/>';
+    };
+
+    // when the connection is closed, this method is called
+    ws.onclose = function () {
+        inc.innerHTML += '.. connection closed<br/>';
+    };
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var val = input.value;
+        ws.send(val);
+        input.value = "";
+    });
+
+};
+
+
+function wssend() {
+    console.log("wssend clicked");
+    var UserID = document.getElementById('UserID').value;
+    var Password = document.getElementById('PWD').value;
+
+    var data = JSON.stringify({ "action": "initializeSID", "username": UserID, "password": Password });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+}
+
+function sendCartNum() {
+
+    var cartNum = document.getElementById('MainContent_cartNumTB').value;
 
     var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum });
     console.log(data);
@@ -11,8 +69,8 @@
 
 function sendLPN() {
 
-    var cartNum = document.getElementById('MainContent_Content_cartNumTB').value;
-    var LPN = document.getElementById('MainContent_Content_LPNTB').value;
+    var cartNum = document.getElementById('MainContent_cartNumTB').value;
+    var LPN = document.getElementById('MainContent_LPNTB').value;
 
 
     var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum, "LPN": LPN });
@@ -22,27 +80,7 @@ function sendLPN() {
     //console.log("data sent");
 }
 
-var start = function () {
-
-    var myJSON = '{"Action": "Pick", "SubAction": "Scan", "OverallTC": false, "ErrorMessage": "", "UserResponse": "", "DisplayData":' +
-        '[' +
-        '{ "Cart": "666", "Part": "777", "Part Desc 1": "", "Part Desc 2": "", "User Field": "", "HostLocation": "", "PoweredPIKLocation": "", "TotalPickQty": "5", "StartingAisle": "" }' +
-        '], "AlphaPos":' +
-        '[' +
-        '{ "Pos": "1", "Message": "", "Color": 1, "BlinkSpeed": 0, "Buzzer": true, "Enable": true },' +
-        '{ "Pos": "2", "Message": "", "Color": 1, "BlinkSpeed": 0, "Buzzer": false, "Enable": true }' +
-        '], "BatchPos":' +
-        '[' +
-        '{ "Pos": "1", "Order": "", "Container": "", "LPN": "1111", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-        '{ "Pos": "2", "Order": "", "Container": "", "LPN": "2222", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-        '{ "Pos": "3", "Order": "", "Container": "", "LPN": "3333", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-        '{ "Pos": "4", "Order": "", "Container": "", "LPN": "4444", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-        '{ "Pos": "5", "Order": "", "Container": "", "LPN": "5555", "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true }' +
-        '], "Labels":' +
-        '[' +
-        '{ "LabelType": "1", "NumberofLabels": "" }' +
-        ']' +
-        '}';
+var start1 = function () {
 
     var newJSON = '{"Action": "", "SubAction": "", "Cart": "", "CartPositions": "", "OverallTC": false, "ErrorMessage": "", "UserResponse1": "", "UserResponse2": "", "UserResponse3": "", "DisplayData":' +
         '[' +
@@ -64,94 +102,41 @@ var start = function () {
         '],' +
         '}';
 
-    var myObj = JSON.parse(myJSON);
+    var myObj = JSON.parse(newJSON);
     //setting variables with data
-    document.getElementById("Cart").innerHTML = myObj.DisplayData[0].Cart;
-    console.log(myObj.DisplayData[0].Cart);
+    document.getElementById("Cart").innerHTML = myObj.Cart;
+    console.log(myObj.Cart);
     console.log(myObj.Action);
     document.getElementById("Part").innerHTML = myObj.DisplayData[0].Part;
-    document.getElementById("Location").innerHTML = myObj.DisplayData[0].HostLocation;
+    document.getElementById("Location").innerHTML = myObj.DisplayData[0].Location;
     // JSON variables
     var action = myObj.Action;
     var subAction = myObj.SubAction;
+    var cart = myObj.Cart;
+    var cartPositions = myObj.CartPositions;
     var overallTC = myObj.OverallTC;
     var errorMessage = myObj.ErrorMessage;
-    var userResponse = myObj.UserResponse;
-    var cartNumTB = myObj.DisplayData[0].Cart;
+    var cartNumTB = myObj.Cart;
 
 
-    //label variables
-    var labelType = myObj.Labels[0].LabelType;
-    var numberOfLabels = myObj.Labels[0].NumberofLabels;
-
-    //cart variables
-    var cart = myObj.DisplayData[0].Cart;
+    //Display Data Variables
     var part = myObj.DisplayData[0].Part;
     var partDesc1 = myObj.DisplayData[0].PartDesc1;
     var partDesc2 = myObj.DisplayData[0].PartDesc2;
     var userField = myObj.DisplayData[0].UserField;
-    var hostLocation = myObj.DisplayData[0].HostLocation;
-    var poweredPIKLocation = myObj.DisplayData[0].PoweredPIKLocation;
+    var Location = myObj.DisplayData[0].Location;
+    var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
     var totalPickQty = myObj.DisplayData[0].TotalPickQty;
     var startingAisle = myObj.DisplayData[0].StartingAisle;
+    var fullTote = myObj.DisplayData[0].fullTote;
+    var fullToteQty = myObj.DisplayData[0].FullToteQty;
+    var newToteQty = myObj.DisplayData[0].NewToteQty;
 
-    //pos1 variables
-    var pos1 = myObj.BatchPos[0].Pos;
-    var pos1Order = myObj.BatchPos[0].Order;
-    var pos1Container = myObj.BatchPos[0].Container;
-    var pos1LPN = myObj.BatchPos[0].LPN;
-    var pos1Display = myObj.BatchPos[0].Display;
-    var pos1TC = myObj.BatchPos[0].TC;
-    var pos1Color = myObj.BatchPos[0].Color;
-    var pos1BlinkSpeed = myObj.BatchPos[0].BlinkSpeed;
-    var pos1Enable = myObj.BatchPos[0].Enable;
-    var pos1Visible = myObj.BatchPos[0].Visible;
-    //pos2 variables
-    var pos2 = myObj.BatchPos[1].Pos;
-    var pos2Order = myObj.BatchPos[1].Order;
-    var pos2Container = myObj.BatchPos[1].Container;
-    var pos2LPN = myObj.BatchPos[1].LPN;
-    var pos2Display = myObj.BatchPos[1].Display;
-    var pos2TC = myObj.BatchPos[1].TC;
-    var pos2Color = myObj.BatchPos[1].Color;
-    var pos2BlinkSpeed = myObj.BatchPos[1].BlinkSpeed;
-    var pos2Enable = myObj.BatchPos[1].Enable;
-    var pos2Visible = myObj.BatchPos[1].Visible;
-    //pos3 variables
-    var pos3 = myObj.BatchPos[2].Pos;
-    var pos3Order = myObj.BatchPos[2].Order;
-    var pos3Container = myObj.BatchPos[2].Container;
-    var pos3LPN = myObj.BatchPos[2].LPN;
-    var pos3Display = myObj.BatchPos[2].Display;
-    var pos3TC = myObj.BatchPos[2].TC;
-    var pos3Color = myObj.BatchPos[2].Color;
-    var pos3BlinkSpeed = myObj.BatchPos[2].BlinkSpeed;
-    var pos3Enable = myObj.BatchPos[2].Enable;
-    var pos3Visible = myObj.BatchPos[2].Visible;
+    //Batchdata Variables
 
-    //pos4 variables
-    var pos4 = myObj.BatchPos[3].Pos;
-    var pos4Order = myObj.BatchPos[3].Order;
-    var pos4Container = myObj.BatchPos[3].Container;
-    var pos4LPN = myObj.BatchPos[3].LPN;
-    var pos4Display = myObj.BatchPos[3].Display;
-    var pos4TC = myObj.BatchPos[3].TC;
-    var pos4Color = myObj.BatchPos[3].Color;
-    var pos4BlinkSpeed = myObj.BatchPos[3].BlinkSpeed;
-    var pos4Enable = myObj.BatchPos[3].Enable;
-    var pos4Visible = myObj.BatchPos[3].Visible;
-
-    //pos5 variables
-    var pos5 = myObj.BatchPos[4].Pos;
-    var pos5Order = myObj.BatchPos[4].Order;
-    var pos5Container = myObj.BatchPos[4].Container;
-    var pos5LPN = myObj.BatchPos[4].LPN;
-    var pos5Display = myObj.BatchPos[4].Display;
-    var pos5TC = myObj.BatchPos[4].TC;
-    var pos5Color = myObj.BatchPos[4].Color;
-    var pos5BlinkSpeed = myObj.BatchPos[4].BlinkSpeed;
-    var pos5Enable = myObj.BatchPos[4].Enable;
-    var pos5Visible = myObj.BatchPos[4].Visible;
+    var remainingPickLines = myObj.BatchData[0].RemainingPickLines;
+    var remainingLocs = myObj.BatchData[0].RemainingLocs;
+    var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
     //alpha 1 Position Variables
     var alphaPos1 = myObj.AlphaPos[0].Pos;
@@ -169,38 +154,82 @@ var start = function () {
     var alphaPos2Buzzer = myObj.AlphaPos[1].Buzzer;
     var alphaPos2Enable = myObj.AlphaPos[1].Enable;
 
+    //BatchPos Variable
+    //pos1 variables
+    var pos1 = myObj.BatchPos[0].Pos;
+    var pos1Display = myObj.BatchPos[0].Display;
+    var pos1TC = myObj.BatchPos[0].TC;
+    var pos1Color = myObj.BatchPos[0].Color;
+    var pos1BlinkSpeed = myObj.BatchPos[0].BlinkSpeed;
+    var pos1Enable = myObj.BatchPos[0].Enable;
+    var pos1Visible = myObj.BatchPos[0].Visible;
+    //pos2 variables
+    var pos2 = myObj.BatchPos[1].Pos;
+    var pos2Display = myObj.BatchPos[1].Display;
+    var pos2TC = myObj.BatchPos[1].TC;
+    var pos2Color = myObj.BatchPos[1].Color;
+    var pos2BlinkSpeed = myObj.BatchPos[1].BlinkSpeed;
+    var pos2Enable = myObj.BatchPos[1].Enable;
+    var pos2Visible = myObj.BatchPos[1].Visible;
+    //pos3 variables
+    var pos3 = myObj.BatchPos[2].Pos;
+    var pos3Display = myObj.BatchPos[2].Display;
+    var pos3TC = myObj.BatchPos[2].TC;
+    var pos3Color = myObj.BatchPos[2].Color;
+    var pos3BlinkSpeed = myObj.BatchPos[2].BlinkSpeed;
+    var pos3Enable = myObj.BatchPos[2].Enable;
+    var pos3Visible = myObj.BatchPos[2].Visible;
+
+    //pos4 variables
+    var pos4 = myObj.BatchPos[3].Pos;
+    var pos4Display = myObj.BatchPos[3].Display;
+    var pos4TC = myObj.BatchPos[3].TC;
+    var pos4Color = myObj.BatchPos[3].Color;
+    var pos4BlinkSpeed = myObj.BatchPos[3].BlinkSpeed;
+    var pos4Enable = myObj.BatchPos[3].Enable;
+    var pos4Visible = myObj.BatchPos[3].Visible;
+
+    //pos5 variables
+    var pos5 = myObj.BatchPos[4].Pos;
+    var pos5Display = myObj.BatchPos[4].Display;
+    var pos5TC = myObj.BatchPos[4].TC;
+    var pos5Color = myObj.BatchPos[4].Color;
+    var pos5BlinkSpeed = myObj.BatchPos[4].BlinkSpeed;
+    var pos5Enable = myObj.BatchPos[4].Enable;
+    var pos5Visible = myObj.BatchPos[4].Visible;
+
+
+
     // if statement variables
-
-    //if statements for Action = CartSetup
-    if (action === "CartSetup") {
-
-        $("#CartSetupTitle").css('display', 'block');
-        $("#CartSetupTBs").css('display', 'block');
-        document.getElementById("MainContent_Content_cartNumTB").focus();
-    }
-    if (action === "CartSetup" && subAction === "ScanTote") {
-        $("#CartSetupTitle").css('display', 'block');
-        $("#CartSetupTBs").css('display', 'block');
-        document.getElementById("MainContent_Content_cartNumTB").value = cartNumTB;
-        document.getElementById("MainContent_Content_LPNTB").focus();
-
-    }
-
     if (action === "Login") {
 
         $("#LoginDiv").css('display', 'block');
         $("#toteDiv").css('display', 'none');
 
     }
+    //if statements for Action = CartSetup
+    if (action === "CartSetup") {
+
+        $("#CartSetupTitle").css('display', 'block');
+        $("#CartSetupTBs").css('display', 'block');
+        document.getElementById("MainContent_cartNumTB").focus();
+    }
+    if (action === "CartSetup" && subAction === "ScanTote") {
+        $("#CartSetupTitle").css('display', 'block');
+        $("#CartSetupTBs").css('display', 'block');
+        document.getElementById("MainContent_cartNumTB").value = cartNumTB;
+        document.getElementById("MainContent_LPNTB").focus();
+
+    };
     //if statements for Action = Pick
     if (action === "Pick") {
-        
-        
+
+
         $("#CartPickingTitle").css('display', 'block');
         $("#CartPickingTBs").css('display', 'block');
 
         $("#pickDiv").css('display', 'block');
-        document.getElementById("MainContent_Content_ToteScanTB").focus();
+        document.getElementById("MainContent_ToteScanTB").focus();
         $("#button-div").css('display', 'block');
         if (pos1 === "1") {
             //document.getElementById("TBID1").style.backgroundColor = "Green";
@@ -227,8 +256,8 @@ var start = function () {
             document.getElementById("TBID5").value = pos5LPN;
 
 
-            } 
-           // if (pos3 === "6") {
+        }
+        // if (pos3 === "6") {
         //    document.getElementById("TBID6").value = requestQty3;
 
 

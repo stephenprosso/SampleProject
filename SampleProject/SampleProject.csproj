@@ -193,6 +193,7 @@
     <Content Include="AlertBoxTest.aspx" />
     <Content Include="CardViewScreen.aspx" />
     <Content Include="CartSetup.aspx" />
+    <Content Include="JS\cart.js" />
     <Content Include="JS\ComplexJSON.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />

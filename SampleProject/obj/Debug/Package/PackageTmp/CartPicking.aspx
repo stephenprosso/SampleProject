@@ -23,7 +23,9 @@
         </div>
 
         <br />
-        <div class="row">
+
+         <%--//LOGIN DIV--%>
+        <div class="row" id="LoginDiv">
             <div class="col-sm-6 text-center">
                 Username:
             <input type="text" size="30" name="Username" id="UserID">

@@ -144,14 +144,14 @@ function wssend() {
     var UserID = document.getElementById('UserID').value;
     var Password = document.getElementById('PWD').value;
     var cart = new URLSearchParams(window.location.search).get("cart");
+    var ntsh = document.getElementById('nothingToSeeHere').value;
 
-    var data = JSON.stringify({ "action": "Login", "SubAction": "Initiate", "UserResponse1": cart, "UserResponse2": UserID, "UserResponse3": Password });
+    var data = JSON.stringify({ "action": "Login", "SubAction": "Initiate", "Cart": cart, "UserResponse1": UserID, "UserResponse2": Password, "UserResponse3": ntsh });
     console.log(data);
     console.log("send data");
     ws.send(data);
     console.log("data sent");
 }
-
 function sendCartNum() {
 
     var cartNum = document.getElementById('MainContent_cartNumTB').value;

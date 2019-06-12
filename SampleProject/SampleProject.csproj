@@ -196,7 +196,6 @@
     <Content Include="HtmlPage1.html" />
     <Content Include="JS\cart.js" />
     <Content Include="JS\ComplexJSON.js" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -294,13 +293,6 @@
     </Compile>
     <Compile Include="CardViewScreen.aspx.designer.cs">
       <DependentUpon>CardViewScreen.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

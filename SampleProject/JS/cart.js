@@ -23,9 +23,11 @@
 
     var sidJSON = '{"sid": "645613434556789"}';
 
-    var sid = JSON.parse(sidJSON);
-    var nothingToSeeHere = sid.sid;
-
+    var MYsid = JSON.parse(sidJSON);
+    var sid = MYsid.sid;
+    console.log(sid);
+    document.getElementById('nothingToSeeHere').value = sid;
+    console.log(document.getElementById('nothingToSeeHere').value);
     var inc = document.getElementById('incomming');
     var wsImpl = window.WebSocket || window.MozWebSocket;
     var form = document.getElementById('sendForm');
@@ -36,9 +38,10 @@
     // create a new websocket and connect
     //var cart = new URLSearchParams(window.location.search).get("cart");
     window.ws = new wsImpl('ws://promat.dovetree.com:8181/');
+    //window.ws = new wsImpl('ws://echo.websocket.org/');
     //window.ws = new wsImpl('ws://192.168.128.237:8181/' + cart);
     console.log(wsImpl);
-    console.log(cart);
+    //console.log(cart);
 
     //on load call a function to make xml request to API
     getToteMatrix();
@@ -57,9 +60,9 @@
 
     // when data is comming from the server, this metod is called
     ws.onmessage = function (evt) {
+
+
         var myObj = JSON.parse(evt.data);
-
-
         //var myObj = JSON.parse(myJSON);
         //setting variables with data
         //document.getElementById("Cart").innerHTML = myObj.Cart;
@@ -67,6 +70,7 @@
         //console.log(myObj.Action);
         //document.getElementById("Part").innerHTML = myObj.DisplayData[0].Part;
         //document.getElementById("Location").innerHTML = myObj.DisplayData[0].Location;
+
         // JSON variables
         var action = myObj.Action;
         var subAction = myObj.SubAction;
@@ -96,9 +100,6 @@
         var remainingLocs = myObj.BatchData[0].RemainingLocs;
         var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
-
-        //BatchPos Variable
-
         // if statement variables
         if (action === "Login") {
 
@@ -106,23 +107,20 @@
             $("#toteDiv").css('display', 'none');
 
         }
-        //if statements for Action = CartSetup
-        if (action === "CartSetup") {
+        //if statements for Action = Batch Setup
+        if (action === "Batch Setup" && subAction === "Next LPN Pos") {
 
-            $("#CartSetupTitle").css('display', 'block');
-            $("#CartSetupTBs").css('display', 'block');
-            document.getElementById("MainContent_cartNumTB").focus();
+            $("#BatchSetupTBs").css('display', 'block');
+            document.getElementById("MainContent_ScanToteTB").focus();
         }
-        if (action === "CartSetup" && subAction === "ScanTote") {
-            $("#CartSetupTitle").css('display', 'block');
-            $("#CartSetupTBs").css('display', 'block');
-            document.getElementById("MainContent_cartNumTB").value = cartNumTB;
-            document.getElementById("MainContent_LPNTB").focus();
+        //if statements for starting aisle
+        if (action === "Start Aisle" && subAction === "Prompt") {
 
-        };
+            $("#StartAisleDiv").css('display', 'block');
+            document.getElementById("MainContent_startAisleTB").focus();
+        }
         //if statements for Action = Pick
-        if (action === "Pick") {
-
+        if (action === "Pick" && subAction === "   ") {
 
             $("#CartPickingTitle").css('display', 'block');
             $("#CartPickingTBs").css('display', 'block');
@@ -132,15 +130,21 @@
             $("#button-div").css('display', 'block');
 
         }
+
+    };
+    ws.onopen = function () {
+        $("#connectingDiv").css('display', 'none');
+        $("#connectedDiv").css('display', 'block');
+        $("#LoginDiv").css('display', 'block');
+        $("#toteDiv").css('display', 'none');
+
     };
 
 };
-function ChangeQT() {
-    var newQT = prompt("Enter New QT");
-    alert(newQT);
-};
-function wssend() {
-    console.log("wssend clicked");
+//functions for buttons
+function sendLogin() {
+
+    console.log("sendLogin clicked");
     var UserID = document.getElementById('UserID').value;
     var Password = document.getElementById('PWD').value;
     var cart = new URLSearchParams(window.location.search).get("cart");
@@ -152,26 +156,56 @@ function wssend() {
     ws.send(data);
     console.log("data sent");
 }
-function sendCartNum() {
 
-    var cartNum = document.getElementById('MainContent_cartNumTB').value;
-
-    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum });
-    console.log(data);
-    console.log("send data");
-    //ws.send(data);
-    //console.log("data sent");
-}
 
 function sendLPN() {
 
-    var cartNum = document.getElementById('MainContent_cartNumTB').value;
     var LPN = document.getElementById('MainContent_LPNTB').value;
+    var cart = new URLSearchParams(window.location.search).get("cart");
 
-
-    var data = JSON.stringify({ "Action": "CartSetup", "Cart": cartNum, "LPN": LPN });
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "LPN Scanned", "Cart": cart, "LPN": LPN });
     console.log(data);
     console.log("send data");
-    //ws.send(data);
-    //console.log("data sent");
+    ws.send(data);
+    console.log("data sent");
+}
+function processBatch() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Process Batch", "Cart": cart });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+}
+
+function sendStartAisle() {
+
+    var aisle = document.getElementById('MainContent_startAisleTB').value;
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Response", "Cart": cart, "UserResponse1": aisle });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+}
+
+
+function sendBack() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Clear Cart", "Cart": cart });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+
+}
+
+function ChangeQT() {
+    var newQT = prompt("Enter New QT");
+    alert(newQT);
 }

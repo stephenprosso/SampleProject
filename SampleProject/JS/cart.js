@@ -21,13 +21,12 @@
     //    '}';
 
 
-    var sidJSON = '{"sid": "645613434556789"}';
+    //var sidJSON = '{"sid": "645613434556789"}';
 
-    var MYsid = JSON.parse(sidJSON);
-    var sid = MYsid.sid;
-    console.log(sid);
-    document.getElementById('nothingToSeeHere').value = sid;
-    console.log(document.getElementById('nothingToSeeHere').value);
+    //var MYsid = JSON.parse(sidJSON);
+    //var sid = MYsid.sid;
+    //console.log(sid);
+
     var inc = document.getElementById('incomming');
     var wsImpl = window.WebSocket || window.MozWebSocket;
     var form = document.getElementById('sendForm');
@@ -36,12 +35,10 @@
     //inc.innerHTML += "connecting to server ..<br/>";
 
     // create a new websocket and connect
-    //var cart = new URLSearchParams(window.location.search).get("cart");
-    window.ws = new wsImpl('ws://promat.dovetree.com:8181/');
-    //window.ws = new wsImpl('ws://echo.websocket.org/');
-    //window.ws = new wsImpl('ws://192.168.128.237:8181/' + cart);
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    window.ws = new wsImpl('ws://192.168.128.152:8181/' + cart);
     console.log(wsImpl);
-    //console.log(cart);
+    console.log(cart);
 
     //on load call a function to make xml request to API
     getToteMatrix();
@@ -64,12 +61,21 @@
 
         var myObj = JSON.parse(evt.data);
         //var myObj = JSON.parse(myJSON);
+
         //setting variables with data
         //document.getElementById("Cart").innerHTML = myObj.Cart;
         //console.log(myObj.Cart);
         //console.log(myObj.Action);
         //document.getElementById("Part").innerHTML = myObj.DisplayData[0].Part;
         //document.getElementById("Location").innerHTML = myObj.DisplayData[0].Location;
+
+        //function replacer (key, value) {
+        //    // Filtering out properties
+        //    if (typeof value === 'undefined') {
+        //        return null;
+        //    }
+        //    return value;
+        //}
 
         // JSON variables
         var action = myObj.Action;
@@ -78,8 +84,16 @@
         var cartPositions = myObj.CartPositions;
         var overallTC = myObj.OverallTC;
         var errorMessage = myObj.ErrorMessage;
-        var cartNumTB = myObj.Cart;
+        var userResponse1 = myObj.UserResponse1;
+        var userResponse2 = myObj.UserResponse2;
+        var userResponse3 = myObj.UserResponse3;
 
+        if (action === "Connect" && subAction === "SID") {
+
+            document.getElementById('nothingToSeeHere').value = userResponse1;
+            console.log(document.getElementById('nothingToSeeHere').value);
+
+        }
 
         //Display Data Variables
         var part = myObj.DisplayData[0].Part;
@@ -110,22 +124,34 @@
         //if statements for Action = Batch Setup
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
 
+            $("#LoginDiv").css('display', 'none');
+
             $("#BatchSetupTBs").css('display', 'block');
             document.getElementById("MainContent_ScanToteTB").focus();
         }
+
         //if statements for starting aisle
         if (action === "Start Aisle" && subAction === "Prompt") {
 
             $("#StartAisleDiv").css('display', 'block');
+            $("#BatchSetupTBs").css('display', 'none');
             document.getElementById("MainContent_startAisleTB").focus();
         }
+
+        //if statement to present work dashboard
+        if (action === "Work Dashboard" && subAction === "Present") {
+
+            $("#workDashboardDiv").css('display', 'block');
+
+        }
+
         //if statements for Action = Pick
         if (action === "Pick" && subAction === "   ") {
 
             $("#CartPickingTitle").css('display', 'block');
             $("#CartPickingTBs").css('display', 'block');
 
-            $("#pickDiv").css('display', 'block');
+            $("#pickStatsDiv").css('display', 'block');
             document.getElementById("MainContent_ToteScanTB").focus();
             $("#button-div").css('display', 'block');
 

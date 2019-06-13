@@ -13,6 +13,15 @@ namespace SampleProject {
     public partial class Default1 {
         
         /// <summary>
+        /// nothingToSeeHere control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField nothingToSeeHere;
+        
+        /// <summary>
         /// sendUserNameAndPassword control.
         /// </summary>
         /// <remarks>
@@ -58,31 +67,31 @@ namespace SampleProject {
         protected global::System.Web.UI.WebControls.Label locationLabel;
         
         /// <summary>
-        /// ScanCartTB control.
+        /// startAisleTB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ScanCartTB;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText startAisleTB;
         
         /// <summary>
-        /// cartNumTB control.
+        /// startAisleButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText cartNumTB;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton startAisleButton;
         
         /// <summary>
-        /// sendCartNumButton control.
+        /// sendBackButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton sendCartNumButton;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton sendBackButton;
         
         /// <summary>
         /// ScanToteTB control.
@@ -110,6 +119,24 @@ namespace SampleProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton LPNButton;
+        
+        /// <summary>
+        /// processBatchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton processBatchButton;
+        
+        /// <summary>
+        /// BackButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton BackButton;
         
         /// <summary>
         /// ScanToteLabel control.

@@ -6,17 +6,20 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-        <script src="js/cart.js">
+       <script src="js/cart.js">
     </script>
     <script type="text/javascript">
         window.onload = start1;
 
     </script>
-    <div id="connectingDiv" class="row text-center"><p>Connecting to the WebSocket</p></div>
+    <asp:HiddenField ID="nothingToSeeHere" runat="server" Value="" ClientIDMode="static" />
+    <div id="connectingDiv" class="row text-center">
+        <p>Connecting to the WebSocket</p>
+    </div>
     <div class="container" id="LoginDiv" style="display: none">
         <div class="row">
             <div class="col-md text-center">
-                <h2>Websocket Login</h2>
+                <h2>Please Login to the Cart</h2>
                 <br />
             </div>
         </div>
@@ -39,7 +42,7 @@
             </div>
             <div class="col-sm-6">
                 <dx:BootstrapButton ID="sendUserNameAndPassword" runat="server" AutoPostBack="false" Text="Login" Width="140px">
-                    <ClientSideEvents Click="wssend" />
+                    <ClientSideEvents Click="sendLogin" />
 
                 </dx:BootstrapButton>
                 <br />
@@ -54,13 +57,12 @@
     <div class="row text-center">
         <div class="col-sm-4"></div>
         <div class="col-sm-4" id="CartSetupTitle" style="display: none">
-            <h1>Cart Setup</h1>
         </div>
         <div class="col-sm-4" id="CartPickingTitle" style="display: none">
-            <h1>Cart Picking</h1>
+            <h2>Cart Picking</h2>
         </div>
 
-        <div class="col-sm-4" id="pickDiv" style="display: none">
+        <div class="col-sm-4" id="pickStatsDiv" style="display: none">
 
             <asp:Label ID="partNumberLabel" runat="server" Text="Cart Number: "></asp:Label>
             <p id="Cart"></p>
@@ -76,20 +78,40 @@
     </div>
     <div class="container">
 
-        <div class="row text-center" id="CartSetupTBs" style="display: none">
+        <div class="row text-center" id="StartAisleDiv" style="display: none">
+            <h2>Scan Starting Aisle</h2>
+            <%--<asp:Label ID="Label1" runat="server" Text="Scan Aisle: "></asp:Label>--%>
             <div class="group-block">
-                <asp:Label ID="ScanCartTB" runat="server" Text="Scan in Cart:"></asp:Label>
-                <input id="cartNumTB" type="text" runat="server" width="200px" />
-                <dx:BootstrapButton ID="sendCartNumButton" runat="server" AutoPostBack="false" Text="Submit Cart">
-                    <ClientSideEvents Click="sendCartNum" />
+                <input id="startAisleTB" type="text" runat="server" width="200px" />
+                <dx:BootstrapButton ID="startAisleButton" runat="server" AutoPostBack="false" Text="Continue">
+                    <ClientSideEvents Click="sendStartAisle" />
+                </dx:BootstrapButton>
+                <dx:BootstrapButton ID="sendBackButton" runat="server" AutoPostBack="false" Text="Back">
+                    <ClientSideEvents Click="sendBack" />
                 </dx:BootstrapButton>
             </div>
-            <div class="group-block">
-                <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
-                <input id="LPNTB" type="text" runat="server" width="200px" />
-                <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote">
-                    <ClientSideEvents Click="sendLPN" />
-                </dx:BootstrapButton>
+        </div>
+        <div class="container">
+            <div class="row text-center" id="BatchSetupTBs" style="display: none">
+                <h2>Batch Setup</h2>
+                <div class="group-block">
+                    <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
+                    <input id="LPNTB" type="text" runat="server" width="200px" />
+                    <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote">
+                        <ClientSideEvents Click="sendLPN" />
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="processBatchButton" runat="server" AutoPostBack="false" Text="Process Batch">
+                        <ClientSideEvents Click="processBatch" />
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="BackButton" runat="server" AutoPostBack="false" Text="Back">
+                        <ClientSideEvents Click="sendBack" />
+                    </dx:BootstrapButton>
+                </div>
+                <div class="row text-center">
+                    <div id="id001">
+                        <p>BW Code from server goes here</p>
+                    </div>
+                </div>
             </div>
         </div>
         <br />
@@ -99,11 +121,6 @@
             <asp:Button ID="Button1" runat="server" Text="Button" />
         </div>
         <br />
-        <div class="row text-center" id="tcDiv" style="display: none">
-            <h4>Completed with TC</h4>
-        </div>
-
-
 
         <div class="row text-center" id="toteDiv">
             <div class="col-sm-3"></div>
@@ -148,5 +165,7 @@
         </div>
     </div>
 
-    <div id="connectedDiv"><p>If you are reading this your connection is open.</p></div>
+    <div id="connectedDiv">
+        <p>If you are reading this your connection is open.</p>
+    </div>
 </asp:Content>

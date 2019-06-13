@@ -69,13 +69,13 @@
         //document.getElementById("Part").innerHTML = myObj.DisplayData[0].Part;
         //document.getElementById("Location").innerHTML = myObj.DisplayData[0].Location;
 
-        //function replacer (key, value) {
-        //    // Filtering out properties
-        //    if (typeof value === 'undefined') {
-        //        return null;
-        //    }
-        //    return value;
-        //}
+        function replacer(key, value) {
+            // Filtering out properties
+            if (typeof value === 'undefined') {
+                return null;
+            }
+            return value;
+        }
 
         // JSON variables
         var action = myObj.Action;
@@ -121,6 +121,14 @@
             $("#toteDiv").css('display', 'none');
 
         }
+
+        if (action === "Zone Group" && subAction === "Select") {
+
+            $("#LoginDiv").css('display', 'none');
+            $("#zoneSelectDiv").css('display', 'block');
+
+        }
+
         //if statements for Action = Batch Setup
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
 

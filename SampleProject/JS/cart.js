@@ -96,23 +96,23 @@
         }
 
         //Display Data Variables
-        var part = myObj.DisplayData[0].Part;
-        var partDesc1 = myObj.DisplayData[0].PartDesc1;
-        var partDesc2 = myObj.DisplayData[0].PartDesc2;
-        var userField = myObj.DisplayData[0].UserField;
-        var Location = myObj.DisplayData[0].Location;
-        var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
-        var totalPickQty = myObj.DisplayData[0].TotalPickQty;
-        var startingAisle = myObj.DisplayData[0].StartingAisle;
-        var fullTote = myObj.DisplayData[0].fullTote;
-        var fullToteQty = myObj.DisplayData[0].FullToteQty;
-        var newToteQty = myObj.DisplayData[0].NewToteQty;
+        //var part = myObj.DisplayData[0].Part;
+        //var partDesc1 = myObj.DisplayData[0].PartDesc1;
+        //var partDesc2 = myObj.DisplayData[0].PartDesc2;
+        //var userField = myObj.DisplayData[0].UserField;
+        //var Location = myObj.DisplayData[0].Location;
+        //var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
+        //var totalPickQty = myObj.DisplayData[0].TotalPickQty;
+        //var startingAisle = myObj.DisplayData[0].StartingAisle;
+        //var fullTote = myObj.DisplayData[0].fullTote;
+        //var fullToteQty = myObj.DisplayData[0].FullToteQty;
+        //var newToteQty = myObj.DisplayData[0].NewToteQty;
 
-        //Batchdata Variables
+        ////Batchdata Variables
 
-        var remainingPickLines = myObj.BatchData[0].RemainingPickLines;
-        var remainingLocs = myObj.BatchData[0].RemainingLocs;
-        var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
+        //var remainingPickLines = myObj.BatchData[0].RemainingPickLines;
+        //var remainingLocs = myObj.BatchData[0].RemainingLocs;
+        //var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
         // if statement variables
         if (action === "Login") {

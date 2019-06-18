@@ -131,7 +131,7 @@
 
         }
 
-        // if statements for Action = Batch Setup
+        // 4 if statements for Action = Batch Setup
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
 
             $("#LoginDiv").css('display', 'none');
@@ -140,7 +140,7 @@
             document.getElementById("MainContent_ScanToteTB").focus();
         }
 
-        // 4 if statements for starting aisle
+        // 5 if statements for starting aisle
         if (action === "Start Aisle" && subAction === "Prompt") {
 
             $("#StartAisleDiv").css('display', 'block');
@@ -148,8 +148,7 @@
             document.getElementById("MainContent_startAisleTB").focus();
         }
 
-
-        //if statements for Action = Pick
+        // 6 if statements for Action = Present Pick
         if (action === "Present Pick" && subAction === "Display Complete Task") {
             $("#LoginDiv").css('display', 'none');
             $("#CartPickingTitle").css('display', 'block');
@@ -170,6 +169,12 @@
             document.getElementById("MainContent_ToteScanTB").focus();
             $("#button-div").css('display', 'block');
             //hide the task complete button
+        }
+
+        if (action === "Batch Complete" && subAction === "Display") {
+
+            $("#BatchCompleteDiv").css('display', 'block');
+
         }
 
     };

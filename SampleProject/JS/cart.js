@@ -60,22 +60,16 @@
 
 
         var myObj = JSON.parse(evt.data);
-        //var myObj = JSON.parse(myJSON);
+        console.log(evt.data);
+        console.log(myObj);
 
+        //var myObj = JSON.parse(myJSON);
         //setting variables with data
         //document.getElementById("Cart").innerHTML = myObj.Cart;
-        //console.log(myObj.Cart);
-        //console.log(myObj.Action);
         //document.getElementById("Part").innerHTML = myObj.DisplayData[0].Part;
         //document.getElementById("Location").innerHTML = myObj.DisplayData[0].Location;
+        //console.log(myObj.DisplayData[0].Part);
 
-        function replacer(key, value) {
-            // Filtering out properties
-            if (typeof value === 'undefined') {
-                return null;
-            }
-            return value;
-        }
 
         // JSON variables
         var action = myObj.Action;
@@ -89,13 +83,14 @@
         var userResponse3 = myObj.UserResponse3;
 
         if (action === "Connect" && subAction === "SID") {
-
+            $("#LoginDiv").css('display', 'block');
             document.getElementById('nothingToSeeHere').value = userResponse1;
             console.log(document.getElementById('nothingToSeeHere').value);
 
         }
 
         //Display Data Variables
+
         //var part = myObj.DisplayData[0].Part;
         //var partDesc1 = myObj.DisplayData[0].PartDesc1;
         //var partDesc2 = myObj.DisplayData[0].PartDesc2;
@@ -114,14 +109,14 @@
         //var remainingLocs = myObj.BatchData[0].RemainingLocs;
         //var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
-        // if statement variables
-        if (action === "Login") {
+        // 1 if statement variables PAGE 1 IN PICKING PROCESS
+        if (action === "Login" && subAction === "Response") {
 
             $("#LoginDiv").css('display', 'block');
             $("#toteDiv").css('display', 'none');
 
         }
-
+        // 2 send user to PAGE 2 in the picking process
         if (action === "Zone Group" && subAction === "Select") {
 
             $("#LoginDiv").css('display', 'none');
@@ -129,7 +124,14 @@
 
         }
 
-        //if statements for Action = Batch Setup
+        // 3 if statement to present work dashboard
+        if (action === "Work Dashboard" && subAction === "Present") {
+
+            $("#workDashboardDiv").css('display', 'block');
+
+        }
+
+        // if statements for Action = Batch Setup
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
 
             $("#LoginDiv").css('display', 'none');
@@ -138,7 +140,7 @@
             document.getElementById("MainContent_ScanToteTB").focus();
         }
 
-        //if statements for starting aisle
+        // 4 if statements for starting aisle
         if (action === "Start Aisle" && subAction === "Prompt") {
 
             $("#StartAisleDiv").css('display', 'block');
@@ -146,15 +148,20 @@
             document.getElementById("MainContent_startAisleTB").focus();
         }
 
-        //if statement to present work dashboard
-        if (action === "Work Dashboard" && subAction === "Present") {
-
-            $("#workDashboardDiv").css('display', 'block');
-
-        }
 
         //if statements for Action = Pick
-        if (action === "Pick" && subAction === "   ") {
+        if (action === "Present Pick" && subAction === "Display Complete Task") {
+            $("#LoginDiv").css('display', 'none');
+            $("#CartPickingTitle").css('display', 'block');
+            $("#id01").css('display', 'block');
+
+            $("#pickStatsDiv").css('display', 'block');
+
+            $("#button-div").css('display', 'block');
+            document.getElementById("MainContent_ToteScanTB").focus();
+        }
+
+        if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
 
             $("#CartPickingTitle").css('display', 'block');
             $("#CartPickingTBs").css('display', 'block');
@@ -162,23 +169,23 @@
             $("#pickStatsDiv").css('display', 'block');
             document.getElementById("MainContent_ToteScanTB").focus();
             $("#button-div").css('display', 'block');
-
+            //hide the task complete button
         }
 
     };
     ws.onopen = function () {
+        alert("in Open");
         $("#connectingDiv").css('display', 'none');
         $("#connectedDiv").css('display', 'block');
-        $("#LoginDiv").css('display', 'block');
+
         $("#toteDiv").css('display', 'none');
 
     };
 
 };
 //functions for buttons
-function sendLogin() {
+function sendLogin(event) {
 
-    console.log("sendLogin clicked");
     var UserID = document.getElementById('UserID').value;
     var Password = document.getElementById('PWD').value;
     var cart = new URLSearchParams(window.location.search).get("cart");
@@ -214,6 +221,18 @@ function processBatch() {
     console.log("data sent");
 }
 
+function sendLocnEmpty() {
+
+    var emptyLocn = prompt("Scan Empty Location");
+    var data = JSON.stringify({ "Action": "Notify Host Locn Empty", "SubAction": "Request", "Cart": cart, "UserResponse1": emptyLocn });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+
+
+}
+
 function sendStartAisle() {
 
     var aisle = document.getElementById('MainContent_startAisleTB').value;
@@ -237,9 +256,4 @@ function sendBack() {
     ws.send(data);
     console.log("data sent");
 
-}
-
-function ChangeQT() {
-    var newQT = prompt("Enter New QT");
-    alert(newQT);
 }

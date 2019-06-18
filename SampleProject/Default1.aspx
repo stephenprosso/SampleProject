@@ -6,7 +6,8 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-       <script src="js/cart.js">
+  
+    <script src="js/cart.js">
     </script>
     <script type="text/javascript">
         window.onload = start1;
@@ -25,38 +26,24 @@
         </div>
 
         <br />
-        <div class="row">
-            <div class="col-sm-6 text-center">
+        <div class="row text-center">
+            <div class="group-block">
                 Username:
             <input type="text" size="30" name="Username" id="UserID">
-                <br>
                 <br>
                 Password:
             <input type="password" size="30" name="Password" id="PWD">
                 <br>
-                <br>
-            </div>
-
-
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-6">
-                <dx:BootstrapButton ID="sendUserNameAndPassword" runat="server" AutoPostBack="false" Text="Login" Width="140px">
-                    <ClientSideEvents Click="sendLogin" />
-
-                </dx:BootstrapButton>
+                <asp:Button ID="sendUserAndPassword" type="button" runat="server" Text="Login" CssClass="button centered" OnClientClick="sendLogin(); return false;" UseSubmitBehavior="false" />
                 <br />
                 <br />
-                <dx:BootstrapButton ID="Clear" runat="server" AutoPostBack="false" Text="Clear" Width="140px">
-                    <%--<ClientSideEvents Click="test" />--%>
-                </dx:BootstrapButton>
-
             </div>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-sm-4"></div>
         <div class="col-sm-4" id="CartSetupTitle" style="display: none">
+            <h2>Batch Setup</h2>
         </div>
         <div class="col-sm-4" id="CartPickingTitle" style="display: none">
             <h2>Cart Picking</h2>
@@ -122,42 +109,49 @@
         </div>
         <br />
 
-        <div class="row text-center" id="toteDiv">
+        <div class="row text-center">
             <div class="col-sm-3"></div>
-            <div class="col-sm-6 text-center" id="id01">
+            <div class="col-sm-6 text-center" id="id01" style="display: none">
             </div>
 
             <div class="col-sm-3">
                 <div class="button-div" id="button-div" style="display: none">
-                    <dx:BootstrapButton ID="AbortBatchButton" runat="server" AutoPostBack="false" Text="Abort Batch" CssClasses-Control="button">
-                        <ClientSideEvents Click="" />
+
+                    <dx:BootstrapButton ID="earlyExitButton" runat="server" AutoPostBack="false" Text="Task Complete" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendEarlyExit" />--%>
                     </dx:BootstrapButton>
-
-                    <dx:BootstrapButton ID="RetyLightsButton" runat="server" AutoPostBack="false" Text="Retry Lights" CssClasses-Control="button">
-                        <ClientSideEvents Click="" />
+                    <dx:BootstrapButton ID="abortBatchButton" runat="server" AutoPostBack="false" Text="Abort Batch" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendAbortBatch" />--%>
                     </dx:BootstrapButton>
-
-
-                    <dx:BootstrapButton ID="TC" runat="server" AutoPostBack="false" Text="Task Complete" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="TC" />--%>
+                    <dx:BootstrapButton ID="notifyHostLocnEmptyButton" runat="server" AutoPostBack="false" Text="Notify Host Locn Empty" CssClasses-Control="button">
+                        <ClientSideEvents Click="sendLocnEmpty" />
                     </dx:BootstrapButton>
-
-                    <dx:BootstrapButton ID="PICK" runat="server" AutoPostBack="false" Text="PICK" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="PICK" />--%>
-                    </dx:BootstrapButton>
-
-
-                    <dx:BootstrapButton ID="ReprintLabelButton" runat="server" AutoPostBack="false" Text="Reprint Label" CssClasses-Control="button" heigth="300px">
-                        <ClientSideEvents Click="" />
-                    </dx:BootstrapButton>
-
                     <dx:BootstrapButton ID="SkipPickButton" runat="server" AutoPostBack="false" Text="Skip Pick" CssClasses-Control="button">
-                        <ClientSideEvents Click="" />
+                        <%-- <ClientSideEvents Click="sendSkipPick" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="shortPickButton" runat="server" AutoPostBack="false" Text="Short Pick" CssClasses-Control="button">
+                        <%-- <ClientSideEvents Click="sendShortPick" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="fullToteButton" runat="server" AutoPostBack="false" Text="Full Tote" CssClasses-Control="button">
+                        <%-- <ClientSideEvents Click="sendFullTote" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="retyLightsButton" runat="server" AutoPostBack="false" Text="Retry Lights" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendRetryLights" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="completePickButton" runat="server" AutoPostBack="false" Text="Complete Pick" CssClasses-Control="button">
+                        <%-- <ClientSideEvents Click="sendCompletePick" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="changeStartAisleButton" runat="server" AutoPostBack="false" Text="Change Start Aisle" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendChangeStartAisle" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="onDemandLabelPrintingButton" runat="server" AutoPostBack="false" Text="On Demand Label Printing" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendOnDemandLabelPrinting" />--%>
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="retryLastPickButton" runat="server" AutoPostBack="false" Text="Retry Last Pick" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendRetryLastPick" />--%>
                     </dx:BootstrapButton>
 
-                    <dx:BootstrapButton ID="ChangeQtyButton" runat="server" AutoPostBack="false" Text="Change Qty" CssClasses-Control="button">
-                        <ClientSideEvents Click="ChangeQT" />
-                    </dx:BootstrapButton>
+
 
                     <%--<asp:Button ID="ChangeQT" runat="server" Text="Change QT" Height="100px" CssClass="button" OnClientClick="ChangeQT()" />--%>
                 </div>
@@ -165,7 +159,7 @@
         </div>
     </div>
 
-    <div id="connectedDiv">
+    <div id="connectedDiv" style="display:none">
         <p>If you are reading this your connection is open.</p>
     </div>
 </asp:Content>

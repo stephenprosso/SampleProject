@@ -184,7 +184,7 @@
 
 };
 //functions for buttons
-function sendLogin(event) {
+function sendLogin() {
 
     var UserID = document.getElementById('UserID').value;
     var Password = document.getElementById('PWD').value;

@@ -121,6 +121,11 @@
 
             $("#LoginDiv").css('display', 'none');
             $("#zoneSelectDiv").css('display', 'block');
+            $("#zoneSelectTite").css('display', 'block');
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                document.getElementById("Location").innerHTML = errorMessage;
+            }
 
         }
 

@@ -122,11 +122,13 @@
             $("#LoginDiv").css('display', 'none');
             $("#zoneSelectDiv").css('display', 'block');
             $("#zoneSelectTite").css('display', 'block');
+
             if (errorMessage !== '') {
                 $("#errorDiv").css('display', 'block');
-                document.getElementById("Location").innerHTML = errorMessage;
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
             }
-
         }
 
         // 3 if statement to present work dashboard
@@ -177,7 +179,7 @@
         }
 
         if (action === "Batch Complete" && subAction === "Display") {
-
+            $("#batchCompleteTitle").css('display', 'block');
             $("#BatchCompleteDiv").css('display', 'block');
 
         }
@@ -208,6 +210,16 @@ function sendLogin() {
     console.log("data sent");
 }
 
+function sendLogout() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "action": "Zone Group", "SubAction": "LogOut", "Cart": cart });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+}
 
 function sendLPN() {
 

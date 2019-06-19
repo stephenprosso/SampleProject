@@ -66,6 +66,9 @@ textarea {
     display: inline-block;
     background-color: pink;
 }
+.errorMessage {
+    color: red;
+}
 
 .group {
     display: inline-block;

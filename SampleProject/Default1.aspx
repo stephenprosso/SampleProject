@@ -159,7 +159,17 @@
         </div>
     </div>
 
-    <div id="connectedDiv" style="display:none">
-        <p>If you are reading this your connection is open.</p>
+      <div class="row">
+        <div class="col-sm-4 text-center" id="connectedDiv" style="display: none">
+            <p>If you are reading this your connection is open.</p>
+        </div>
+        <div class="col-sm-4 text-center" id="errorDiv" style="display: none">
+            <h4>Error Messages</h4>
+            <div class="errorMessage" id="errorMessage" style="display: none"></div>
+        </div>
+        <div class="col-sm-4 text-center">
+            <asp:Button ID="logoutButton" runat="server" Text="Log Out" type="button" CssClass="button centered" OnClientClick="sendLogout();" />
+
+        </div>
     </div>
 </asp:Content>

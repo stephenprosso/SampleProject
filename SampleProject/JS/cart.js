@@ -1,32 +1,5 @@
 ﻿var start1 = function () {
 
-    //var myJSON = '{ "Action": "CartSetup", "SubAction": "", "Cart": "", "CartPositions": "", "OverallTC": false, "ErrorMessage": "", "UserResponse1": "", "UserResponse2": "", "UserResponse3": "", "DisplayData":' +
-    //    '[' +
-    //    '{ "Part": "p666", "PartDesc1": "", "PartDesc2": "", "UserField": "", "Location": "", "DirectionalDisplay": "", "TotalPickQty": "5", "StartingAisle": "", "FullTote": "", "FullToteQty": "", "NewToteQty": "" }' +
-    //    '], "BatchData":' +
-    //    '[' +
-    //    '{ "RemainingPickLines": 0, "RemainingLocs": 0, "CurrentPicksPerHourRate":0 }' +
-    //    '], "AlphaPos":' +
-    //    '[' +
-    //    '{ "Pos": "1", "PrimaryModule":1, "SecondaryModule":3, "Message": "", "Color": 1, "BlinkSpeed": 0, "Buzzer": true, "Enable": true },' +
-    //    '{ "Pos": "2", "PrimaryModule":2, "SecondaryModule":4, "Message": "", "Color": 1, "BlinkSpeed": 0, "Buzzer": false, "Enable": true }' +
-    //    '], "BatchPos":' +
-    //    '[' +
-    //    '{ "Pos": "1", "PrimaryModule":1, "SecondaryModule":51, "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-    //    '{ "Pos": "2", "PrimaryModule":2, "SecondaryModule":52, "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-    //    '{ "Pos": "3", "PrimaryModule":3, "SecondaryModule":53, "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-    //    '{ "Pos": "4", "PrimaryModule":4, "SecondaryModule":54, "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true },' +
-    //    '{ "Pos": "5", "PrimaryModule":5, "SecondaryModule":55, "Display": "", "TC": false, "Color": 1, "BlinkSpeed": 0, "Enable": true, "Visible": true }' +
-    //    ']' +
-    //    '}';
-
-
-    //var sidJSON = '{"sid": "645613434556789"}';
-
-    //var MYsid = JSON.parse(sidJSON);
-    //var sid = MYsid.sid;
-    //console.log(sid);
-
     var inc = document.getElementById('incomming');
     var wsImpl = window.WebSocket || window.MozWebSocket;
     var form = document.getElementById('sendForm');
@@ -114,7 +87,7 @@
 
             $("#LoginDiv").css('display', 'block');
             $("#toteDiv").css('display', 'none');
-
+            document.getElementById("MainContent_UserID").focus();
         }
         // 2 send user to PAGE 2 in the picking process
         if (action === "Zone Group" && subAction === "Select") {
@@ -129,46 +102,98 @@
                 $("#connectedDiv").css('display', 'none');
                 document.getElementById("errorMessage").innerHTML = errorMessage;
             }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
         }
 
         // 3 if statement to present work dashboard
         if (action === "Work Dashboard" && subAction === "Present") {
-
+            $("#LoginDiv").css('display', 'none');
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
+            $("#zoneSelectDiv").css('display', 'none');
+            $("#zoneSelectTite").css('display', 'none');
+            $("#dashboardTitle").css('display', 'block');
             $("#workDashboardDiv").css('display', 'block');
 
         }
 
         // 4 if statements for Action = Batch Setup
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
+            $("#LoginDiv").css('display', 'none');
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
 
             $("#LoginDiv").css('display', 'none');
-
+            $("#dashboardTitle").css('display', 'none');
+            $("#workDashboardDiv").css('display', 'none');
+            $("#batchSetupTitle").css('display', 'block');
             $("#BatchSetupTBs").css('display', 'block');
-            document.getElementById("MainContent_ScanToteTB").focus();
+            document.getElementById("MainContent_LPNTB").focus();
         }
 
         // 5 if statements for starting aisle
         if (action === "Start Aisle" && subAction === "Prompt") {
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
 
-            $("#StartAisleDiv").css('display', 'block');
+            $("#batchSetupTitle").css('display', 'none');
             $("#BatchSetupTBs").css('display', 'none');
+            $("#StartAisleDiv").css('display', 'block');
             document.getElementById("MainContent_startAisleTB").focus();
         }
 
         // 6 if statements for Action = Present Pick
         if (action === "Present Pick" && subAction === "Display Complete Task") {
+
             $("#LoginDiv").css('display', 'none');
             $("#CartPickingTitle").css('display', 'block');
             $("#id01").css('display', 'block');
-
             $("#pickStatsDiv").css('display', 'block');
-
             $("#button-div").css('display', 'block');
             document.getElementById("MainContent_ToteScanTB").focus();
         }
 
         if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
 
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
+
+            $("#LoginDiv").css('display', 'none');
             $("#CartPickingTitle").css('display', 'block');
             $("#CartPickingTBs").css('display', 'block');
 
@@ -179,6 +204,8 @@
         }
 
         if (action === "Batch Complete" && subAction === "Display") {
+            $("#LoginDiv").css('display', 'none');
+
             $("#batchCompleteTitle").css('display', 'block');
             $("#BatchCompleteDiv").css('display', 'block');
 
@@ -186,7 +213,7 @@
 
     };
     ws.onopen = function () {
-        alert("in Open");
+        // alert("Web Socket Open");
         $("#connectingDiv").css('display', 'none');
         $("#connectedDiv").css('display', 'block');
 
@@ -215,6 +242,24 @@ function sendLogout() {
     var cart = new URLSearchParams(window.location.search).get("cart");
 
     var data = JSON.stringify({ "action": "Zone Group", "SubAction": "LogOut", "Cart": cart });
+    console.log(data);
+    console.log("send data");
+    ws.send(data);
+    console.log("data sent");
+}
+function clearError() {
+
+    $("#errorDiv").css('display', 'none');
+    $("#connectedDiv").css('display', 'block');
+
+}
+
+function sendSelectedBucket(selectedBucket) {
+
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Work Dashboard", "SubAction": "Selected Bucket", "Cart": cart, "UserResponse1": selectedBucket });
     console.log(data);
     console.log("send data");
     ws.send(data);

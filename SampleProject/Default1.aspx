@@ -93,7 +93,6 @@
         </div>
         <div class="container">
             <div class="row text-center" id="BatchSetupTBs" style="display: none">
-                <h2>Batch Setup</h2>
                 <div class="group-block">
                     <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
                     <input id="LPNTB" type="text" runat="server" width="200px" />

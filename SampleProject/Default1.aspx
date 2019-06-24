@@ -10,11 +10,6 @@
     </script>
     <script type="text/javascript">
         window.onload = start1;
-                $(document).ready(function () {
-            $('form').attr("DefaultButton", "LoginButton");
-            $('#MainContent_UserID')[0].focus();
-        });
-
     </script>
     <asp:HiddenField ID="nothingToSeeHere" runat="server" Value="" ClientIDMode="static" />
     <div id="connectingDiv" class="row text-center">
@@ -44,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div id="titlesDiv" class="row text-center"">
+    <div id="titlesDiv" class="row text-center">
         <div class="col-sm-4"></div>
         <div class="col-sm-4" id="zoneSelectTite" style="display: none">
             <h2>Select Zone Grouping</h2>
@@ -64,11 +59,11 @@
 
         <div class="col-sm-4" id="pickStatsDiv" style="display: none">
 
-            <asp:Label ID="partNumberLabel" runat="server" Text="Cart Number: "></asp:Label>
+            <asp:Label ID="CartNumberLabel" runat="server" Text="Cart Number: "></asp:Label>
             <p id="Cart"></p>
             <br />
 
-            <asp:Label ID="CartNumberLabel" runat="server" Text="Part NUmber: "></asp:Label>
+            <asp:Label ID="partNumberLabel" runat="server" Text="Part Number: "></asp:Label>
             <p id="Part"></p>
             <br />
             <asp:Label ID="locationLabel" runat="server" Text="Location: "></asp:Label>
@@ -91,29 +86,29 @@
                 </dx:BootstrapButton>
             </div>
         </div>
-        <div class="container">
-            <div class="row text-center" id="BatchSetupTBs" style="display: none">
-                <div class="group-block">
-                    <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
-                    <input id="LPNTB" type="text" runat="server" width="200px" />
-                    <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote">
-                        <ClientSideEvents Click="sendLPN" />
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="processBatchButton" runat="server" AutoPostBack="false" Text="Process Batch">
-                        <ClientSideEvents Click="processBatch" />
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="BackButton" runat="server" AutoPostBack="false" Text="Back">
-                        <ClientSideEvents Click="sendBack" />
-                    </dx:BootstrapButton>
-                </div>
-                <div class="row text-center">
-                    <div id="id001">
-                        <p>BW Code from server goes here</p>
 
-                    </div>
+        <div class="row text-center" id="BatchSetupTBs" style="display: none">
+            <div class="group-block">
+                <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
+                <input id="LPNTB" type="text" runat="server" width="200px" />
+                <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote">
+                    <ClientSideEvents Click="sendLPN" />
+                </dx:BootstrapButton>
+                <dx:BootstrapButton ID="processBatchButton" runat="server" AutoPostBack="false" Text="Process Batch">
+                    <ClientSideEvents Click="processBatch" />
+                </dx:BootstrapButton>
+                <dx:BootstrapButton ID="BackButton" runat="server" AutoPostBack="false" Text="Back">
+                    <ClientSideEvents Click="sendBack" />
+                </dx:BootstrapButton>
+            </div>
+            <div class="row text-center">
+                <div id="id001">
+                    <p>BW Code from server goes here</p>
+
                 </div>
             </div>
         </div>
+
         <br />
         <div class="container" id="workDashboardDiv" style="display: none">
             <div class="row">
@@ -156,7 +151,7 @@
                         </tr>
                     </table>
                 </div>
-                                <div class="col-sm-4 group-block">
+                <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton2" runat="server" CssClass="button centered" Text="Multi Alloc" OnClientClick="sendSelectedBucket('2'); return false;" />
                     <table>
                         <tr>
@@ -195,7 +190,7 @@
                         </tr>
                     </table>
                 </div>
-                                <div class="col-sm-4 group-block">
+                <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton3" runat="server" CssClass="button centered" Text="Mixed Priority" OnClientClick="sendSelectedBucket('3'); return false;" />
                     <table>
                         <tr>
@@ -275,7 +270,7 @@
                         </tr>
                     </table>
                 </div>
-                                <div class="col-sm-4 group-block">
+                <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton5" runat="server" CssClass="button centered" Text="Big Order" OnClientClick="sendSelectedBucket('5'); return false;" />
                     <table>
                         <tr>
@@ -314,7 +309,7 @@
                         </tr>
                     </table>
                 </div>
-                                <div class="col-sm-4 group-block">
+                <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton6" runat="server" CssClass="button centered" Text="High Priority" OnClientClick="sendSelectedBucket('6'); return false;" />
                     <table>
                         <tr>
@@ -371,47 +366,90 @@
             </div>
             <div class="col-sm-6 text-center" id="BatchCompleteDiv" style="display: none">
                 <p>Batch Complete Grid filled by BW</p>
+                <asp:Button ID="sendTaskCompleteButton" runat="server" CssClass="button centered" Text="Task Complete" OnClientClick="sendTaskComplete(); return false;" />
+                <asp:Button ID="sendRetryLightsButton" runat="server" CssClass="button centered" Text="Single Alloc" OnClientClick="sendRetryLights(); return false;" />
 
+                <table>
+
+                    <tr>
+                        <th>Status</th>
+                        <th>More Stats</th>
+                        <th>Stats on stats</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>9</td>
+                        <td>11</td>
+
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </table>
             </div>
             <div class="col-sm-3">
                 <div class="button-div" id="button-div" style="display: none">
-
-                    <dx:BootstrapButton ID="earlyExitButton" runat="server" AutoPostBack="false" Text="Task Complete" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendEarlyExit" />--%>
+                    <%--1--%>
+                    <dx:BootstrapButton ID="exitBatchButton" runat="server" AutoPostBack="false" Text="Exit Batch" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendExitBatch" />--%>
                     </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="abortBatchButton" runat="server" AutoPostBack="false" Text="Abort Batch" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendAbortBatch" />--%>
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="notifyHostLocnEmptyButton" runat="server" AutoPostBack="false" Text="Notify Host Locn Empty" CssClasses-Control="button">
-                        <ClientSideEvents Click="sendLocnEmpty" />
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="SkipPickButton" runat="server" AutoPostBack="false" Text="Skip Pick" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="sendSkipPick" />--%>
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="shortPickButton" runat="server" AutoPostBack="false" Text="Short Pick" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="sendShortPick" />--%>
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="fullToteButton" runat="server" AutoPostBack="false" Text="Full Tote" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="sendFullTote" />--%>
-                    </dx:BootstrapButton>
+                    <%--2--%>
                     <dx:BootstrapButton ID="retyLightsButton" runat="server" AutoPostBack="false" Text="Retry Lights" CssClasses-Control="button">
                         <%--<ClientSideEvents Click="sendRetryLights" />--%>
                     </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="completePickButton" runat="server" AutoPostBack="false" Text="Complete Pick" CssClasses-Control="button">
+                    <%--3--%>
+                    <dx:BootstrapButton ID="taskCompletekButton" runat="server" AutoPostBack="false" Text="Task Complete" CssClasses-Control="button">
                         <%-- <ClientSideEvents Click="sendCompletePick" />--%>
                     </dx:BootstrapButton>
+                    <%--4--%>
+                    <dx:BootstrapButton ID="relightLastPickButton" runat="server" AutoPostBack="false" Text="Re-Light Last Pick" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendRetryLastPick" />--%>
+                    </dx:BootstrapButton>
+                    <%--5--%>
+                    <dx:BootstrapButton ID="rePrintLabelsButton" runat="server" AutoPostBack="false" Text="Re-Print Labels" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendOnDemandLabelPrinting" />--%>
+                    </dx:BootstrapButton>
+                    <%--6--%>
                     <dx:BootstrapButton ID="changeStartAisleButton" runat="server" AutoPostBack="false" Text="Change Start Aisle" CssClasses-Control="button">
                         <%--<ClientSideEvents Click="sendChangeStartAisle" />--%>
                     </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="onDemandLabelPrintingButton" runat="server" AutoPostBack="false" Text="On Demand Label Printing" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendOnDemandLabelPrinting" />--%>
+                    <%--7--%>
+                    <dx:BootstrapButton ID="earlyExitButton" runat="server" AutoPostBack="false" Text="Early Exit" CssClasses-Control="button">
+                        <%--<ClientSideEvents Click="sendEarlyExit" />--%>
                     </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="retryLastPickButton" runat="server" AutoPostBack="false" Text="Retry Last Pick" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendRetryLastPick" />--%>
+                    <%--8--%>
+                    <dx:BootstrapButton ID="SkipPickButton" runat="server" AutoPostBack="false" Text="Skip Pick" CssClasses-Control="button">
+                        <%-- <ClientSideEvents Click="sendSkipPick" />--%>
                     </dx:BootstrapButton>
-
-
-
+                    <%--9--%>
+                    <dx:BootstrapButton ID="shortPickButton" runat="server" AutoPostBack="false" Text="Short Pick" CssClasses-Control="button">
+                        <%-- <ClientSideEvents Click="sendShortPick" />--%>
+                    </dx:BootstrapButton>
+                    <%--10--%>
+                    <dx:BootstrapButton ID="fullToteButton" runat="server" AutoPostBack="false" Text="Full Tote" CssClasses-Control="button">
+                        <%-- <ClientSideEvents Click="sendFullTote" />--%>
+                    </dx:BootstrapButton>
+                    <%--11--%>
+                    <dx:BootstrapButton ID="notifyHostLocnEmptyButton" runat="server" AutoPostBack="false" Text="Notify Location Empty" CssClasses-Control="button">
+                        <ClientSideEvents Click="sendLocnEmpty" />
+                    </dx:BootstrapButton>
                     <%--<asp:Button ID="ChangeQT" runat="server" Text="Change QT" Height="100px" CssClass="button" OnClientClick="ChangeQT()" />--%>
                 </div>
             </div>
@@ -419,12 +457,12 @@
     </div>
     <div class="row">
         <div class="col-sm-4 text-center" id="connectedDiv" style="display: none">
-           <div class="smt">If you are reading this your connection is open.</div>
+            <div class="smt">If you are reading this your connection is open.</div>
         </div>
         <div class="col-sm-4 text-center" id="errorDiv" style="display: none">
             <h4>Error Messages</h4>
             <div class="errorMessage" id="errorMessage" style="display: none"></div>
-            <asp:Button ID="clearError" runat="server" Text="OK" OnClientClick="clearError(); return false;" />
+            <%--            <asp:Button ID="clearError" runat="server" Text="OK" OnClientClick="clearError(); return false;" />--%>
         </div>
         <div class="col-sm-4 text-center">
         </div>

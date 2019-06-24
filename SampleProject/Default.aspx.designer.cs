@@ -49,15 +49,6 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button sendUserAndPassword;
         
         /// <summary>
-        /// partNumberLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label partNumberLabel;
-        
-        /// <summary>
         /// CartNumberLabel control.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,15 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label CartNumberLabel;
+        
+        /// <summary>
+        /// partNumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label partNumberLabel;
         
         /// <summary>
         /// locationLabel control.
@@ -229,6 +229,78 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
+        /// sendTaskCompleteButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button sendTaskCompleteButton;
+        
+        /// <summary>
+        /// sendRetryLightsButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button sendRetryLightsButton;
+        
+        /// <summary>
+        /// exitBatchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton exitBatchButton;
+        
+        /// <summary>
+        /// retyLightsButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton retyLightsButton;
+        
+        /// <summary>
+        /// taskCompletekButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton taskCompletekButton;
+        
+        /// <summary>
+        /// relightLastPickButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton relightLastPickButton;
+        
+        /// <summary>
+        /// rePrintLabelsButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton rePrintLabelsButton;
+        
+        /// <summary>
+        /// changeStartAisleButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton changeStartAisleButton;
+        
+        /// <summary>
         /// earlyExitButton control.
         /// </summary>
         /// <remarks>
@@ -236,24 +308,6 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton earlyExitButton;
-        
-        /// <summary>
-        /// abortBatchButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton abortBatchButton;
-        
-        /// <summary>
-        /// notifyHostLocnEmptyButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton notifyHostLocnEmptyButton;
         
         /// <summary>
         /// SkipPickButton control.
@@ -283,57 +337,12 @@ namespace PoweredPIKCart {
         protected global::DevExpress.Web.Bootstrap.BootstrapButton fullToteButton;
         
         /// <summary>
-        /// retyLightsButton control.
+        /// notifyHostLocnEmptyButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton retyLightsButton;
-        
-        /// <summary>
-        /// completePickButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton completePickButton;
-        
-        /// <summary>
-        /// changeStartAisleButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton changeStartAisleButton;
-        
-        /// <summary>
-        /// onDemandLabelPrintingButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton onDemandLabelPrintingButton;
-        
-        /// <summary>
-        /// retryLastPickButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton retryLastPickButton;
-        
-        /// <summary>
-        /// clearError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button clearError;
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton notifyHostLocnEmptyButton;
     }
 }

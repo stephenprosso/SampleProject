@@ -64,23 +64,6 @@
 
         //Display Data Variables
 
-        //var part = myObj.DisplayData[0].Part;
-        //var partDesc1 = myObj.DisplayData[0].PartDesc1;
-        //var partDesc2 = myObj.DisplayData[0].PartDesc2;
-        //var userField = myObj.DisplayData[0].UserField;
-        //var Location = myObj.DisplayData[0].Location;
-        //var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
-        //var totalPickQty = myObj.DisplayData[0].TotalPickQty;
-        //var startingAisle = myObj.DisplayData[0].StartingAisle;
-        //var fullTote = myObj.DisplayData[0].fullTote;
-        //var fullToteQty = myObj.DisplayData[0].FullToteQty;
-        //var newToteQty = myObj.DisplayData[0].NewToteQty;
-
-        ////Batchdata Variables
-
-        //var remainingPickLines = myObj.BatchData[0].RemainingPickLines;
-        //var remainingLocs = myObj.BatchData[0].RemainingLocs;
-        //var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
         // 1 if statement variables PAGE 1 IN PICKING PROCESS
         if (action === "Login" && subAction === "Response") {
@@ -162,55 +145,77 @@
                 $("#errorDiv").css('display', 'none');
                 $("#errorMessage").css('display', 'none');
             }
-
+            $("#dashboardTitle").css('display', 'none');
+            $("#workDashboardDiv").css('display', 'none');
             $("#batchSetupTitle").css('display', 'none');
             $("#BatchSetupTBs").css('display', 'none');
             $("#StartAisleDiv").css('display', 'block');
             document.getElementById("MainContent_startAisleTB").focus();
         }
 
+
         // 6 if statements for Action = Present Pick
-        if (action === "Present Pick" && subAction === "Display Complete Task") {
+        if (action === "Present Pick") {
 
-            $("#LoginDiv").css('display', 'none');
-            $("#CartPickingTitle").css('display', 'block');
-            $("#id01").css('display', 'block');
-            $("#pickStatsDiv").css('display', 'block');
-            $("#button-div").css('display', 'block');
-            document.getElementById("MainContent_ToteScanTB").focus();
-        }
+            var part = myObj.DisplayData[0].Part;
+            var partDesc1 = myObj.DisplayData[0].PartDesc1;
+            var partDesc2 = myObj.DisplayData[0].PartDesc2;
+            var userField = myObj.DisplayData[0].UserField;
+            var Location = myObj.DisplayData[0].Location;
+            var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
+            var totalPickQty = myObj.DisplayData[0].TotalPickQty;
+            var startingAisle = myObj.DisplayData[0].StartingAisle;
+            var fullTote = myObj.DisplayData[0].fullTote;
+            var fullToteQty = myObj.DisplayData[0].FullToteQty;
+            var newToteQty = myObj.DisplayData[0].NewToteQty;
 
-        if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
+            ////Batchdata Variables
 
-            if (errorMessage !== '') {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
+            var remainingPickLines = myObj.BatchData[0].RemainingPickLines;
+            var remainingLocs = myObj.BatchData[0].RemainingLocs;
+            var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
+
+            if (action === "Present Pick" && subAction === "Display Complete Task") {
+
+                $("#LoginDiv").css('display', 'none');
+                $("#CartPickingTitle").css('display', 'block');
+                $("#id01").css('display', 'block');
+                $("#pickStatsDiv").css('display', 'block');
+                $("#button-div").css('display', 'block');
+                document.getElementById("MainContent_ToteScanTB").focus();
             }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
+
+            if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
+
+                if (errorMessage !== '') {
+                    $("#errorDiv").css('display', 'block');
+                    $("#errorMessage").css('display', 'block');
+                    $("#connectedDiv").css('display', 'none');
+                    document.getElementById("errorMessage").innerHTML = errorMessage;
+                }
+                else {
+                    $("#errorDiv").css('display', 'none');
+                    $("#errorMessage").css('display', 'none');
+                }
+
+                $("#LoginDiv").css('display', 'none');
+                $("#CartPickingTitle").css('display', 'block');
+                $("#CartPickingTBs").css('display', 'block');
+
+                $("#pickStatsDiv").css('display', 'block');
+                document.getElementById("MainContent_ToteScanTB").focus();
+                $("#button-div").css('display', 'block');
+                //hide the task complete button
             }
 
-            $("#LoginDiv").css('display', 'none');
-            $("#CartPickingTitle").css('display', 'block');
-            $("#CartPickingTBs").css('display', 'block');
+            if (action === "Batch Complete" && subAction === "Display") {
+                $("#LoginDiv").css('display', 'none');
 
-            $("#pickStatsDiv").css('display', 'block');
-            document.getElementById("MainContent_ToteScanTB").focus();
-            $("#button-div").css('display', 'block');
-            //hide the task complete button
+                $("#batchCompleteTitle").css('display', 'block');
+                $("#BatchCompleteDiv").css('display', 'block');
+
+            }
         }
-
-        if (action === "Batch Complete" && subAction === "Display") {
-            $("#LoginDiv").css('display', 'none');
-
-            $("#batchCompleteTitle").css('display', 'block');
-            $("#BatchCompleteDiv").css('display', 'block');
-
-        }
-
     };
     ws.onopen = function () {
         // alert("Web Socket Open");
@@ -225,8 +230,8 @@
 //functions for buttons
 function sendLogin() {
 
-    var UserID = document.getElementById('UserID').value;
-    var Password = document.getElementById('PWD').value;
+    var UserID = document.getElementById('MainContent_UserID').value;
+    var Password = document.getElementById('MainContent_PWD').value;
     var cart = new URLSearchParams(window.location.search).get("cart");
     var ntsh = document.getElementById('nothingToSeeHere').value;
 
@@ -243,7 +248,6 @@ function sendLogout() {
 
     var data = JSON.stringify({ "action": "Zone Group", "SubAction": "LogOut", "Cart": cart });
     console.log(data);
-    console.log("send data");
     ws.send(data);
     console.log("data sent");
 }
@@ -258,10 +262,8 @@ function sendSelectedBucket(selectedBucket) {
 
 
     var cart = new URLSearchParams(window.location.search).get("cart");
-
     var data = JSON.stringify({ "Action": "Work Dashboard", "SubAction": "Selected Bucket", "Cart": cart, "UserResponse1": selectedBucket });
     console.log(data);
-    console.log("send data");
     ws.send(data);
     console.log("data sent");
 }
@@ -270,20 +272,18 @@ function sendLPN() {
 
     var LPN = document.getElementById('MainContent_LPNTB').value;
     var cart = new URLSearchParams(window.location.search).get("cart");
-
-    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "LPN Scanned", "Cart": cart, "LPN": LPN });
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "LPN Scanned", "Cart": cart, "UserResponse1": LPN });
     console.log(data);
     console.log("send data");
     ws.send(data);
     console.log("data sent");
 }
+
 function processBatch() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
-
     var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Process Batch", "Cart": cart });
     console.log(data);
-    console.log("send data");
     ws.send(data);
     console.log("data sent");
 }
@@ -293,7 +293,6 @@ function sendLocnEmpty() {
     var emptyLocn = prompt("Scan Empty Location");
     var data = JSON.stringify({ "Action": "Notify Host Locn Empty", "SubAction": "Request", "Cart": cart, "UserResponse1": emptyLocn });
     console.log(data);
-    console.log("send data");
     ws.send(data);
     console.log("data sent");
 
@@ -305,9 +304,8 @@ function sendStartAisle() {
     var aisle = document.getElementById('MainContent_startAisleTB').value;
     var cart = new URLSearchParams(window.location.search).get("cart");
 
-    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Response", "Cart": cart, "UserResponse1": aisle });
+    var data = JSON.stringify({ "Action": "Start Aisle", "SubAction": "Response", "Cart": cart, "UserResponse1": aisle });
     console.log(data);
-    console.log("send data");
     ws.send(data);
     console.log("data sent");
 }
@@ -319,8 +317,25 @@ function sendBack() {
 
     var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Clear Cart", "Cart": cart });
     console.log(data);
-    console.log("send data");
     ws.send(data);
     console.log("data sent");
 
+}
+
+function sendRetryLights() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Batch Complete", "SubAction": "Retry Lights", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
+}
+function sendTaskComplete() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Batch Complete", "SubAction": "Task Complete", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
 }

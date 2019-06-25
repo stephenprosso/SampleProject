@@ -38,11 +38,6 @@
 
         //var myObj = JSON.parse(myJSON);
         //setting variables with data
-        //document.getElementById("Cart").innerHTML = myObj.Cart;
-        //document.getElementById("Part").innerHTML = myObj.DisplayData[0].Part;
-        //document.getElementById("Location").innerHTML = myObj.DisplayData[0].Location;
-        //console.log(myObj.DisplayData[0].Part);
-
 
         // JSON variables
         var action = myObj.Action;
@@ -61,9 +56,6 @@
             console.log(document.getElementById('nothingToSeeHere').value);
 
         }
-
-        //Display Data Variables
-
 
         // 1 if statement variables PAGE 1 IN PICKING PROCESS
         if (action === "Login" && subAction === "Response") {
@@ -155,19 +147,34 @@
 
 
         // 6 if statements for Action = Present Pick
-        if (action === "Present Pick") {
-
+        if (action === "Present Pick" || action === "Location Validation" || action === "Part Validation") {
+            $("#LoginDiv").css('display', 'none');
+            $("#StartAisleDiv").css('display', 'none');
+            $("#CartPickingTitle").css('display', 'block');
+            $("#button-div").css('display', 'block');
+            $("#pickStatsDiv").css('display', 'block');
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
+            //Display Data Variables
             var part = myObj.DisplayData[0].Part;
             var partDesc1 = myObj.DisplayData[0].PartDesc1;
             var partDesc2 = myObj.DisplayData[0].PartDesc2;
             var userField = myObj.DisplayData[0].UserField;
             var Location = myObj.DisplayData[0].Location;
             var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
-            var totalPickQty = myObj.DisplayData[0].TotalPickQty;
-            var startingAisle = myObj.DisplayData[0].StartingAisle;
-            var fullTote = myObj.DisplayData[0].fullTote;
-            var fullToteQty = myObj.DisplayData[0].FullToteQty;
-            var newToteQty = myObj.DisplayData[0].NewToteQty;
+
+            document.getElementById("Cart").innerHTML = cart;
+            document.getElementById("Part").innerHTML = part;
+            document.getElementById("Location").innerHTML = Location;
+            console.log(myObj.DisplayData[0].Part);
 
             ////Batchdata Variables
 
@@ -175,36 +182,34 @@
             var remainingLocs = myObj.BatchData[0].RemainingLocs;
             var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
+            if (action === "Location Validation" && subAction === "Prompt") {
+                $("#id01").css('display', 'none');
+                $("#validateLocationDiv").css('display', 'block');
+                document.getElementById("MainContent_validateLocationTB").focus();
+
+                //hide the task complete button
+            }
+            if (action === "Part Validation" && subAction === "Prompt") {
+                $("#id01").css('display', 'none');
+
+                $("#validatePartDiv").css('display', 'block');
+                document.getElementById("MainContent_validatePartTB").focus();
+
+                //hide the task complete button
+            }
             if (action === "Present Pick" && subAction === "Display Complete Task") {
 
-                $("#LoginDiv").css('display', 'none');
-                $("#CartPickingTitle").css('display', 'block');
                 $("#id01").css('display', 'block');
-                $("#pickStatsDiv").css('display', 'block');
-                $("#button-div").css('display', 'block');
-                document.getElementById("MainContent_ToteScanTB").focus();
+                $("#CartPickingTBs").css('display', 'block');
+
             }
 
             if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
+                $("#id01").css('display', 'none');
 
-                if (errorMessage !== '') {
-                    $("#errorDiv").css('display', 'block');
-                    $("#errorMessage").css('display', 'block');
-                    $("#connectedDiv").css('display', 'none');
-                    document.getElementById("errorMessage").innerHTML = errorMessage;
-                }
-                else {
-                    $("#errorDiv").css('display', 'none');
-                    $("#errorMessage").css('display', 'none');
-                }
+                $("#validateLPNDiv").css('display', 'block');
+                document.getElementById("MainContent_validateLPNTB").focus();
 
-                $("#LoginDiv").css('display', 'none');
-                $("#CartPickingTitle").css('display', 'block');
-                $("#CartPickingTBs").css('display', 'block');
-
-                $("#pickStatsDiv").css('display', 'block');
-                document.getElementById("MainContent_ToteScanTB").focus();
-                $("#button-div").css('display', 'block');
                 //hide the task complete button
             }
 
@@ -256,6 +261,17 @@ function clearError() {
     $("#errorDiv").css('display', 'none');
     $("#connectedDiv").css('display', 'block');
 
+}
+
+function sendSelectedZoneGrouping() {
+
+    var selectedZoneGrouping = "1";
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    alert("WTF");
+    var data = JSON.stringify({ "Action": "Zone Group", "SubAction": "Response", "Cart": cart, "UserResponse1": selectedZoneGrouping });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
 }
 
 function sendSelectedBucket(selectedBucket) {

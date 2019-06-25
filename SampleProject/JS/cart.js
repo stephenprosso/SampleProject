@@ -168,12 +168,18 @@
             var partDesc1 = myObj.DisplayData[0].PartDesc1;
             var partDesc2 = myObj.DisplayData[0].PartDesc2;
             var userField = myObj.DisplayData[0].UserField;
-            var Location = myObj.DisplayData[0].Location;
+            var location = myObj.DisplayData[0].Location;
+            var totalPickQty = myObj.DisplayData[0].TotalPickQty;
             var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
 
-            document.getElementById("Cart").innerHTML = cart;
-            document.getElementById("Part").innerHTML = part;
-            document.getElementById("Location").innerHTML = Location;
+            document.getElementById("partNumber").innerHTML = part;
+            document.getElementById("partDesc1").innerHTML = partDesc1;
+            document.getElementById("partDesc2").innerHTML = partDesc2;
+            document.getElementById("location").innerHTML = location;
+            document.getElementById("totalPickQty").innerHTML = totalPickQty;
+            document.getElementById("userField").innerHTML = userField;
+            document.getElementById("directionalDisplay").innerHTML = directionalDisplay;
+
             console.log(myObj.DisplayData[0].Part);
 
             ////Batchdata Variables

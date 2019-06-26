@@ -148,11 +148,26 @@
 
         // 6 if statements for Action = Present Pick
         if (action === "Present Pick" || action === "Location Validation" || action === "Part Validation") {
+
             $("#LoginDiv").css('display', 'none');
             $("#StartAisleDiv").css('display', 'none');
+
             $("#CartPickingTitle").css('display', 'block');
+            //$("#partDetailsDiv").css('display', 'block');
+            //$("#locationQuantityDiv").css('display', 'block');
+            //$("#BatchDataDiv").css('display', 'block');
+            //$("#directionalDisplayDiv").css('display', 'block'); 
+            //$("#userFieldDiv").css('display', 'block');
+
+
+
+            $("#directionalDisplayDiv").css('display', 'block');
+            $("#partDetailsAndLocationDiv").css('display', 'block');
+            $("#userFieldQuantity").css('display', 'block');
+            $("#BatchDataDiv").css('display', 'block');
+
             $("#button-div").css('display', 'block');
-            $("#pickStatsDiv").css('display', 'block');
+
             if (errorMessage !== '') {
                 $("#errorDiv").css('display', 'block');
                 $("#errorMessage").css('display', 'block');
@@ -188,16 +203,24 @@
             var remainingLocs = myObj.BatchData[0].RemainingLocs;
             var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
 
+            document.getElementById("remainingPickLines").innerHTML = remainingPickLines;
+            document.getElementById("remainingLocs").innerHTML = remainingLocs;
+            document.getElementById("currentPicksPerHourRate").innerHTML = currentPicksPerHourRate;
+
             if (action === "Location Validation" && subAction === "Prompt") {
                 $("#id01").css('display', 'none');
                 $("#validateLocationDiv").css('display', 'block');
+                document.getElementById("MainContent_fullToteButton").disabled = true;
+                document.getElementById("MainContent_taskCompleteButton").disabled = true;
+
                 document.getElementById("MainContent_validateLocationTB").focus();
 
                 //hide the task complete button
             }
             if (action === "Part Validation" && subAction === "Prompt") {
                 $("#id01").css('display', 'none');
-
+                document.getElementById("MainContent_fullToteButton").disabled = true;
+                document.getElementById("MainContent_taskCompleteButton").disabled = true;
                 $("#validatePartDiv").css('display', 'block');
                 document.getElementById("MainContent_validatePartTB").focus();
 
@@ -212,7 +235,7 @@
 
             if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
                 $("#id01").css('display', 'none');
-
+                document.getElementById("MainContent_taskCompleteButton").disabled = true;
                 $("#validateLPNDiv").css('display', 'block');
                 document.getElementById("MainContent_validateLPNTB").focus();
 

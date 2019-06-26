@@ -54,7 +54,18 @@ textarea {
     height: 60px;
 }
 
+.button {
+    width: 135px;
+    background-color: Highlight;
+    font-size: small;
+}
 
+.taskCompleteButton {
+    width: 135px;
+    height: 135px;
+    background-color: Highlight;
+    font-size: small;
+}
 .totecelllabel {
     width: 55px;
     display: inline-block;

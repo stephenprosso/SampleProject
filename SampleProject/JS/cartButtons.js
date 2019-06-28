@@ -33,7 +33,6 @@ function sendSelectedZoneGrouping() {
 
     var selectedZoneGrouping = "1";
     var cart = new URLSearchParams(window.location.search).get("cart");
-    alert("WTF");
     var data = JSON.stringify({ "Action": "Zone Group", "SubAction": "Response", "Cart": cart, "UserResponse1": selectedZoneGrouping });
     console.log(data);
     ws.send(data);
@@ -258,3 +257,34 @@ function hideEarlyExit() {
 
 }
 
+
+function sendCurrentFullTote() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var fullTote = document.getElementById('MainContent_promptFullToteTB').value;
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Scanned Tote", "Cart": cart, "UserResponse1": fullTote });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+}
+
+function sendCurrentQty() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var currentQty = document.getElementById('MainContent_promptCurrentQtyTB').value;
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Current Qty Response", "Cart": cart, "UserResponse1": currentQty });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+}
+
+function sendNewTote() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var newTote = document.getElementById('MainContent_promptNewToteTB').value;
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "New Tote Response", "Cart": cart, "UserResponse1": newTote });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
+}

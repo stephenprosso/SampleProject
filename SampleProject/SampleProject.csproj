@@ -195,6 +195,7 @@
     <Content Include="Default1.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="JS\cart.js" />
+    <Content Include="JS\cartButtons.js" />
     <Content Include="JS\ComplexJSON.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

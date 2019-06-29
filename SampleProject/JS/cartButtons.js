@@ -236,7 +236,7 @@ function sendEarlyExitAbort() {
     console.log("data sent");
 
 }
-
+// this function is called in multiple places
 function hideValidationBox() {
 
     $("#id01").css('display', 'none');

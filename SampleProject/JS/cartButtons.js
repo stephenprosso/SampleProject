@@ -224,7 +224,6 @@ function sendScanNewLPN() {
 
 function sendEarlyExitAbort() {
 
-
     hideEarlyExit();
     hideValidationBox();
 

@@ -184,6 +184,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// userFieldLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userFieldLabel;
+        
+        /// <summary>
         /// ListBox1 control.
         /// </summary>
         /// <remarks>
@@ -229,42 +238,6 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label partDesc1Label;
         
         /// <summary>
-        /// partDesc2Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label partDesc2Label;
-        
-        /// <summary>
-        /// userFieldLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userFieldLabel;
-        
-        /// <summary>
-        /// locationLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label locationLabel;
-        
-        /// <summary>
-        /// totalPickQtyLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalPickQtyLabel;
-        
-        /// <summary>
         /// remainingPickLinesLabel control.
         /// </summary>
         /// <remarks>
@@ -290,6 +263,132 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label currentPicksPerHourRateLabel;
+        
+        /// <summary>
+        /// locationLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label locationLabel;
+        
+        /// <summary>
+        /// totalPickQtyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label totalPickQtyLabel;
+        
+        /// <summary>
+        /// fullToteNumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label fullToteNumberLabel;
+        
+        /// <summary>
+        /// fullToteQtyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label fullToteQtyLabel;
+        
+        /// <summary>
+        /// newFullToteQtyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label newFullToteQtyLabel;
+        
+        /// <summary>
+        /// promptFullToteLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label promptFullToteLabel;
+        
+        /// <summary>
+        /// promptFullToteTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox promptFullToteTB;
+        
+        /// <summary>
+        /// promptFullToteButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button promptFullToteButton;
+        
+        /// <summary>
+        /// promptCurrentQtyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label promptCurrentQtyLabel;
+        
+        /// <summary>
+        /// promptCurrentQtyTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox promptCurrentQtyTB;
+        
+        /// <summary>
+        /// promptCurrentQtyButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button promptCurrentQtyButton;
+        
+        /// <summary>
+        /// promptNewToteLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label promptNewToteLabel;
+        
+        /// <summary>
+        /// promptNewToteTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox promptNewToteTB;
+        
+        /// <summary>
+        /// promptNewToteButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button promptNewToteButton;
         
         /// <summary>
         /// validateLocationTBLabel control.
@@ -373,13 +472,13 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button validateLPNTBButton;
         
         /// <summary>
-        /// sendTaskCompleteButton control.
+        /// sendBatchCompleteTaskCompleteButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button sendTaskCompleteButton;
+        protected global::System.Web.UI.WebControls.Button sendBatchCompleteTaskCompleteButton;
         
         /// <summary>
         /// sendRetryLightsButton control.
@@ -389,6 +488,24 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button sendRetryLightsButton;
+        
+        /// <summary>
+        /// scanNewLPNButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button scanNewLPNButton;
+        
+        /// <summary>
+        /// earlyExitAbortButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button earlyExitAbortButton;
         
         /// <summary>
         /// exitBatchButton control.

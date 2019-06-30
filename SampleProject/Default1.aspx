@@ -6,8 +6,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script src="js/cart.js">
-    </script>
+    <script src="js/cart.js"></script>
+    <script src="js/cartButtons.js"></script>
     <script type="text/javascript">
         window.onload = start1;
     </script>
@@ -40,28 +40,33 @@
         </div>
     </div>
     <div id="titlesDiv" class="row text-center">
-        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <%--THIS SM-4 IS AVAILABLE TO DISPLAY DATA NEXT TO THE TITLE IF NEEDED--%>
+        </div>
         <div class="col-sm-4" id="zoneSelectTite" style="display: none">
-            <h2>Select Zone Grouping</h2>
+            <h1>Select Zone Grouping</h1>
         </div>
         <div class="col-sm-4" id="dashboardTitle" style="display: none">
-            <h2>Cart Dashboard</h2>
+            <h1>Cart Dashboard</h1>
         </div>
         <div class="col-sm-4" id="batchSetupTitle" style="display: none">
-            <h2>Batch Setup</h2>
+            <h1>Batch Setup</h1>
         </div>
         <div class="col-sm-4" id="CartPickingTitle" style="display: none">
-            <h2>Cart Picking</h2>
+            <h1>Cart Picking</h1>
         </div>
         <div class="col-sm-4" id="batchCompleteTitle" style="display: none">
-            <h2>Batch Complete</h2>
+            <h1>Batch Complete</h1>
         </div>
-
+        <div class="col-sm-4" id="earlyExitTitle" style="display: none">
+            <h1>Early Exit</h1>
+        </div>
         <div class="col-sm-4">
+            <%--THIS SM-4 IS AVAILABLE TO DISPLAY DATA NEXT TO THE TITLE IF NEEDED--%>
         </div>
     </div>
     <div class="container">
-
+        <%--START AISLE DIV--%>
         <div class="row text-center" id="StartAisleDiv" style="display: none">
             <h2>Scan Starting Aisle</h2>
             <%--<asp:Label ID="Label1" runat="server" Text="Scan Aisle: "></asp:Label>--%>
@@ -75,7 +80,7 @@
                 </dx:BootstrapButton>
             </div>
         </div>
-
+        <%--BATCH SET UP DIV--%>
         <div class="row text-center" id="BatchSetupTBs" style="display: none">
             <div class="group-block">
                 <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
@@ -97,8 +102,8 @@
                 </div>
             </div>
         </div>
-
         <br />
+        <%--WORK DASHBOARD DIV--%>
         <div class="container" id="workDashboardDiv" style="display: none">
             <div class="row">
                 <div class="col-sm-4 group-block">
@@ -340,12 +345,17 @@
             </div>
         </div>
         <br />
-
         <div class="row">
             <div class="col-sm-2">
-                <div class="border" id="directionalDisplayDiv">
+                <%--DIRECTIONAL DISPLAY DIV--%>
+                <div class="border" id="directionalDisplayDiv" style="display: none">
                     <asp:Label ID="Label1" runat="server" Text="directionalDisplay: " Style="display: none"></asp:Label>
                     <p id="directionalDisplay"></p>
+                </div>
+                <%--USER FIELD DIV--%>
+                <div class="border" id="userFieldDiv" style="display: none">
+                    <asp:Label ID="userFieldLabel" runat="server" Text="userField: "></asp:Label>
+                    <p id="userField"></p>
                 </div>
             </div>
             <div class="col-sm-8 text-center" id="zoneSelectDiv" style="display: none">
@@ -354,65 +364,93 @@
                 <br />
                 <asp:Button ID="sendSelectedZoneGroupingButton" runat="server" Text="Select Zone" OnClientClick="sendSelectedZoneGrouping(); return false" />
             </div>
+            <%--CENTER OF YOUR PAGE DIV--%>
             <div class="col-sm-8" id="centerCartDisplay">
-
+                <%--PARTS AND DETAILS DIV--%>
                 <div class="border group" id="partDetailsAndLocationDiv" style="display: none">
-                    <asp:Label ID="partNumberLabel" runat="server" Text="Part Number: " Width="100px"></asp:Label>
-                    <p id="partNumber"></p>
-                    <br />
-                    <asp:Label ID="partDesc1Label" runat="server" Text="partDesc1: " Width="100px"></asp:Label>
-                    <p id="partDesc1"></p>
-                    <br />
-                    <asp:Label ID="partDesc2Label" runat="server" Text="partDesc2: " Width="100px"></asp:Label>
-                    <p id="partDesc2"></p>
-                    <br />
-                    <asp:Label ID="userFieldLabel" runat="server" Text="userField: " Width="100px"></asp:Label>
-                    <p id="userField"></p>
+                    <asp:Label ID="partNumberLabel" runat="server" Text="Part Number: "></asp:Label>
+                    <p class="pl" id="partNumber"></p>
+                    <asp:Label ID="partDesc1Label" runat="server" Text="partDesc1: "></asp:Label>
+                    <p class="pl" id="partDesc1"></p>
+                    <p class="pl" id="partDesc2"></p>
                 </div>
-                <div class="border text-center" id="userFieldQuantity" style="display: none">
-
-                    <asp:Label ID="locationLabel" runat="server" Text="Location: " Width="100px"></asp:Label>
-                    <p id="location"></p>
-                    <asp:Label ID="totalPickQtyLabel" runat="server" Text="Quantity: " Width="100px"></asp:Label>
-                    <p id="totalPickQty"></p>
-                </div>
+                <%--BATCH STATS DIV--%>
                 <div class="border text-center" id="BatchDataDiv" style="display: none">
                     <asp:Label ID="remainingPickLinesLabel" runat="server" Text="Remaining Pick Lines: "></asp:Label>
-                    <p id="remainingPickLines"></p>
+                    <p class="pl" id="remainingPickLines"></p>
                     <asp:Label ID="remainingLocsLabel" runat="server" Text="remaining Locations "></asp:Label>
-                    <p id="remainingLocs"></p>
+                    <p class="pl" id="remainingLocs"></p>
                     <asp:Label ID="currentPicksPerHourRateLabel" runat="server" Text="Picks/hr: "></asp:Label>
-                    <p id="currentPicksPerHourRate"></p>
+                    <p class="pl" id="currentPicksPerHourRate"></p>
+                </div>
+                <%--LOCATION AND QUANTITY DIV--%>
+                <div class="border text-center" id="userFieldQuantity" style="display: none">
+                    <asp:Label ID="locationLabel" runat="server" Text="Location: " Width="100px"></asp:Label>
+                    <p class="pl" id="location"></p>
+                    <asp:Label ID="totalPickQtyLabel" runat="server" Text="Quantity: " Width="100px"></asp:Label>
+                    <p class="pl" id="totalPickQty"></p>
+                </div>
+
+                <%--FULL TOTE INFO DIV--%>
+                <div class="border text-center" id="fullToteInfoDiv" style="display: none">
+                    <asp:Label ID="fullToteNumberLabel" runat="server" Text="Full Tote: " Width="100px"></asp:Label>
+                    <p class="pl" id="fullToteNumber"></p>
+                    <asp:Label ID="fullToteQtyLabel" runat="server" Text="Full Tote Qty: " Width="100px"></asp:Label>
+                    <p class="pl" id="fullToteQty"></p>
+                    <asp:Label ID="newFullToteQtyLabel" runat="server" Text="New Tote Qty: " Width="100px"></asp:Label>
+                    <p class="pl" id="newFullToteQty"></p>
+
+                </div>
+                <%--PROMPT FULL TOTE DIV--%>
+                <div class="border text-center" id="promptFullToteDiv" style="display: none">
+                    <asp:Label ID="promptFullToteLabel" runat="server" Text="Scan Full Tote"></asp:Label>
+                    <asp:TextBox ID="promptFullToteTB" runat="server"></asp:TextBox>
+                    <asp:Button ID="promptFullToteButton" runat="server" Text="Send Full Tote" CssClass="button" OnClientClick="sendCurrentFullTote(); return false" />
+                </div>
+                <%--PROMPT CURRENT QUANTITY DIV--%>
+                <div class="border text-center" id="promptCurrentQtyDiv" style="display: none">
+                    <asp:Label ID="promptCurrentQtyLabel" runat="server" Text="Enter Current Qty"></asp:Label>
+                    <asp:TextBox ID="promptCurrentQtyTB" runat="server"></asp:TextBox>
+                    <asp:Button ID="promptCurrentQtyButton" runat="server" Text="Send Current Qty" CssClass="button" OnClientClick="sendCurrentQty(); return false" />
+                </div>
+                <%--PROMPT NEW TOTE DIV--%>
+                <div class="border text-center" id="promptNewToteDiv" style="display: none">
+                    <asp:Label ID="promptNewToteLabel" runat="server" Text="Scan New Tote"></asp:Label>
+                    <asp:TextBox ID="promptNewToteTB" runat="server"></asp:TextBox>
+                    <asp:Button ID="promptNewToteButton" runat="server" Text="Send New Tote" CssClass="button" OnClientClick="sendNewTote(); return false" />
+                </div>
+                <%--MESSAGE BOX AND ERRORS DIV--%>
+                <div class="border text-center" id="errorDiv" style="display: none">
+                    <div class="errorMessage" id="errorMessage" style="display: none"></div>
+                    <%--<asp:Button ID="clearError" runat="server" Text="OK" OnClientClick="clearError(); return false;" />--%>
                 </div>
                 <div class="ValidationBox text-center" id="id01" style="display: none">
                     <h1>Tote Matrix Will be HERE</h1>
                 </div>
+                <%--LOCATION VALIDATION DIV--%>
                 <div class="ValidationBox text-center" id="validateLocationDiv" style="display: none">
                     <h1>Scan Location to Validate</h1>
                     <asp:Label ID="validateLocationTBLabel" runat="server" Text="Scan Location:"></asp:Label>
                     <input id="validateLocationTB" type="text" runat="server" width="200px" />
                     <asp:Button ID="validateLocationTBButton" runat="server" Text="Enter" />
                 </div>
+                <%--PART VALIDATION DIV--%>
                 <div class="ValidationBox text-center" id="validatePartDiv" style="display: none">
                     <h1>Scan Part Number to Validate</h1>
                     <asp:Label ID="validatePartTBLabel" runat="server" Text="Scan Part:"></asp:Label>
                     <input id="validatePartTB" type="text" runat="server" width="200px" />
                     <asp:Button ID="validatePartTBButton" runat="server" Text="Enter" />
                 </div>
+                <%--LPN VALIDATION DIV--%>
                 <div class="ValidationBox text-center" id="validateLPNDiv" style="display: none">
                     <h1>Scan LPN to Validate</h1>
                     <asp:Label ID="validateLPNTBLabel" runat="server" Text="Scan LPN:"></asp:Label>
                     <input id="validateLPNTB" type="text" runat="server" width="200px" />
                     <asp:Button ID="validateLPNTBButton" runat="server" Text="Enter" />
                 </div>
-
-
             </div>
-
             <div class="col-sm-8 text-center" id="BatchCompleteDiv" style="display: none">
                 <p>Batch Complete Grid filled by BW</p>
-                <asp:Button ID="sendTaskCompleteButton" runat="server" CssClass="button centered" Text="Task Complete" OnClientClick="sendTaskComplete(); return false;" />
-                <asp:Button ID="sendRetryLightsButton" runat="server" CssClass="button centered" Text="Single Alloc" OnClientClick="sendRetryLights(); return false;" />
 
                 <table>
 
@@ -449,48 +487,61 @@
                     </tr>
                 </table>
             </div>
-
+            <%--THIS DIV SIZE SMALL 2 HOLDS THE DIFFERENT BUTTON GROUPS--%>
             <div class="col-sm-2">
+                <%--BATCH COMPLETE BUTTONS--%>
+                <div class="batchCompleteButtons" id="batchCompleteButtons" style="display: none">
+                    <asp:Button ID="sendBatchCompleteTaskCompleteButton" runat="server" CssClass="button centered" Text="Task Complete" OnClientClick="sendBatchCompleteTaskCompleteButton(); return false;" />
+                    <asp:Button ID="sendRetryLightsButton" runat="server" CssClass="button centered" Text="Retry Lights" OnClientClick="sendRetryLights(); return false;" />
+                </div>
+                <%--EARLY EXIT BUTTONS--%>
+                <div class="earlyExitButtons" id="earlyExitButtons" style="display: none">
+                    <asp:Button ID="scanNewLPNButton" runat="server" Text="Scan New LPN" CssClass="button" OnClientClick="sendScanNewLPN(); return false;" />
+                    <asp:Button ID="earlyExitAbortButton" runat="server" Text="Exit Early Exit" CssClass="button" OnClientClick="sendEarlyExitAbort(); return false;" />
+                </div>
+                <div class="fullToteButtons" id="fullToteButtons" style="display: none">
+                </div>
+                <%--ALL AVAILABLE BUTTONS DURING PICKING--%>
                 <div class="button-div" id="button-div" style="display: none">
                     <%--1--%>
                     <dx:BootstrapButton ID="exitBatchButton" runat="server" AutoPostBack="false" Text="Exit Batch" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendExitBatch" />--%>
+                        <ClientSideEvents Click="sendExitBatch" />
                     </dx:BootstrapButton>
                     <%--2--%>
                     <dx:BootstrapButton ID="retyLightsButton" runat="server" AutoPostBack="false" Text="Retry Lights" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendRetryLights" />--%>
+                        <ClientSideEvents Click="sendRetryLights" />
                     </dx:BootstrapButton>
                     <%--3--%>
                     <dx:BootstrapButton ID="taskCompleteButton" runat="server" AutoPostBack="false" Text="Task Complete" CssClasses-Control="taskCompleteButton">
-                        <%-- <ClientSideEvents Click="sendCompletePick" />--%>
+                        <ClientSideEvents Click="sendCompletePick" />
                     </dx:BootstrapButton>
                     <%--4--%>
                     <dx:BootstrapButton ID="relightLastPickButton" runat="server" AutoPostBack="false" Text="Re-Light Last Pick" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendRetryLastPick" />--%>
+                        <ClientSideEvents Click="sendReLightLastPick" />
                     </dx:BootstrapButton>
                     <%--5--%>
                     <dx:BootstrapButton ID="rePrintLabelsButton" runat="server" AutoPostBack="false" Text="Re-Print Labels" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendOnDemandLabelPrinting" />--%>
+                        <ClientSideEvents Click="sendReprintLabels" />
                     </dx:BootstrapButton>
                     <%--6--%>
                     <dx:BootstrapButton ID="changeStartAisleButton" runat="server" AutoPostBack="false" Text="Change Start Aisle" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendChangeStartAisle" />--%>
+                        <ClientSideEvents Click="sendChangeStartAisle" />
                     </dx:BootstrapButton>
                     <%--7--%>
                     <dx:BootstrapButton ID="earlyExitButton" runat="server" AutoPostBack="false" Text="Early Exit" CssClasses-Control="button">
-                        <%--<ClientSideEvents Click="sendEarlyExit" />--%>
+                        <ClientSideEvents Click="sendEarlyExit" />
                     </dx:BootstrapButton>
                     <%--8--%>
                     <dx:BootstrapButton ID="SkipPickButton" runat="server" AutoPostBack="false" Text="Skip Pick" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="sendSkipPick" />--%>
+                        <ClientSideEvents Click="sendSkipPick" />
                     </dx:BootstrapButton>
                     <%--9--%>
                     <dx:BootstrapButton ID="shortPickButton" runat="server" AutoPostBack="false" Text="Short Pick" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="sendShortPick" />--%>
+                        <ClientSideEvents Click="sendShortPick" />
                     </dx:BootstrapButton>
                     <%--10--%>
                     <dx:BootstrapButton ID="fullToteButton" runat="server" AutoPostBack="false" Text="Full Tote" CssClasses-Control="button">
-                        <%-- <ClientSideEvents Click="sendFullTote" />--%>
+                        <ClientSideEvents Click="sendFullTote" />
                     </dx:BootstrapButton>
                     <%--11--%>
                     <dx:BootstrapButton ID="notifyHostLocnEmptyButton" runat="server" AutoPostBack="false" Text="Notify Location Empty" CssClasses-Control="button">
@@ -500,18 +551,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 text-center" id="connectedDiv" style="display: none">
-            <div class="smt">If you are reading this your connection is open.</div>
-        </div>
-        <div class="col-sm-4 text-center" id="errorDiv" style="display: none">
-            <h4>Error Messages</h4>
-            <div class="errorMessage" id="errorMessage" style="display: none"></div>
-            <%--<asp:Button ID="clearError" runat="server" Text="OK" OnClientClick="clearError(); return false;" />--%>
-        </div>
-        <div class="col-sm-4 text-center">
-        </div>
-    </div>
 
+        <div class="row">
+            <%--THIS IS IS ONLY FOR DOVETREE TESTING--%>
+            <div class="col-sm-4 text-center" id="connectedDiv" style="display: none">
+                <div class="smt">If you are reading this your connection is open.</div>
+            </div>
+            <div class="col-sm-4 text-center">
+            </div>
+        </div>
+    </div>
 </asp:Content>

@@ -22,6 +22,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.HiddenField nothingToSeeHere;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// UserID control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button sendUserAndPassword;
         
         /// <summary>
+        /// Panel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel3;
+        
+        /// <summary>
         /// startAisleTB control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton sendBackButton;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
         /// ScanToteTB control.
@@ -481,13 +508,13 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button sendBatchCompleteTaskCompleteButton;
         
         /// <summary>
-        /// sendRetryLightsButton control.
+        /// sendBatchCompleteRetryLightsButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button sendRetryLightsButton;
+        protected global::System.Web.UI.WebControls.Button sendBatchCompleteRetryLightsButton;
         
         /// <summary>
         /// scanNewLPNButton control.

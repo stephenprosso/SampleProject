@@ -25,19 +25,22 @@
         </div>
 
         <br />
-        <div class="row text-center">
-            <div class="group-block">
-                Username:
+        <asp:Panel ID="Panel1" runat="server">
+            <div class="row text-center">
+
+                <div class="group-block">
+                    Username:
                 <input id="UserID" type="text" runat="server" width="200px" />
-                <br>
-                Password:
+                    <br>
+                    Password:
             <input type="text" size="30" runat="server" name="Password" id="PWD">
-                <br>
-                <asp:Button ID="sendUserAndPassword" type="button" runat="server" Text="Login" CssClass="button centered" OnClientClick="sendLogin(); return false;" />
-                <br />
-                <br />
+                    <br>
+                    <asp:Button ID="sendUserAndPassword" type="button" runat="server" Text="Login" CssClass="button centered" OnClientClick="sendLogin(); return false;" />
+                    <br />
+                    <br />
+                </div>
             </div>
-        </div>
+        </asp:Panel>
     </div>
     <div id="titlesDiv" class="row text-center">
         <div class="col-sm-4">
@@ -67,41 +70,47 @@
     </div>
     <div class="container">
         <%--START AISLE DIV--%>
-        <div class="row text-center" id="StartAisleDiv" style="display: none">
-            <h2>Scan Starting Aisle</h2>
-            <%--<asp:Label ID="Label1" runat="server" Text="Scan Aisle: "></asp:Label>--%>
-            <div class="group-block">
-                <input id="startAisleTB" type="text" runat="server" width="200px" />
-                <dx:BootstrapButton ID="startAisleButton" runat="server" AutoPostBack="false" Text="Continue">
-                    <ClientSideEvents Click="sendStartAisle" />
-                </dx:BootstrapButton>
-                <dx:BootstrapButton ID="sendBackButton" runat="server" AutoPostBack="false" Text="Back">
-                    <ClientSideEvents Click="sendBack" />
-                </dx:BootstrapButton>
-            </div>
-        </div>
-        <%--BATCH SET UP DIV--%>
-        <div class="row text-center" id="BatchSetupTBs" style="display: none">
-            <div class="group-block">
-                <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
-                <input id="LPNTB" type="text" runat="server" width="200px" />
-                <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote">
-                    <ClientSideEvents Click="sendLPN" />
-                </dx:BootstrapButton>
-                <dx:BootstrapButton ID="processBatchButton" runat="server" AutoPostBack="false" Text="Process Batch">
-                    <ClientSideEvents Click="processBatch" />
-                </dx:BootstrapButton>
-                <dx:BootstrapButton ID="BackButton" runat="server" AutoPostBack="false" Text="Back">
-                    <ClientSideEvents Click="sendBack" />
-                </dx:BootstrapButton>
-            </div>
-            <div class="row text-center">
-                <div id="id001">
-                    <p>BW Code from server goes here</p>
-
+        <asp:Panel ID="Panel3" runat="server" DefaultButton="startAisleButton">
+            <div class="row text-center" id="StartAisleDiv" style="display: none">
+                <h2>Scan Starting Aisle</h2>
+                <%--<asp:Label ID="Label1" runat="server" Text="Scan Aisle: "></asp:Label>--%>
+                <div class="group-block">
+                    <input id="startAisleTB" type="text" runat="server" width="200px" />
+                    <dx:BootstrapButton ID="startAisleButton" runat="server" AutoPostBack="false" Text="Continue" style="display: none">
+                        <ClientSideEvents Click="sendStartAisle" />
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="sendBackButton" runat="server" AutoPostBack="false" Text="Back">
+                        <ClientSideEvents Click="sendBack" />
+                    </dx:BootstrapButton>
                 </div>
             </div>
-        </div>
+        </asp:Panel>
+        <%--BATCH SET UP DIV--%>
+        <asp:Panel ID="Panel2" runat="server" DefaultButton="LPNButton">
+
+            <div class="row text-center" id="BatchSetupTBs" style="display: none">
+                <div class="group-block">
+                    <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
+                    <input id="LPNTB" type="text" runat="server" width="200px" />
+                    <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote" Style="display: none">
+                        <ClientSideEvents Click="sendLPN" />
+                    </dx:BootstrapButton>
+
+                    <dx:BootstrapButton ID="processBatchButton" runat="server" AutoPostBack="false" Text="Process Batch">
+                        <ClientSideEvents Click="processBatch" />
+                    </dx:BootstrapButton>
+                    <dx:BootstrapButton ID="BackButton" runat="server" AutoPostBack="false" Text="Back">
+                        <ClientSideEvents Click="sendBack" />
+                    </dx:BootstrapButton>
+                </div>
+                <div class="row text-center">
+                    <div id="id001">
+                        <p>BW Code from server goes here</p>
+
+                    </div>
+                </div>
+            </div>
+        </asp:Panel>
         <br />
         <%--WORK DASHBOARD DIV--%>
         <div class="container" id="workDashboardDiv" style="display: none">
@@ -448,51 +457,52 @@
                     <input id="validateLPNTB" type="text" runat="server" width="200px" />
                     <asp:Button ID="validateLPNTBButton" runat="server" Text="Enter" />
                 </div>
+                <div class="ValidationBox text-center" id="BatchCompleteDiv" style="display: none">
+                    <p>Batch Complete Grid filled by BW</p>
+
+                    <table>
+
+                        <tr>
+                            <th>Status</th>
+                            <th>More Stats</th>
+                            <th>Stats on stats</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>8</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>9</td>
+                            <td>11</td>
+
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="col-sm-8 text-center" id="BatchCompleteDiv" style="display: none">
-                <p>Batch Complete Grid filled by BW</p>
 
-                <table>
-
-                    <tr>
-                        <th>Status</th>
-                        <th>More Stats</th>
-                        <th>Stats on stats</th>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>3</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>8</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>9</td>
-                        <td>11</td>
-
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                </table>
-            </div>
             <%--THIS DIV SIZE SMALL 2 HOLDS THE DIFFERENT BUTTON GROUPS--%>
             <div class="col-sm-2">
                 <%--BATCH COMPLETE BUTTONS--%>
-                <div class="batchCompleteButtons" id="batchCompleteButtons" style="display: none">
-                    <asp:Button ID="sendBatchCompleteTaskCompleteButton" runat="server" CssClass="button centered" Text="Task Complete" OnClientClick="sendBatchCompleteTaskCompleteButton(); return false;" />
-                    <asp:Button ID="sendRetryLightsButton" runat="server" CssClass="button centered" Text="Retry Lights" OnClientClick="sendRetryLights(); return false;" />
+                <div class="batchCompleteButtons" id="batchCompleteButtonsDiv" style="display: none">
+                    <asp:Button ID="sendBatchCompleteTaskCompleteButton" runat="server" CssClass="button centered" Text="Task Complete" OnClientClick="sendBatchCompleteTaskComplete(); return false;" />
+                    <asp:Button ID="sendBatchCompleteRetryLightsButton" runat="server" CssClass="button centered" Text="Retry Lights" OnClientClick="sendBatchCompleteRetryLights(); return false;" />
                 </div>
                 <%--EARLY EXIT BUTTONS--%>
                 <div class="earlyExitButtons" id="earlyExitButtons" style="display: none">

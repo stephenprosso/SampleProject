@@ -58,6 +58,7 @@ function sendLPN() {
     console.log("send data");
     ws.send(data);
     console.log("data sent");
+    document.getElementById("MainContent_LPNTB").value = "";
 }
 
 function processBatch() {
@@ -224,6 +225,7 @@ function sendScanNewLPN() {
 
 function sendEarlyExitAbort() {
 
+
     hideEarlyExit();
     hideValidationBox();
 
@@ -235,7 +237,7 @@ function sendEarlyExitAbort() {
     console.log("data sent");
 
 }
-// this function is called in multiple places
+
 function hideValidationBox() {
 
     $("#id01").css('display', 'none');
@@ -287,3 +289,25 @@ function sendNewTote() {
     console.log("data sent");
 
 }
+
+
+function sendBatchCompleteTaskComplete() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var data = JSON.stringify({ "Action": "Batch Complete", "SubAction": "Task Complete", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
+}
+
+function sendBatchCompleteRetryLights() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var data = JSON.stringify({ "Action": "Batch Complete", "SubAction": "Retry Lights", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
+}
+

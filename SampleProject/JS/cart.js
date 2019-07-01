@@ -86,6 +86,12 @@
         // 3 if statement to present work dashboard
         if (action === "Work Dashboard" && subAction === "Present") {
             $("#LoginDiv").css('display', 'none');
+            //hide batch data and batch complete data to route back to dashboard from batch complete
+            $("#batchCompleteTitle").css('display', 'none');
+            $("#BatchCompleteDiv").css('display', 'none');
+            $("#batchCompleteButtonsDiv").css('display', 'none');
+            $("#BatchDataDiv").css('display', 'none');
+            //check for errors
             if (errorMessage !== '') {
                 $("#errorDiv").css('display', 'block');
                 $("#errorMessage").css('display', 'block');
@@ -106,6 +112,8 @@
         // 4 if statements for Action = Batch Setup
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
             $("#LoginDiv").css('display', 'none');
+            $("#zoneSelectDiv").css('display', 'none');
+            $("#zoneSelectTite").css('display', 'none');
             if (errorMessage !== '') {
                 $("#errorDiv").css('display', 'block');
                 $("#errorMessage").css('display', 'block');
@@ -253,16 +261,17 @@
         if (action === "Batch Complete" && subAction === "Display") {
 
             $("#LoginDiv").css('display', 'none');
-
+            $("#StartAisleDiv").css('display', 'none');
             $("#directionalDisplayDiv").css('display', 'none');
             $("#partDetailsAndLocationDiv").css('display', 'none');
             $("#userFieldQuantity").css('display', 'none');
-            $("#BatchDataDiv").css('display', 'block');
-
             $("#button-div").css('display', 'none');
-
+            $("#BatchDataDiv").css('display', 'block');
             $("#batchCompleteTitle").css('display', 'block');
             $("#BatchCompleteDiv").css('display', 'block');
+            $("#batchCompleteButtonsDiv").css('display', 'block');
+
+
 
         }
 
@@ -278,26 +287,39 @@
         //if the same fields from lpn Validation i.e. Display data, batch data then full tote can be moved up with
         //the other if statements
 
-        if (action === "Full Tote" && subAction === "Prompt Full Tote") {
+        if (action === "Full Tote") {
+
             $("#button-div").css('display', 'none');
             $("#BatchDataDiv").css('display', 'none');
-            $("#promptFullToteDiv").css('display', 'block');
-            document.getElementById('MainContent_promptFullToteTB').focus();
-        }
-        if (action === "Full Tote" && subAction === "Prompt Current Qty") {
-            $("#button-div").css('display', 'none')
-            $("#BatchDataDiv").css('display', 'none');
-            $("#promptCurrentQtyDiv").css('display', 'block');
-            $("#promptFullToteDiv").css('display', 'none');
-            document.getElementById('MainContent_promptCurrentQtyTB').focus();
-        }
-        if (action === "Full Tote" && subAction === "Prompt New Tote") {
-            $("#button-div").css('display', 'none')
-            $("#BatchDataDiv").css('display', 'none');
-            $("#promptCurrentQtyDiv").css('display', 'none');
-            $("#promptFullToteDiv").css('display', 'none');
-            $("#promptNewToteDiv").css('display', 'block');
-            document.getElementById('MainContent_promptNewToteTB').focus();
+            $("#fullToteInfoDiv").css('display', 'block');
+
+            var fullToteNumber = myObj.DisplayData[0].FullTote;
+            var fullToteQty = myObj.DisplayData[0].FullToteQty;
+            var newFullToteQty = myObj.DisplayData[0].NewToteQty;
+
+            document.getElementById("fullToteNumber").innerHTML = fullToteNumber;
+            document.getElementById("fullToteQty").innerHTML = fullToteQty;
+            document.getElementById("newFullToteQty").innerHTML = newFullToteQty;
+
+
+            if (subAction === "Prompt Full Tote") {
+
+                $("#promptFullToteDiv").css('display', 'block');
+                document.getElementById('MainContent_promptFullToteTB').focus();
+            }
+            if (subAction === "Prompt Current Qty") {
+
+                $("#promptCurrentQtyDiv").css('display', 'block');
+                $("#promptFullToteDiv").css('display', 'none');
+                document.getElementById('MainContent_promptCurrentQtyTB').focus();
+            }
+            if (subAction === "Prompt New Tote") {
+
+                $("#promptCurrentQtyDiv").css('display', 'none');
+                $("#promptFullToteDiv").css('display', 'none');
+                $("#promptNewToteDiv").css('display', 'block');
+                document.getElementById('MainContent_promptNewToteTB').focus();
+            }
         }
 
     };

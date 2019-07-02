@@ -50,6 +50,7 @@
         var userResponse2 = myObj.UserResponse2;
         var userResponse3 = myObj.UserResponse3;
 
+
         if (action === "Connect" && subAction === "SID") {
             $("#LoginDiv").css('display', 'block');
             document.getElementById('nothingToSeeHere').value = userResponse1;
@@ -59,7 +60,16 @@
 
         // 1 if statement variables PAGE 1 IN PICKING PROCESS
         if (action === "Login" && subAction === "Response") {
-
+            if (errorMessage !== '') {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
             $("#LoginDiv").css('display', 'block');
             $("#toteDiv").css('display', 'none');
             document.getElementById("MainContent_UserID").focus();
@@ -114,6 +124,7 @@
             $("#LoginDiv").css('display', 'none');
             $("#zoneSelectDiv").css('display', 'none');
             $("#zoneSelectTite").css('display', 'none');
+
             if (errorMessage !== '') {
                 $("#errorDiv").css('display', 'block');
                 $("#errorMessage").css('display', 'block');
@@ -125,11 +136,15 @@
                 $("#errorMessage").css('display', 'none');
             }
 
+
             $("#LoginDiv").css('display', 'none');
             $("#dashboardTitle").css('display', 'none');
             $("#workDashboardDiv").css('display', 'none');
             $("#batchSetupTitle").css('display', 'block');
             $("#BatchSetupTBs").css('display', 'block');
+            $("#batchSetupButtonsDiv").css('display', 'block');
+            $("#id01").css('display', 'block');
+
             document.getElementById("MainContent_LPNTB").focus();
         }
 
@@ -149,6 +164,8 @@
             $("#workDashboardDiv").css('display', 'none');
             $("#batchSetupTitle").css('display', 'none');
             $("#BatchSetupTBs").css('display', 'none');
+            $("#batchSetupButtonsDiv").css('display', 'none');
+
             $("#StartAisleDiv").css('display', 'block');
             document.getElementById("MainContent_startAisleTB").focus();
         }
@@ -259,13 +276,15 @@
 
         }
         if (action === "Batch Complete" && subAction === "Display") {
-
+            //HIDE
             $("#LoginDiv").css('display', 'none');
             $("#StartAisleDiv").css('display', 'none');
             $("#directionalDisplayDiv").css('display', 'none');
             $("#partDetailsAndLocationDiv").css('display', 'none');
             $("#userFieldQuantity").css('display', 'none');
             $("#button-div").css('display', 'none');
+            $("#id01").css('display', 'none');
+            //SHOW
             $("#BatchDataDiv").css('display', 'block');
             $("#batchCompleteTitle").css('display', 'block');
             $("#BatchCompleteDiv").css('display', 'block');
@@ -276,10 +295,11 @@
         }
 
         if (action === "Early Exit" && subAction === "Display") {
+            //HIDE
             $("#loginDiv").css('display', 'none');
             $("#CartPickingTitle").css('display', 'none');
-
             $("#button-div").css('display', 'none');
+            //SHOW
             $("#earlyExitTitle").css('display', 'block');
             $("#earlyExitButtons").css('display', 'block');
         }
@@ -332,4 +352,8 @@
 
     };
 
-}; 
+};
+
+function checkForErrors() {
+
+}

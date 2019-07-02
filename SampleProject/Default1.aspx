@@ -11,6 +11,7 @@
     <script type="text/javascript">
         window.onload = start1;
     </script>
+    <script type="text/javascript"> document.addEventListener('click', function (e) { if (document.activeElement.toString() == '[object HTMLButtonElement]') { document.activeElement.blur(); } }); </script>
     <asp:HiddenField ID="nothingToSeeHere" runat="server" Value="" ClientIDMode="static" />
     <div id="connectingDiv" class="row text-center">
         <p>Connecting to the WebSocket</p>
@@ -76,7 +77,7 @@
                 <%--<asp:Label ID="Label1" runat="server" Text="Scan Aisle: "></asp:Label>--%>
                 <div class="group-block">
                     <input id="startAisleTB" type="text" runat="server" width="200px" />
-                    <dx:BootstrapButton ID="startAisleButton" runat="server" AutoPostBack="false" Text="Continue" style="display: none">
+                    <dx:BootstrapButton ID="startAisleButton" runat="server" AutoPostBack="false" Text="Continue" Style="display: none;">
                         <ClientSideEvents Click="sendStartAisle" />
                     </dx:BootstrapButton>
                     <dx:BootstrapButton ID="sendBackButton" runat="server" AutoPostBack="false" Text="Back">
@@ -85,32 +86,7 @@
                 </div>
             </div>
         </asp:Panel>
-        <%--BATCH SET UP DIV--%>
-        <asp:Panel ID="Panel2" runat="server" DefaultButton="LPNButton">
 
-            <div class="row text-center" id="BatchSetupTBs" style="display: none">
-                <div class="group-block">
-                    <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
-                    <input id="LPNTB" type="text" runat="server" width="200px" />
-                    <dx:BootstrapButton ID="LPNButton" runat="server" AutoPostBack="false" Text="Submit Tote" Style="display: none">
-                        <ClientSideEvents Click="sendLPN" />
-                    </dx:BootstrapButton>
-
-                    <dx:BootstrapButton ID="processBatchButton" runat="server" AutoPostBack="false" Text="Process Batch">
-                        <ClientSideEvents Click="processBatch" />
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="BackButton" runat="server" AutoPostBack="false" Text="Back">
-                        <ClientSideEvents Click="sendBack" />
-                    </dx:BootstrapButton>
-                </div>
-                <div class="row text-center">
-                    <div id="id001">
-                        <p>BW Code from server goes here</p>
-
-                    </div>
-                </div>
-            </div>
-        </asp:Panel>
         <br />
         <%--WORK DASHBOARD DIV--%>
         <div class="container" id="workDashboardDiv" style="display: none">
@@ -392,6 +368,17 @@
                     <asp:Label ID="currentPicksPerHourRateLabel" runat="server" Text="Picks/hr: "></asp:Label>
                     <p class="pl" id="currentPicksPerHourRate"></p>
                 </div>
+                <%--BATCH SET UP DIV--%>
+                <asp:Panel ID="batchSetupPanel" runat="server" DefaultButton="LPNButton1">
+
+                    <div class="row text-center border" id="BatchSetupTBs" style="display: none">
+
+                        <asp:Label ID="ScanToteTB" runat="server" Text="Scan in Tote: "></asp:Label>
+                        <input id="LPNTB" type="text" runat="server" />
+                        <asp:Button ID="LPNButton1" runat="server" Text="Submit Tote" Style="display: none" OnClientClick="sendLPN(); return false;" />
+
+                    </div>
+                </asp:Panel>
                 <%--LOCATION AND QUANTITY DIV--%>
                 <div class="border text-center" id="userFieldQuantity" style="display: none">
                     <asp:Label ID="locationLabel" runat="server" Text="Location: " Width="100px"></asp:Label>
@@ -437,26 +424,32 @@
                     <h1>Tote Matrix Will be HERE</h1>
                 </div>
                 <%--LOCATION VALIDATION DIV--%>
+                <asp:Panel ID="locationValidationPanel" runat="server" DefaultButton="validateLocationTBButton">
                 <div class="ValidationBox text-center" id="validateLocationDiv" style="display: none">
                     <h1>Scan Location to Validate</h1>
                     <asp:Label ID="validateLocationTBLabel" runat="server" Text="Scan Location:"></asp:Label>
-                    <input id="validateLocationTB" type="text" runat="server" width="200px" />
+                    <input id="validateLocationTB" type="text" runat="server" style="display: none" />
                     <asp:Button ID="validateLocationTBButton" runat="server" Text="Enter" />
                 </div>
+                    </asp:Panel>
                 <%--PART VALIDATION DIV--%>
+                <asp:Panel ID="partValidationPanel" runat="server" DefaultButton="validatePartTBButton">
                 <div class="ValidationBox text-center" id="validatePartDiv" style="display: none">
                     <h1>Scan Part Number to Validate</h1>
                     <asp:Label ID="validatePartTBLabel" runat="server" Text="Scan Part:"></asp:Label>
-                    <input id="validatePartTB" type="text" runat="server" width="200px" />
+                    <input id="validatePartTB" type="text" runat="server" style="display: none" />
                     <asp:Button ID="validatePartTBButton" runat="server" Text="Enter" />
                 </div>
-                <%--LPN VALIDATION DIV--%>
-                <div class="ValidationBox text-center" id="validateLPNDiv" style="display: none">
-                    <h1>Scan LPN to Validate</h1>
-                    <asp:Label ID="validateLPNTBLabel" runat="server" Text="Scan LPN:"></asp:Label>
-                    <input id="validateLPNTB" type="text" runat="server" width="200px" />
-                    <asp:Button ID="validateLPNTBButton" runat="server" Text="Enter" />
-                </div>
+                    </asp:Panel>
+                <asp:Panel ID="LPNValidationPanel" runat="server" DefaultButton="validateLPNTBButton">
+                    <%--LPN VALIDATION DIV--%>
+                    <div class="ValidationBox text-center" id="validateLPNDiv" style="display: none">
+                        <h1>Scan LPN to Validate</h1>
+                        <asp:Label ID="validateLPNTBLabel" runat="server" Text="Scan LPN:"></asp:Label>
+                        <input id="validateLPNTB" type="text" runat="server" style="display: none" />
+                        <asp:Button ID="validateLPNTBButton" runat="server" Text="Enter" />
+                    </div>
+                </asp:Panel>
                 <div class="ValidationBox text-center" id="BatchCompleteDiv" style="display: none">
                     <p>Batch Complete Grid filled by BW</p>
 
@@ -499,6 +492,12 @@
 
             <%--THIS DIV SIZE SMALL 2 HOLDS THE DIFFERENT BUTTON GROUPS--%>
             <div class="col-sm-2">
+
+                <div class="batchSetupButtonsDiv" id="batchSetupButtonsDiv" style="display: none">
+                    <asp:Button ID="processBatchButton1" runat="server" Text="Process Batch" CssClass="button centered" OnClientClick="processBatch(); return false;" />
+                    <asp:Button ID="BackButton1" runat="server" Text="Back" CssClass="button centered" OnClientClick="sendBackFromBatchSetup(); return false" />
+                    <asp:Button ID="sendClearCartFromBatchSetupButton" runat="server" CssClass="button centered" Text="Clear Cart" OnClientClick="sendClearCartFromBatchSetup(); return false;" />
+                </div>
                 <%--BATCH COMPLETE BUTTONS--%>
                 <div class="batchCompleteButtons" id="batchCompleteButtonsDiv" style="display: none">
                     <asp:Button ID="sendBatchCompleteTaskCompleteButton" runat="server" CssClass="button centered" Text="Task Complete" OnClientClick="sendBatchCompleteTaskComplete(); return false;" />

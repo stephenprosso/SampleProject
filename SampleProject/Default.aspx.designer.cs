@@ -94,60 +94,6 @@ namespace PoweredPIKCart {
         protected global::DevExpress.Web.Bootstrap.BootstrapButton sendBackButton;
         
         /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-        
-        /// <summary>
-        /// ScanToteTB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ScanToteTB;
-        
-        /// <summary>
-        /// LPNTB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText LPNTB;
-        
-        /// <summary>
-        /// LPNButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton LPNButton;
-        
-        /// <summary>
-        /// processBatchButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton processBatchButton;
-        
-        /// <summary>
-        /// BackButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton BackButton;
-        
-        /// <summary>
         /// dashboardButton1 control.
         /// </summary>
         /// <remarks>
@@ -292,6 +238,42 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label currentPicksPerHourRateLabel;
         
         /// <summary>
+        /// batchSetupPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel batchSetupPanel;
+        
+        /// <summary>
+        /// ScanToteTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ScanToteTB;
+        
+        /// <summary>
+        /// LPNTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText LPNTB;
+        
+        /// <summary>
+        /// LPNButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LPNButton1;
+        
+        /// <summary>
         /// locationLabel control.
         /// </summary>
         /// <remarks>
@@ -418,6 +400,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button promptNewToteButton;
         
         /// <summary>
+        /// locationValidationPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel locationValidationPanel;
+        
+        /// <summary>
         /// validateLocationTBLabel control.
         /// </summary>
         /// <remarks>
@@ -443,6 +434,15 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button validateLocationTBButton;
+        
+        /// <summary>
+        /// partValidationPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel partValidationPanel;
         
         /// <summary>
         /// validatePartTBLabel control.
@@ -472,6 +472,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button validatePartTBButton;
         
         /// <summary>
+        /// LPNValidationPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel LPNValidationPanel;
+        
+        /// <summary>
         /// validateLPNTBLabel control.
         /// </summary>
         /// <remarks>
@@ -497,6 +506,33 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button validateLPNTBButton;
+        
+        /// <summary>
+        /// processBatchButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button processBatchButton1;
+        
+        /// <summary>
+        /// BackButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BackButton1;
+        
+        /// <summary>
+        /// sendClearCartFromBatchSetupButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button sendClearCartFromBatchSetupButton;
         
         /// <summary>
         /// sendBatchCompleteTaskCompleteButton control.

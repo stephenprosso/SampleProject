@@ -311,3 +311,30 @@ function sendBatchCompleteRetryLights() {
 
 }
 
+function sendValidateLocation() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var location = document.getElementById("MainContent_validateLocationTB").value;
+    var data = JSON.stringify({ "Action": "Location Validation", "SubAction": "Response", "Cart": cart, "UserResponse1": location });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+}
+function sendValidatePart() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var part = document.getElementById("MainContent_validatePartTB");
+    var data = JSON.stringify({ "Action": "Part Validation", "SubAction": "Response", "Cart": cart, "UserResponse1": part });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+}
+function sendValidateLPN() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var LPN = document.getElementById("MainContent_validateLPNTB").value;
+
+    var data = JSON.stringify({ "Action": "Task Complete", "SubAction": "Request", "Cart": cart, "UserResponse1": LPN });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");

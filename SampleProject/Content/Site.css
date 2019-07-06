@@ -210,3 +210,64 @@ textarea {
             -moz-border-radius: 6px 0 6px 6px;
             border-radius: 6px 0 6px 6px;
         }
+
+
+
+cellhdr {
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+    background-color: darkgray;
+}
+
+celldtl {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    text-align: center;
+    background-color: pink;
+}
+
+cellhdr.hidden {
+    visibility: hidden;
+    width: 20px;
+    border: 0px solid black;
+}
+
+celldtl.hidden {
+    visibility: hidden;
+    width: 20px;
+    border: 0px solid black;
+}
+
+table, th {
+    width: 60px;
+    border: 2px solid black;
+    background-color: darkgray;
+}
+
+td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border: 2px solid black;
+    background-color: pink;
+}
+
+th.gray {
+    background-color: darkgray;
+    width: 20px;
+    border: 0px solid black;
+}
+
+td.gray {
+    background-color: darkgray;
+    width: 20px;
+    border: 0px solid black;
+}
+
+.content {
+    width: 60px;
+    height: 60px;
+}
+

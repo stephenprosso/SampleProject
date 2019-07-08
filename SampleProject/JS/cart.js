@@ -14,10 +14,14 @@
     console.log(cart);
 
     //on load call a function to make xml request to API
-    getToteMatrix();
-    function getToteMatrix() {
+    var body = '{"Action":"<must be non blank>", "SubAction":"", "Cart":"", "CartPositions":1,"OverallTC":false, "ErrorMessage":"","UserResponse1":"","UserResponse2":"","UserResponse3":"","DisplayData":[{"Part":"", "PartDesc1":"", "PartDesc2":"", "UserField":"", "Location":"", "DirectionalDisplay":"", "TotalPickQty":"5", "StartingAisle":"","FullTote":"", "FullToteQty":"", "NewToteQty":""}    ],"BatchData":[{"RemainingPickLines":0, "RemainingLocs":0, "CurrentPicksPerHourRate":0.000}],"AlphaPos":[{"Pos": 1, "PrimaryModule":1, "SecondaryModule":3, "Message":"1111", "Color": 1, "BlinkSpeed": 0, "Buzzer": true, "Enable":true},{"Pos": 2, "PrimaryModule":2, "SecondaryModule":4, "Message":"2222", "Color": 1, "BlinkSpeed": 0, "Buzzer": false, "Enable":true}],"BatchPos": [{"Pos": 15, "PrimaryModule":1, "SecondaryModule":51, "Display":"*15*", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true}, {"Pos": 2, "PrimaryModule":2, "SecondaryModule":52, "Display":"2222", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true}, {"Pos": 5, "PrimaryModule":5, "SecondaryModule":55, "Display":"FIVE", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true},{"Pos": 3, "PrimaryModule":3, "SecondaryModule":53, "Display":"3333", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":false},{"Pos": 4, "PrimaryModule":4, "SecondaryModule":54, "Display":"4444", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true}]}';
+
+
+    function getToteMatrix(body) {
+
+
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://promat.dovetree.com/json/api/values/displaydata";
+        var url = "http://192.168.128.152/cart/cart/batchpos";
 
         xmlhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
@@ -25,8 +29,9 @@
             }
         };
         xmlhttp.open("POST", url, true);
-        xmlhttp.send();
+        xmlhttp.send(body);
     }
+    getToteMatrix(body);
 
     // when data is comming from the server, this metod is called
     ws.onmessage = function (evt) {

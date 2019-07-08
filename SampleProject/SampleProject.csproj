@@ -192,6 +192,7 @@
     <Content Include="About.aspx" />
     <Content Include="AlertBoxTest.aspx" />
     <Content Include="CardViewScreen.aspx" />
+    <Content Include="Content\poweredPik.css" />
     <Content Include="Default1.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="JS\cart.js" />

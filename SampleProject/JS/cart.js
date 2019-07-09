@@ -155,6 +155,7 @@
 
         // 5 if statements for starting aisle
         if (action === "Start Aisle" && subAction === "Prompt") {
+            hidePickingScreens();
             if (errorMessage !== '') {
                 $("#errorDiv").css('display', 'block');
                 $("#errorMessage").css('display', 'block');
@@ -360,5 +361,20 @@
 };
 
 function checkForErrors() {
+
+}
+
+function hidePickingScreens() {
+
+    $("#directionalDisplayDiv").css('display', 'none');
+    $("#partDetailsAndLocationDiv").css('display', 'none');
+    $("#userFieldQuantity").css('display', 'none');
+    $("#button-div").css('display', 'none');
+    $("#CartPickingTitle").css('display', 'none');
+    $("#userFieldDiv").css('display', 'none');
+    $("#BatchDataDiv").css('display', 'none');
+    $("#validatePartDiv").css('display', 'none');
+    $("#validateLocationDiv").css('display', 'none');
+    $("#id01").css('display', 'none');
 
 }

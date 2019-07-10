@@ -338,3 +338,41 @@ function sendValidateLPN() {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+}
+
+function sendReprintLabels() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    //label type
+    var type;
+    if (document.getElementById("MainContent_orderRadioButton").checked) {
+
+        type = document.getElementById('MainContent_orderRadioButton').value;
+    }
+    if (document.getElementById("MainContent_partRadioButton").checked) {
+
+        type = document.getElementById('MainContent_partRadioButton').value;
+    }
+    if (document.getElementById("MainContent_LPNRadioButton").checked) {
+
+        type = document.getElementById('MainContent_LPNRadioButton').value;
+    }
+
+    //label qty
+    var qty;
+    if (document.getElementById("MainContent_onePerPosRadioButton").checked) {
+
+        qty = document.getElementById("MainContent_onePerPosRadioButton").value;
+    }
+    if (document.getElementById("MainContent_onePerPosPerCaseRadioButton").checked) {
+
+        qty = document.getElementById("MainContent_onePerPosPerCaseRadioButton").value;
+    }
+    if (document.getElementById("MainContent_oneLabelRadioButton").checked) {
+
+        qty = document.getElementById("MainContent_oneLabelRadioButton").value;
+    }
+
+    var data = JSON.stringify({ "Action": "Reprint Labels", "SubAction": "Request", "Cart": cart, "UserResponse1": type, "UserResponse2": qty });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");

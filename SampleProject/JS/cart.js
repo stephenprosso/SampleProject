@@ -70,16 +70,7 @@
 
         // 1 if statement variables PAGE 1 IN PICKING PROCESS
         if (action === "Login" && subAction === "Response") {
-            if (errorMessage !== '') {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
-            }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
-            }
+            checkForErrors();
             $("#LoginDiv").css('display', 'block');
             $("#toteDiv").css('display', 'none');
             document.getElementById("MainContent_UserID").focus();
@@ -114,16 +105,7 @@
             $("#batchCompleteButtonsDiv").css('display', 'none');
             $("#BatchDataDiv").css('display', 'none');
             //check for errors
-            if (errorMessage !== '') {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
-            }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
-            }
+            checkForErrors();
             $("#zoneSelectDiv").css('display', 'none');
             $("#zoneSelectTite").css('display', 'none');
             $("#dashboardTitle").css('display', 'block');
@@ -135,28 +117,16 @@
         if (action === "Batch Setup" && subAction === "Next LPN Pos") {
 
             getToteMatrix(evt.data);
+            checkForErrors();
             //hide
             $("#StartAisleDiv").css('display', 'none');
             $("#LoginDiv").css('display', 'none');
             $("#zoneSelectDiv").css('display', 'none');
             $("#zoneSelectTite").css('display', 'none');
-
-
-            if (errorMessage !== '') {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
-            }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
-            }
-
-
             $("#LoginDiv").css('display', 'none');
             $("#dashboardTitle").css('display', 'none');
             $("#workDashboardDiv").css('display', 'none');
+            //SHOW
             $("#batchSetupTitle").css('display', 'block');
             $("#BatchSetupTBs").css('display', 'block');
             $("#batchSetupButtonsDiv").css('display', 'block');
@@ -168,16 +138,7 @@
         // 5 if statements for starting aisle
         if (action === "Start Aisle" && subAction === "Prompt") {
             hidePickingScreens();
-            if (errorMessage !== '' && errorMessage !== "undefined") {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
-            }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
-            }
+            checkForErrors();
             //HIDE
             $("#id01").css('display', 'none');
             $("#dashboardTitle").css('display', 'none');
@@ -210,6 +171,8 @@
         }
         if (action === "Part Validation" && subAction === "Prompt") {
             populatePickingScreens();
+            checkForErrors();
+
             //HIDE
             $("#id01").css('display', 'none');
             $("#validateLocationDiv").css('display', 'none');
@@ -226,6 +189,8 @@
         if (action === "Present Pick" && subAction === "Display Complete Task") {
             populatePickingScreens();
             getToteMatrix(evt.data);
+            checkForErrors();
+
             //HIDE
             $("#validateLocationDiv").css('display', 'none');
             $("#validateLPNDiv").css('display', 'none');
@@ -238,6 +203,7 @@
         if (action === "Present Pick" && subAction === "Display Complete Task with LPN Validation") {
             populatePickingScreens();
             getToteMatrix(evt.data);
+            checkForErrors();
             //HIDE
             $("#validatePartDiv").css('display', 'none');
             //SHOW
@@ -251,6 +217,7 @@
 
         if (action === "Batch Complete" && subAction === "Display") {
             getToteMatrix(evt.data);
+            checkForErrors();
             //HIDE
             $("#LoginDiv").css('display', 'none');
             $("#StartAisleDiv").css('display', 'none');
@@ -298,6 +265,8 @@
 
         if (action === "Full Tote" && subAction !== "Request" && subAction !== "Full Tote Response" && subAction !== "Current Qty Response" && subAction !== "New Tote Response" && subAction !== "Scanned Tote") {
 
+            checkForErrors();
+
             $("#button-div").css('display', 'none');
             $("#BatchDataDiv").css('display', 'none');
             $("#fullToteInfoDiv").css('display', 'block');
@@ -312,23 +281,30 @@
 
 
             if (subAction === "Prompt Full Tote") {
-
                 $("#promptFullToteDiv").css('display', 'block');
                 document.getElementById('MainContent_promptFullToteTB').focus();
             }
             if (subAction === "Prompt Current Qty") {
-
                 $("#promptCurrentQtyDiv").css('display', 'block');
                 $("#promptFullToteDiv").css('display', 'none');
                 document.getElementById('MainContent_promptCurrentQtyTB').focus();
             }
             if (subAction === "Prompt New Tote") {
-
                 $("#promptCurrentQtyDiv").css('display', 'none');
                 $("#promptFullToteDiv").css('display', 'none');
                 $("#promptNewToteDiv").css('display', 'block');
                 document.getElementById('MainContent_promptNewToteTB').focus();
             }
+
+
+        }
+
+        if (action === "Reprint Labels" && subAction === "Response") {
+            $("#validateLocationDiv").css('display', 'none');
+            $("#validatePartDiv").css('display', 'none');
+            $("#validateLPNDiv").css('display', 'none');
+            $("#id01").css('display', 'none');
+            $("#rePrintLabelsDiv").css('display', 'block');
 
 
         }
@@ -351,16 +327,7 @@
             $("#BatchDataDiv").css('display', 'block');
             $("#button-div").css('display', 'block');
 
-            if (errorMessage !== '' && errorMessage !== undefined) {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
-            }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
-            }
+            checkForErrors();
             //Display Data Variables
             var part = myObj.DisplayData[0].Part;
             var partDesc1 = myObj.DisplayData[0].PartDesc1;
@@ -389,6 +356,21 @@
             document.getElementById("currentPicksPerHourRate").innerHTML = currentPicksPerHourRate;
         }
 
+        function checkForErrors() {
+
+            if (errorMessage !== '' && errorMessage !== undefined) {
+                $("#errorDiv").css('display', 'block');
+                $("#errorMessage").css('display', 'block');
+                $("#connectedDiv").css('display', 'none');
+                document.getElementById("errorMessage").innerHTML = errorMessage;
+            }
+            else {
+                $("#errorDiv").css('display', 'none');
+                $("#errorMessage").css('display', 'none');
+            }
+        }
+
+
     };
     ws.onopen = function () {
         // alert("Web Socket Open");
@@ -399,20 +381,9 @@
 
     };
 
+
 };
 
-function checkForErrors() {
-    if (errorMessage !== '') {
-        $("#errorDiv").css('display', 'block');
-        $("#errorMessage").css('display', 'block');
-        $("#connectedDiv").css('display', 'none');
-        document.getElementById("errorMessage").innerHTML = errorMessage;
-    }
-    else {
-        $("#errorDiv").css('display', 'none');
-        $("#errorMessage").css('display', 'none');
-    }
-}
 
 function hidePickingScreens() {
 

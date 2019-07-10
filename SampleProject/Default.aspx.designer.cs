@@ -76,22 +76,31 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.HtmlControls.HtmlInputText startAisleTB;
         
         /// <summary>
-        /// startAisleButton control.
+        /// startAisleButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton startAisleButton;
+        protected global::System.Web.UI.WebControls.Button startAisleButton1;
         
         /// <summary>
-        /// sendBackButton control.
+        /// sendBackFromStartAisleButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton sendBackButton;
+        protected global::System.Web.UI.WebControls.Button sendBackFromStartAisleButton;
+        
+        /// <summary>
+        /// clearCartButtononStartAisle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button clearCartButtononStartAisle;
         
         /// <summary>
         /// dashboardButton1 control.
@@ -166,6 +175,24 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label userFieldLabel;
         
         /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
+        /// SqlDataSource2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        
+        /// <summary>
         /// ListBox1 control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,24 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button sendSelectedZoneGroupingButton;
+        
+        /// <summary>
+        /// GridView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView2;
+        
+        /// <summary>
+        /// SqlDataSource3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
         
         /// <summary>
         /// partNumberLabel control.
@@ -319,6 +364,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label newFullToteQtyLabel;
         
         /// <summary>
+        /// promptFullTotePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel promptFullTotePanel;
+        
+        /// <summary>
         /// promptFullToteLabel control.
         /// </summary>
         /// <remarks>
@@ -344,6 +398,15 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button promptFullToteButton;
+        
+        /// <summary>
+        /// promptCurrentQtyPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel promptCurrentQtyPanel;
         
         /// <summary>
         /// promptCurrentQtyLabel control.
@@ -373,6 +436,15 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Button promptCurrentQtyButton;
         
         /// <summary>
+        /// promptNewTotePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel promptNewTotePanel;
+        
+        /// <summary>
         /// promptNewToteLabel control.
         /// </summary>
         /// <remarks>
@@ -398,6 +470,132 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button promptNewToteButton;
+        
+        /// <summary>
+        /// shortPickPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel shortPickPanel;
+        
+        /// <summary>
+        /// sendShortPickLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sendShortPickLabel;
+        
+        /// <summary>
+        /// sendShortPickTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sendShortPickTB;
+        
+        /// <summary>
+        /// sendShortPickButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button sendShortPickButton;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel2;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// orderRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton orderRadioButton;
+        
+        /// <summary>
+        /// partRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton partRadioButton;
+        
+        /// <summary>
+        /// LPNRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton LPNRadioButton;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// onePerPosRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton onePerPosRadioButton;
+        
+        /// <summary>
+        /// onePerPosPerCaseRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton onePerPosPerCaseRadioButton;
+        
+        /// <summary>
+        /// oneLabelRadioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton oneLabelRadioButton;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// locationValidationPanel control.
@@ -607,13 +805,13 @@ namespace PoweredPIKCart {
         protected global::DevExpress.Web.Bootstrap.BootstrapButton relightLastPickButton;
         
         /// <summary>
-        /// rePrintLabelsButton control.
+        /// reprintLabelsButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton rePrintLabelsButton;
+        protected global::System.Web.UI.WebControls.Button reprintLabelsButton1;
         
         /// <summary>
         /// changeStartAisleButton control.

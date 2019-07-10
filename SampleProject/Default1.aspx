@@ -13,6 +13,7 @@
     </script>
     <script type="text/javascript"> document.addEventListener('click', function (e) { if (document.activeElement.toString() == '[object HTMLButtonElement]') { document.activeElement.blur(); } }); </script>
     <asp:HiddenField ID="nothingToSeeHere" runat="server" Value="" ClientIDMode="static" />
+    <link href="Content/PoweredPik.css" rel="stylesheet" type="text/css" />
     <div id="connectingDiv" class="row text-center">
         <p>Connecting to the WebSocket</p>
     </div>
@@ -71,18 +72,18 @@
     </div>
     <div class="container">
         <%--START AISLE DIV--%>
-        <asp:Panel ID="Panel3" runat="server" DefaultButton="startAisleButton">
+        <asp:Panel ID="Panel3" runat="server" DefaultButton="startAisleButton1">
             <div class="row text-center" id="StartAisleDiv" style="display: none">
                 <h2>Scan Starting Aisle</h2>
                 <%--<asp:Label ID="Label1" runat="server" Text="Scan Aisle: "></asp:Label>--%>
                 <div class="group-block">
                     <input id="startAisleTB" type="text" runat="server" width="200px" />
-                    <dx:BootstrapButton ID="startAisleButton" runat="server" AutoPostBack="false" Text="Continue" Style="display: none;">
-                        <ClientSideEvents Click="sendStartAisle" />
-                    </dx:BootstrapButton>
-                    <dx:BootstrapButton ID="sendBackButton" runat="server" AutoPostBack="false" Text="Back">
-                        <ClientSideEvents Click="sendBack" />
-                    </dx:BootstrapButton>
+
+                    <asp:Button ID="startAisleButton1" runat="server" CssClass="button" Text="Continue" OnClientClick="sendStartAisle(); return false;" Style="display: none" />
+                    <asp:Button ID="sendBackFromStartAisleButton" CssClass="button" runat="server" Text="Back" OnClientClick="sendBackFromStartAisle(); return false;" />
+                    <asp:Button ID="clearCartButtononStartAisle" runat="server" CssClass="button centered" Text="Clear Cart" OnClientClick="sendClearCartFromBatchSetup(); return false;" />
+
+
                 </div>
             </div>
         </asp:Panel>
@@ -93,239 +94,29 @@
             <div class="row">
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton1" runat="server" CssClass="button centered" Text="Single Alloc" OnClientClick="sendSelectedBucket('1'); return false;" />
-                    <table>
-                        <tr>
-                            <th>Order<br />
-                                Priority</th>
-                            <th>Order<br />
-                                Count</th>
-                            <th>Line<br />
-                                Count</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
 
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton2" runat="server" CssClass="button centered" Text="Multi Alloc" OnClientClick="sendSelectedBucket('2'); return false;" />
-                    <table>
-                        <tr>
-                            <th>Order<br />
-                                Priority</th>
-                            <th>Order<br />
-                                Count</th>
-                            <th>Line<br />
-                                Count</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
 
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton3" runat="server" CssClass="button centered" Text="Mixed Priority" OnClientClick="sendSelectedBucket('3'); return false;" />
-                    <table>
-                        <tr>
-                            <th>Order<br />
-                                Priority</th>
-                            <th>Order<br />
-                                Count</th>
-                            <th>Line<br />
-                                Count</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
 
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton4" runat="server" CssClass="button centered" Text="Small Order" OnClientClick="sendSelectedBucket('4'); return false;" />
-                    <table>
-                        <tr>
-                            <th>Order<br />
-                                Priority</th>
-                            <th>Order<br />
-                                Count</th>
-                            <th>Line<br />
-                                Count</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
 
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton5" runat="server" CssClass="button centered" Text="Big Order" OnClientClick="sendSelectedBucket('5'); return false;" />
-                    <table>
-                        <tr>
-                            <th>Order<br />
-                                Priority</th>
-                            <th>Order<br />
-                                Count</th>
-                            <th>Line<br />
-                                Count</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
 
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton6" runat="server" CssClass="button centered" Text="High Priority" OnClientClick="sendSelectedBucket('6'); return false;" />
-                    <table>
-                        <tr>
-                            <th>Order<br />
-                                Priority</th>
-                            <th>Order<br />
-                                Count</th>
-                            <th>Line<br />
-                                Count</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
 
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
             </div>
         </div>
@@ -343,14 +134,39 @@
                     <p id="userField"></p>
                 </div>
             </div>
-            <div class="col-sm-8 text-center" id="zoneSelectDiv" style="display: none">
-                <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="zone_grouping" DataValueField="zone_grouping"></asp:ListBox>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:ConnectToPoweredPIK %>' SelectCommand="select zone_grouping from Zone_Grouping_Xref order by zone_grouping"></asp:SqlDataSource>
-                <br />
-                <asp:Button ID="sendSelectedZoneGroupingButton" runat="server" Text="Select Zone" OnClientClick="sendSelectedZoneGrouping(); return false" />
-            </div>
+
             <%--CENTER OF YOUR PAGE DIV--%>
             <div class="col-sm-8" id="centerCartDisplay">
+                <div class="text-center" id="zoneSelectDiv" style="display: none">
+                    <div class="zoneHeader text-center">
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" CssClass="centered">
+                            <Columns>
+                                <asp:BoundField DataField="zone_grouping" HeaderText="zone_grouping" SortExpression="zone_grouping"></asp:BoundField>
+                                <asp:BoundField DataField="#_of_Containers" HeaderText="#_of_Containers" ReadOnly="True" SortExpression="#_of_Containers"></asp:BoundField>
+                                <asp:BoundField DataField="#_of_Picks" HeaderText="#_of_Picks" ReadOnly="True" SortExpression="#_of_Picks"></asp:BoundField>
+                            </Columns>
+                        </asp:GridView>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:ConnectToPoweredPIK %>' SelectCommand="sp_Zone_Grouping_AvailPicks" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                    </div>
+                    <div class="text-center" id="listboxdiv">
+                        <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="zone_grouping" DataValueField="zone_grouping"></asp:ListBox>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:ConnectToPoweredPIK %>' SelectCommand="select zone_grouping from Zone_Grouping_Xref order by zone_grouping"></asp:SqlDataSource>
+                        <br />
+                        <asp:Button ID="sendSelectedZoneGroupingButton" runat="server" Text="Select Zone" OnClientClick="sendSelectedZoneGrouping(); return false" />
+                    </div>
+                    <div class="zoneDetails">
+                        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="Location Zone" CssClass="centered" DataSourceID="SqlDataSource3">
+                            <Columns>
+                                <asp:BoundField DataField="Zone_Grouping" HeaderText="Zone_Grouping" SortExpression="Zone_Grouping"></asp:BoundField>
+                                <asp:BoundField DataField="Location Zone" HeaderText="Location Zone" ReadOnly="True" SortExpression="Location Zone"></asp:BoundField>
+                                <asp:BoundField DataField="description" HeaderText="description" SortExpression="description"></asp:BoundField>
+                            </Columns>
+                        </asp:GridView>
+                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:ConnectToPoweredPIK %>' SelectCommand="
+select Zone_Grouping, zone 'Location Zone', description from Zone_Grouping_Xref order by Zone_Grouping, Zone"></asp:SqlDataSource>
+
+                    </div>
+                </div>
                 <%--PARTS AND DETAILS DIV--%>
                 <div class="border group" id="partDetailsAndLocationDiv" style="display: none">
                     <asp:Label ID="partNumberLabel" runat="server" Text="Part Number: "></asp:Label>
@@ -398,95 +214,97 @@
 
                 </div>
                 <%--PROMPT FULL TOTE DIV--%>
-                <div class="border text-center" id="promptFullToteDiv" style="display: none">
-                    <asp:Label ID="promptFullToteLabel" runat="server" Text="Scan Full Tote"></asp:Label>
-                    <asp:TextBox ID="promptFullToteTB" runat="server"></asp:TextBox>
-                    <asp:Button ID="promptFullToteButton" runat="server" Text="Send Full Tote" CssClass="button" OnClientClick="sendCurrentFullTote(); return false" />
-                </div>
+                <asp:Panel ID="promptFullTotePanel" runat="server" DefaultButton="promptFullToteButton">
+                    <div class="border text-center" id="promptFullToteDiv" style="display: none">
+                        <asp:Label ID="promptFullToteLabel" runat="server" Text="Scan Full Tote"></asp:Label>
+                        <asp:TextBox ID="promptFullToteTB" runat="server"></asp:TextBox>
+                        <asp:Button ID="promptFullToteButton" runat="server" Text="Send Full Tote" Style="display: none" OnClientClick="sendCurrentFullTote(); return false" />
+                    </div>
+                </asp:Panel>
                 <%--PROMPT CURRENT QUANTITY DIV--%>
-                <div class="border text-center" id="promptCurrentQtyDiv" style="display: none">
-                    <asp:Label ID="promptCurrentQtyLabel" runat="server" Text="Enter Current Qty"></asp:Label>
-                    <asp:TextBox ID="promptCurrentQtyTB" runat="server"></asp:TextBox>
-                    <asp:Button ID="promptCurrentQtyButton" runat="server" Text="Send Current Qty" CssClass="button" OnClientClick="sendCurrentQty(); return false" />
-                </div>
+                <asp:Panel ID="promptCurrentQtyPanel" runat="server" DefaultButton="promptCurrentQtyButton">
+                    <div class="border text-center" id="promptCurrentQtyDiv" style="display: none">
+                        <asp:Label ID="promptCurrentQtyLabel" runat="server" Text="Enter Current Qty"></asp:Label>
+                        <asp:TextBox ID="promptCurrentQtyTB" runat="server"></asp:TextBox>
+                        <asp:Button ID="promptCurrentQtyButton" runat="server" Text="Send Current Qty" OnClientClick="sendCurrentQty(); return false" />
+                    </div>
+                </asp:Panel>
                 <%--PROMPT NEW TOTE DIV--%>
-                <div class="border text-center" id="promptNewToteDiv" style="display: none">
-                    <asp:Label ID="promptNewToteLabel" runat="server" Text="Scan New Tote"></asp:Label>
-                    <asp:TextBox ID="promptNewToteTB" runat="server"></asp:TextBox>
-                    <asp:Button ID="promptNewToteButton" runat="server" Text="Send New Tote" CssClass="button" OnClientClick="sendNewTote(); return false" />
-                </div>
+                <asp:Panel ID="promptNewTotePanel" runat="server" DefaultButton="promptNewToteButton">
+                    <div class="border text-center" id="promptNewToteDiv" style="display: none">
+                        <asp:Label ID="promptNewToteLabel" runat="server" Text="Scan New Tote"></asp:Label>
+                        <asp:TextBox ID="promptNewToteTB" runat="server"></asp:TextBox>
+                        <asp:Button ID="promptNewToteButton" runat="server" Text="Send New Tote" Style="display: none" OnClientClick="sendNewTote(); return false" />
+                    </div>
+                </asp:Panel>
+                <%--SHORT PICK--%>
+                <asp:Panel ID="shortPickPanel" runat="server" DefaultButton="sendShortPickButton">
+                    <div class="border text-center" id="shortPickDiv" style="display: none">
+                        <asp:Label ID="sendShortPickLabel" runat="server" Text="Enter Qty"></asp:Label>
+                        <asp:TextBox ID="sendShortPickTB" runat="server"></asp:TextBox>
+                        <asp:Button ID="sendShortPickButton" runat="server" Text="Enter Qty" OnClientClick="sendShortPick(); return false" />
+                    </div>
+                </asp:Panel>
+                <%--REPRINT LABELS DIV--%>
+                <asp:Panel ID="Panel2" runat="server">
+                    <div class="border text-center" id="rePrintLabelsDiv" style="display: none">
+                        <div class="group">
+                            <asp:Label ID="Label2" runat="server" Text="Label Type"></asp:Label>
+                            <asp:RadioButton ID="orderRadioButton" runat="server" Text="Order Label" />
+                            <asp:RadioButton ID="partRadioButton" runat="server" Text="Part Label" />
+                            <asp:RadioButton ID="LPNRadioButton" runat="server" Text="LPN Label" />
+                        </div>
+                        <br />
+                        <div class="group">
+                            <asp:Label ID="Label3" runat="server" Text="Label Type"></asp:Label>
+                            <asp:RadioButton ID="onePerPosRadioButton" runat="server" Text="1 Per Pos" />
+                            <asp:RadioButton ID="onePerPosPerCaseRadioButton" runat="server" Text="1 per pos/ per case" />
+                            <asp:RadioButton ID="oneLabelRadioButton" runat="server" Text="1 label" />
+                            <asp:Button ID="Button1" runat="server" Text="Reprint Labels" OnClientClick="sendReprintLabels(); return false" />
+                        </div>
+                    </div>
+                </asp:Panel>
+
+
+
+
                 <%--MESSAGE BOX AND ERRORS DIV--%>
                 <div class="border text-center" id="errorDiv" style="display: none">
                     <div class="errorMessage" id="errorMessage" style="display: none"></div>
                     <%--<asp:Button ID="clearError" runat="server" Text="OK" OnClientClick="clearError(); return false;" />--%>
                 </div>
-                <div class="ValidationBox text-center" id="id01" style="display: none">
-                    <h1>Tote Matrix Will be HERE</h1>
-                </div>
+
                 <%--LOCATION VALIDATION DIV--%>
                 <asp:Panel ID="locationValidationPanel" runat="server" DefaultButton="validateLocationTBButton">
-                <div class="ValidationBox text-center" id="validateLocationDiv" style="display: none">
-                    <h1>Scan Location to Validate</h1>
-                    <asp:Label ID="validateLocationTBLabel" runat="server" Text="Scan Location:"></asp:Label>
-                    <input id="validateLocationTB" type="text" runat="server" style="display: none" />
-                    <asp:Button ID="validateLocationTBButton" runat="server" Text="Enter" />
-                </div>
-                    </asp:Panel>
-                <%--PART VALIDATION DIV--%>
-                <asp:Panel ID="partValidationPanel" runat="server" DefaultButton="validatePartTBButton">
-                <div class="ValidationBox text-center" id="validatePartDiv" style="display: none">
-                    <h1>Scan Part Number to Validate</h1>
-                    <asp:Label ID="validatePartTBLabel" runat="server" Text="Scan Part:"></asp:Label>
-                    <input id="validatePartTB" type="text" runat="server" style="display: none" />
-                    <asp:Button ID="validatePartTBButton" runat="server" Text="Enter" />
-                </div>
-                    </asp:Panel>
-                <asp:Panel ID="LPNValidationPanel" runat="server" DefaultButton="validateLPNTBButton">
-                    <%--LPN VALIDATION DIV--%>
-                    <div class="ValidationBox text-center" id="validateLPNDiv" style="display: none">
-                        <h1>Scan LPN to Validate</h1>
-                        <asp:Label ID="validateLPNTBLabel" runat="server" Text="Scan LPN:"></asp:Label>
-                        <input id="validateLPNTB" type="text" runat="server" style="display: none" />
-                        <asp:Button ID="validateLPNTBButton" runat="server" Text="Enter" />
+                    <div class="border text-center" id="validateLocationDiv" style="display: none">
+                        <h1>Scan Location to Validate</h1>
+                        <asp:Label ID="validateLocationTBLabel" runat="server" Text="Scan Location:"></asp:Label>
+                        <input id="validateLocationTB" type="text" runat="server" width="100px" />
+                        <asp:Button ID="validateLocationTBButton" runat="server" Text="Enter" OnClientClick="sendValidateLocation(); return false;" Style="display: none" />
                     </div>
                 </asp:Panel>
+                <%--PART VALIDATION DIV--%>
+                <asp:Panel ID="partValidationPanel" runat="server" DefaultButton="validatePartTBButton">
+                    <div class="border text-center" id="validatePartDiv" style="display: none">
+                        <h1>Scan Part Number to Validate</h1>
+                        <asp:Label ID="validatePartTBLabel" runat="server" Text="Scan Part:"></asp:Label>
+                        <input id="validatePartTB" type="text" runat="server" />
+                        <asp:Button ID="validatePartTBButton" runat="server" Text="Enter" OnClientClick="sendValidatePart(); return false;" Style="display: none" />
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="LPNValidationPanel" runat="server" DefaultButton="validateLPNTBButton">
+                    <%--LPN VALIDATION DIV--%>
+                    <div class="border text-center" id="validateLPNDiv" style="display: none">
+                        <h1>Scan LPN to Validate</h1>
+                        <asp:Label ID="validateLPNTBLabel" runat="server" Text="Scan LPN:"></asp:Label>
+                        <input id="validateLPNTB" type="text" runat="server" width="100px" />
+                        <asp:Button ID="validateLPNTBButton" runat="server" Text="Enter" OnClientClick="sendValidateLPN(); return false;" Style="display: none" />
+                    </div>
+                </asp:Panel>
+                <div class="ValidationBox text-center" id="id01" style="display: none">
+                    <h1>One moment while we build your digital cart</h1>
+                </div>
                 <div class="ValidationBox text-center" id="BatchCompleteDiv" style="display: none">
-                    <p>Batch Complete Grid filled by BW</p>
-
-                    <table>
-
-                        <tr>
-                            <th>Status</th>
-                            <th>More Stats</th>
-                            <th>Stats on stats</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>8</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>11</td>
-
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                    </table>
                 </div>
             </div>
 
@@ -529,9 +347,7 @@
                         <ClientSideEvents Click="sendReLightLastPick" />
                     </dx:BootstrapButton>
                     <%--5--%>
-                    <dx:BootstrapButton ID="rePrintLabelsButton" runat="server" AutoPostBack="false" Text="Re-Print Labels" CssClasses-Control="button">
-                        <ClientSideEvents Click="sendReprintLabels" />
-                    </dx:BootstrapButton>
+                    <asp:Button ID="reprintLabelsButton1" runat="server" Text="Re-Print Labels" CssClass="button" OnClientClick="showReprintLabels(); return false;" />
                     <%--6--%>
                     <dx:BootstrapButton ID="changeStartAisleButton" runat="server" AutoPostBack="false" Text="Change Start Aisle" CssClasses-Control="button">
                         <ClientSideEvents Click="sendChangeStartAisle" />
@@ -546,7 +362,7 @@
                     </dx:BootstrapButton>
                     <%--9--%>
                     <dx:BootstrapButton ID="shortPickButton" runat="server" AutoPostBack="false" Text="Short Pick" CssClasses-Control="button">
-                        <ClientSideEvents Click="sendShortPick" />
+                        <ClientSideEvents Click="showShortPickDiv" />
                     </dx:BootstrapButton>
                     <%--10--%>
                     <dx:BootstrapButton ID="fullToteButton" runat="server" AutoPostBack="false" Text="Full Tote" CssClasses-Control="button">

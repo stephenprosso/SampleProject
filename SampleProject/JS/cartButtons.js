@@ -83,12 +83,31 @@ function sendStartAisle() {
     console.log("data sent");
 }
 
-
-function sendBack() {
+function sendBackFromStartAisle() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
 
+    var data = JSON.stringify({ "Action": "", "SubAction": "", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+}
+
+
+function sendClearCartFromBatchSetup() {
+    confirm("Do you really want to clear the cart?");
+    var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Clear Cart", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
+}
+function sendBackFromBatchSetup() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Back LPNs", "Cart": cart });
     console.log(data);
     ws.send(data);
     console.log("data sent");
@@ -138,22 +157,64 @@ function sendReLightLastPick() {
 }
 
 //5 
-function sendReprintLabels() {
+function sendReprintLabelsRequest() {
     var cart = new URLSearchParams(window.location.search).get("cart");
 
     var data = JSON.stringify({ "Action": "Reprint Labels", "SubAction": "Request", "Cart": cart });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
+
+}
+//the response from magic cart daemon will display the reprint labels div. below function send the data
+function sendReprintLabels() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    //label type
+    var type;
+    if ($('#MainContent_OL').is(":checked")) {
+
+        type = "OL";
+    }
+    if ($('#MainContent_PL').is(":checked")) {
+
+        type = "PL";
+    }
+    if ($('#MainContent_LL').is(":checked")) {
+
+        type = "LL";
+    }
+
+    //label qty
+    var qty;
+    if ($('#MainContent_A').is(":checked")) {
+
+        qty = "A";
+    }
+    if ($('#MainContent_B').is(":checked")) {
+
+        qty = "B";
+    }
+    if ($('#MainContent_C').is(":checked")) {
+
+        qty = "C";
+    }
+
+
+    var data = JSON.stringify({ "Action": "Reprint Labels", "SubAction": "Reprint", "Cart": cart, "UserResponse1": type, "UserResponse2": qty });
+    console.log(data);
+    ws.send(data);
+
 }
 //6
 function sendChangeStartAisle() {
+
+
     var cart = new URLSearchParams(window.location.search).get("cart");
 
     var data = JSON.stringify({ "Action": "Change Start Aisle", "SubAction": "Request", "Cart": cart });
     console.log(data);
     ws.send(data);
     console.log("data sent");
+    document.getElementById("MainContent_startAisleTB").value = "";
 }
 
 //7
@@ -178,10 +239,18 @@ function sendSkipPick() {
     console.log("data sent");
 }
 //9 
-function sendShortPick() {
+function sendShortPickRequest() {
     var cart = new URLSearchParams(window.location.search).get("cart");
 
     var data = JSON.stringify({ "Action": "Short Pick", "SubAction": "Request", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    document.getElementById('MainContent_sendShortPickTB').focus();
+}
+function sendShortPick() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var qty = document.getElementById('MainContent_sendShortPickTB').value;
+    var data = JSON.stringify({ "Action": "Short Pick", "SubAction": "Request", "Cart": cart, "UserResponse1": qty });
     console.log(data);
     ws.send(data);
     console.log("data sent");
@@ -198,16 +267,31 @@ function sendFullTote() {
 }
 //11 
 function sendLocnEmpty() {
+
     var cart = new URLSearchParams(window.location.search).get("cart");
 
     var data = JSON.stringify({ "Action": "Notify Host Locn Empty", "SubAction": "Request", "Cart": cart });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
 
+
+    ws.send(data);
+
+
+    //var xmlhttp = new XMLHttpRequest();
+    //var url = "http://192.168.128.152/cart/cart/batchpos";
+
+    //xmlhttp.onreadystatechange = function () {
+    //    if (this.readyState === 4 && this.status === 200) {
+    //        document.getElementById("id01").innerHTML = this.responseText;
+    //    }
+    //};
+    //xmlhttp.open("POST", url, true);
+
+    //xmlhttp.send(data);
 
 
 }
+
+//BUTTONS ON EARLY EXIT 
 function sendScanNewLPN() {
 
     hideEarlyExit();
@@ -222,7 +306,7 @@ function sendScanNewLPN() {
 
 }
 
-
+//BUTTONS ON EARLY EXIT
 function sendEarlyExitAbort() {
 
 
@@ -237,7 +321,7 @@ function sendEarlyExitAbort() {
     console.log("data sent");
 
 }
-
+//FUCNTION TO HELP HIDE ELEMENTS
 function hideValidationBox() {
 
     $("#id01").css('display', 'none');
@@ -251,8 +335,8 @@ function hideEarlyExit() {
     $("#earlyExitTitle").css('display', 'none');
     $("#earlyExitButtons").css('display', 'none');
     $("#directionalDisplayDiv").css('display', 'none');
-    $("#partDetailsAndLocationDiv").css('display', 'none');
-    $("#userFieldQuantity").css('display', 'none');
+    $("#partNumberAndDescriptionDiv").css('display', 'none');
+    $("#locationAndQtyDiv").css('display', 'none');
     $("#BatchDataDiv").css('display', 'none');
     $("#userFieldDiv").css('display', 'none');
 
@@ -310,7 +394,6 @@ function sendBatchCompleteRetryLights() {
     console.log("data sent");
 
 }
-
 function sendValidateLocation() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
@@ -323,7 +406,8 @@ function sendValidateLocation() {
 function sendValidatePart() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
-    var part = document.getElementById("MainContent_validatePartTB");
+    var part = document.getElementById("MainContent_validatePartTB").value;
+
     var data = JSON.stringify({ "Action": "Part Validation", "SubAction": "Response", "Cart": cart, "UserResponse1": part });
     console.log(data);
     ws.send(data);
@@ -339,40 +423,3 @@ function sendValidateLPN() {
     ws.send(data);
     console.log("data sent");
 }
-
-function sendReprintLabels() {
-    var cart = new URLSearchParams(window.location.search).get("cart");
-    //label type
-    var type;
-    if (document.getElementById("MainContent_orderRadioButton").checked) {
-
-        type = document.getElementById('MainContent_orderRadioButton').value;
-    }
-    if (document.getElementById("MainContent_partRadioButton").checked) {
-
-        type = document.getElementById('MainContent_partRadioButton').value;
-    }
-    if (document.getElementById("MainContent_LPNRadioButton").checked) {
-
-        type = document.getElementById('MainContent_LPNRadioButton').value;
-    }
-
-    //label qty
-    var qty;
-    if (document.getElementById("MainContent_onePerPosRadioButton").checked) {
-
-        qty = document.getElementById("MainContent_onePerPosRadioButton").value;
-    }
-    if (document.getElementById("MainContent_onePerPosPerCaseRadioButton").checked) {
-
-        qty = document.getElementById("MainContent_onePerPosPerCaseRadioButton").value;
-    }
-    if (document.getElementById("MainContent_oneLabelRadioButton").checked) {
-
-        qty = document.getElementById("MainContent_oneLabelRadioButton").value;
-    }
-
-    var data = JSON.stringify({ "Action": "Reprint Labels", "SubAction": "Request", "Cart": cart, "UserResponse1": type, "UserResponse2": qty });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");

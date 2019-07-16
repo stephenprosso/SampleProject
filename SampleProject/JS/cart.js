@@ -1,12 +1,6 @@
 ﻿var start1 = function () {
 
-    var inc = document.getElementById('incomming');
     var wsImpl = window.WebSocket || window.MozWebSocket;
-    var form = document.getElementById('sendForm');
-    var input = document.getElementById('sendText');
-
-    //inc.innerHTML += "connecting to server ..<br/>";
-
     // create a new websocket and connect
     var cart = new URLSearchParams(window.location.search).get("cart");
     window.ws = new wsImpl('ws://192.168.128.152:8181/' + cart);
@@ -27,7 +21,38 @@
         //xml code
 
         //var body = '{"Action":"<must be non blank>", "SubAction":"", "Cart":"", "CartPositions":1,"OverallTC":false, "ErrorMessage":"","UserResponse1":"","UserResponse2":"","UserResponse3":"","DisplayData":[{"Part":"", "PartDesc1":"", "PartDesc2":"", "UserField":"", "Location":"", "DirectionalDisplay":"", "TotalPickQty":"5", "StartingAisle":"","FullTote":"", "FullToteQty":"", "NewToteQty":""}    ],"BatchData":[{"RemainingPickLines":0, "RemainingLocs":0, "CurrentPicksPerHourRate":0.000}],"AlphaPos":[{"Pos": 1, "PrimaryModule":1, "SecondaryModule":3, "Message":"1111", "Color": 1, "BlinkSpeed": 0, "Buzzer": true, "Enable":true},{"Pos": 2, "PrimaryModule":2, "SecondaryModule":4, "Message":"2222", "Color": 1, "BlinkSpeed": 0, "Buzzer": false, "Enable":true}],"BatchPos": [{"Pos": 15, "PrimaryModule":1, "SecondaryModule":51, "Display":"*15*", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true}, {"Pos": 2, "PrimaryModule":2, "SecondaryModule":52, "Display":"2222", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true}, {"Pos": 5, "PrimaryModule":5, "SecondaryModule":55, "Display":"FIVE", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true},{"Pos": 3, "PrimaryModule":3, "SecondaryModule":53, "Display":"3333", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":false},{"Pos": 4, "PrimaryModule":4, "SecondaryModule":54, "Display":"4444", "TC":false, "Color":1, "BlinkSpeed":0, "Enable":true, "Visible":true}]}';
+        function getDashboard(n) {
 
+            var xmlhttp = new XMLHttpRequest();
+            var url = "http://192.168.128.152/cart/pickdashboard/" + n;
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    if (n === "1") {
+                        document.getElementById("dash1").innerHTML = this.responseText;
+                    }
+                    if (n === "2") {
+                        document.getElementById("dash2").innerHTML = this.responseText;
+                    }
+                    if (n === "3") {
+                        document.getElementById("dash3").innerHTML = this.responseText;
+                    }
+                    if (n === "4") {
+                        document.getElementById("dash4").innerHTML = this.responseText;
+                    }
+                    if (n === "5") {
+                        document.getElementById("dash5").innerHTML = this.responseText;
+                    }
+                    if (n === "6") {
+                        document.getElementById("dash6").innerHTML = this.responseText;
+                    }
+                }
+            };
+            xmlhttp.open("GET", url, true);
+
+            xmlhttp.send();
+        }
 
         function getToteMatrix(body) {
 
@@ -77,25 +102,26 @@
         }
         // 2 send user to PAGE 2 in the picking process
         if (action === "Zone Group" && subAction === "Select") {
+            checkForErrors();
 
             $("#LoginDiv").css('display', 'none');
             $("#zoneSelectDiv").css('display', 'block');
             $("#zoneSelectTite").css('display', 'block');
 
-            if (errorMessage !== '') {
-                $("#errorDiv").css('display', 'block');
-                $("#errorMessage").css('display', 'block');
-                $("#connectedDiv").css('display', 'none');
-                document.getElementById("errorMessage").innerHTML = errorMessage;
-            }
-            else {
-                $("#errorDiv").css('display', 'none');
-                $("#errorMessage").css('display', 'none');
-            }
+
         }
 
         // 3 if statement to present work dashboard
         if (action === "Work Dashboard" && subAction === "Present") {
+            checkForErrors();
+
+            getDashboard("1");
+            getDashboard("2");
+            getDashboard("3");
+            getDashboard("4");
+            getDashboard("5");
+            getDashboard("6");
+
             $("#LoginDiv").css('display', 'none');
             //hide picking datawhen user routes back from abort batch
             hidePickingScreens();
@@ -104,8 +130,6 @@
             $("#BatchCompleteDiv").css('display', 'none');
             $("#batchCompleteButtonsDiv").css('display', 'none');
             $("#BatchDataDiv").css('display', 'none');
-            //check for errors
-            checkForErrors();
             $("#zoneSelectDiv").css('display', 'none');
             $("#zoneSelectTite").css('display', 'none');
             $("#dashboardTitle").css('display', 'block');
@@ -156,6 +180,8 @@
 
 
         if (action === "Location Validation" && subAction === "Prompt") {
+            checkForErrors();
+
             populatePickingScreens();
             //hide
             $("#id01").css('display', 'none');
@@ -222,8 +248,8 @@
             $("#LoginDiv").css('display', 'none');
             $("#StartAisleDiv").css('display', 'none');
             $("#directionalDisplayDiv").css('display', 'none');
-            $("#partDetailsAndLocationDiv").css('display', 'none');
-            $("#userFieldQuantity").css('display', 'none');
+            $("#partNumberAndDescriptionDiv").css('display', 'none');
+            $("#locationAndQtyDiv").css('display', 'none');
             $("#button-div").css('display', 'none');
             $("#CartPickingTitle").css('display', 'none');
             $("#userFieldDiv").css('display', 'none');
@@ -238,13 +264,14 @@
         }
 
         if (action === "Early Exit" && subAction === "Display") {
+            checkForErrors();
 
             //HIDE
             $("#loginDiv").css('display', 'none');
             $("#CartPickingTitle").css('display', 'none');
             $("#button-div").css('display', 'none');
-            $("#userFieldQuantity").css('display', 'none');
-            $("#partDetailsAndLocationDiv").css('display', 'none');
+            $("#locationAndQtyDiv").css('display', 'none');
+            $("#partNumberAndDescriptionDiv").css('display', 'none');
             $("#userFieldDiv").css('display', 'none');
             $("#directionalDisplayDiv").css('display', 'none');
             $("#validateLocationDiv").css('display', 'none');
@@ -299,7 +326,9 @@
 
         }
 
-        if (action === "Reprint Labels" && subAction === "Response") {
+        if (action === "Reprint Labels" && subAction === "Display") {
+            checkForErrors();
+
             $("#validateLocationDiv").css('display', 'none');
             $("#validatePartDiv").css('display', 'none');
             $("#validateLPNDiv").css('display', 'none');
@@ -313,7 +342,6 @@
             $("#LoginDiv").css('display', 'none');
             $("#StartAisleDiv").css('display', 'none');
             $("#promptNewToteDiv").css('display', 'none');
-
             $("#fullToteInfoDiv").css('display', 'none');
 
             //SHOW
@@ -321,9 +349,8 @@
             $("#directionalDisplayDiv").css('display', 'block');
             $("#userFieldDiv").css('display', 'block');
             $("#infoBox").css('display', 'block');
-            $("#partDetailsAndLocationDiv").css('display', 'block');
-            $("#partDetailsAndLocationDiv1").css('display', 'block');
-            $("#userFieldQuantity").css('display', 'block');
+            $("#partNumberAndDescriptionDiv").css('display', 'block');
+            $("#locationAndQtyDiv").css('display', 'block');
             $("#BatchDataDiv").css('display', 'block');
             $("#button-div").css('display', 'block');
 
@@ -388,11 +415,12 @@
 function hidePickingScreens() {
 
     $("#directionalDisplayDiv").css('display', 'none');
-    $("#partDetailsAndLocationDiv").css('display', 'none');
-    $("#userFieldQuantity").css('display', 'none');
+    $("#userFieldDiv").css('display', 'none');
+    $("#partNumberAndDescriptionDiv").css('display', 'none');
+    $("#locationAndQtyDiv").css('display', 'none');
     $("#button-div").css('display', 'none');
     $("#CartPickingTitle").css('display', 'none');
-    $("#userFieldDiv").css('display', 'none');
+
     $("#BatchDataDiv").css('display', 'none');
     $("#validatePartDiv").css('display', 'none');
     $("#validateLocationDiv").css('display', 'none');

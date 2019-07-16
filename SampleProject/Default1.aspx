@@ -92,31 +92,32 @@
         <%--WORK DASHBOARD DIV--%>
         <div class="container" id="workDashboardDiv" style="display: none">
             <div class="row">
-                <div class="col-sm-4 group-block">
+
+                <div class="col-sm-4 text-center">
                     <asp:Button ID="dashboardButton1" runat="server" CssClass="button centered" Text="Single Alloc" OnClientClick="sendSelectedBucket('1'); return false;" />
-
+                    <div id="dash1"></div>
                 </div>
-                <div class="col-sm-4 group-block">
+                <div class="col-sm-4 text-center">
                     <asp:Button ID="dashboardButton2" runat="server" CssClass="button centered" Text="Multi Alloc" OnClientClick="sendSelectedBucket('2'); return false;" />
-
+                    <div id="dash2"></div>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton3" runat="server" CssClass="button centered" Text="Mixed Priority" OnClientClick="sendSelectedBucket('3'); return false;" />
-
+                    <div id="dash3"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton4" runat="server" CssClass="button centered" Text="Small Order" OnClientClick="sendSelectedBucket('4'); return false;" />
-
+                    <div id="dash4"></div>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton5" runat="server" CssClass="button centered" Text="Big Order" OnClientClick="sendSelectedBucket('5'); return false;" />
-
+                    <div id="dash5"></div>
                 </div>
                 <div class="col-sm-4 group-block">
                     <asp:Button ID="dashboardButton6" runat="server" CssClass="button centered" Text="High Priority" OnClientClick="sendSelectedBucket('6'); return false;" />
-
+                        <div id="dash6"></div>
                 </div>
             </div>
         </div>
@@ -137,6 +138,7 @@
 
             <%--CENTER OF YOUR PAGE DIV--%>
             <div class="col-sm-8" id="centerCartDisplay">
+                <%--ZONE SELECT DIV--%>
                 <div class="text-center" id="zoneSelectDiv" style="display: none">
                     <div class="zoneHeader text-center">
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" CssClass="centered">
@@ -168,7 +170,7 @@ select Zone_Grouping, zone 'Location Zone', description from Zone_Grouping_Xref 
                     </div>
                 </div>
                 <%--PARTS AND DETAILS DIV--%>
-                <div class="border group" id="partDetailsAndLocationDiv" style="display: none">
+                <div class="border group" id="partNumberAndDescriptionDiv" style="display: none">
                     <asp:Label ID="partNumberLabel" runat="server" Text="Part Number: "></asp:Label>
                     <p class="pl" id="partNumber"></p>
                     <asp:Label ID="partDesc1Label" runat="server" Text="partDesc1: "></asp:Label>
@@ -196,7 +198,7 @@ select Zone_Grouping, zone 'Location Zone', description from Zone_Grouping_Xref 
                     </div>
                 </asp:Panel>
                 <%--LOCATION AND QUANTITY DIV--%>
-                <div class="border text-center" id="userFieldQuantity" style="display: none">
+                <div class="border text-center" id="locationAndQtyDiv" style="display: none">
                     <asp:Label ID="locationLabel" runat="server" Text="Location: " Width="100px"></asp:Label>
                     <p class="pl" id="location"></p>
                     <asp:Label ID="totalPickQtyLabel" runat="server" Text="Quantity: " Width="100px"></asp:Label>
@@ -250,22 +252,20 @@ select Zone_Grouping, zone 'Location Zone', description from Zone_Grouping_Xref 
                     <div class="border text-center" id="rePrintLabelsDiv" style="display: none">
                         <div class="group">
                             <asp:Label ID="Label2" runat="server" Text="Label Type"></asp:Label>
-                            <asp:RadioButton ID="orderRadioButton" runat="server" Text="Order Label" />
-                            <asp:RadioButton ID="partRadioButton" runat="server" Text="Part Label" />
-                            <asp:RadioButton ID="LPNRadioButton" runat="server" Text="LPN Label" />
+                            <asp:CheckBox ID="OL" runat="server" Text="Order Label"  />
+                            <asp:CheckBox ID="PL" runat="server" Text="Part Label" />
+                            <asp:CheckBox ID="LL" runat="server" Text="LPN Label" />
                         </div>
                         <br />
                         <div class="group">
                             <asp:Label ID="Label3" runat="server" Text="Label Type"></asp:Label>
-                            <asp:RadioButton ID="onePerPosRadioButton" runat="server" Text="1 Per Pos" />
-                            <asp:RadioButton ID="onePerPosPerCaseRadioButton" runat="server" Text="1 per pos/ per case" />
-                            <asp:RadioButton ID="oneLabelRadioButton" runat="server" Text="1 label" />
+                            <asp:CheckBox ID="B" runat="server" Text="1 Per Pos" />
+                            <asp:CheckBox ID="C" runat="server" Text="1 per pos/ per case" />
+                            <asp:CheckBox ID="A" runat="server" Text="1 label" />
                             <asp:Button ID="Button1" runat="server" Text="Reprint Labels" OnClientClick="sendReprintLabels(); return false" />
                         </div>
                     </div>
                 </asp:Panel>
-
-
 
 
                 <%--MESSAGE BOX AND ERRORS DIV--%>
@@ -347,7 +347,7 @@ select Zone_Grouping, zone 'Location Zone', description from Zone_Grouping_Xref 
                         <ClientSideEvents Click="sendReLightLastPick" />
                     </dx:BootstrapButton>
                     <%--5--%>
-                    <asp:Button ID="reprintLabelsButton1" runat="server" Text="Re-Print Labels" CssClass="button" OnClientClick="showReprintLabels(); return false;" />
+                    <asp:Button ID="reprintLabelsButton1" runat="server" Text="Re-Print Labels" CssClass="button" OnClientClick="sendReprintLabelsRequest(); return false;" />
                     <%--6--%>
                     <dx:BootstrapButton ID="changeStartAisleButton" runat="server" AutoPostBack="false" Text="Change Start Aisle" CssClasses-Control="button">
                         <ClientSideEvents Click="sendChangeStartAisle" />
@@ -361,17 +361,16 @@ select Zone_Grouping, zone 'Location Zone', description from Zone_Grouping_Xref 
                         <ClientSideEvents Click="sendSkipPick" />
                     </dx:BootstrapButton>
                     <%--9--%>
-                    <dx:BootstrapButton ID="shortPickButton" runat="server" AutoPostBack="false" Text="Short Pick" CssClasses-Control="button">
-                        <ClientSideEvents Click="showShortPickDiv" />
-                    </dx:BootstrapButton>
+                    <asp:Button ID="shortPickButton" runat="server" Text="Short Pick" CssClass="button" OnClientClick="sendShortPickRequest(); return false;" />
+
                     <%--10--%>
                     <dx:BootstrapButton ID="fullToteButton" runat="server" AutoPostBack="false" Text="Full Tote" CssClasses-Control="button">
                         <ClientSideEvents Click="sendFullTote" />
                     </dx:BootstrapButton>
                     <%--11--%>
-                    <dx:BootstrapButton ID="notifyHostLocnEmptyButton" runat="server" AutoPostBack="false" Text="Notify Location Empty" CssClasses-Control="button">
+<%--                    <dx:BootstrapButton ID="notifyHostLocnEmptyButton" runat="server" AutoPostBack="false" Text="Notify Location Empty" CssClasses-Control="button">
                         <ClientSideEvents Click="sendLocnEmpty" />
-                    </dx:BootstrapButton>
+                    </dx:BootstrapButton>--%>
                     <%--<asp:Button ID="ChangeQT" runat="server" Text="Change QT" Height="100px" CssClass="button" OnClientClick="ChangeQT()" />--%>
                 </div>
             </div>

@@ -526,31 +526,31 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// orderRadioButton control.
+        /// OL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton orderRadioButton;
+        protected global::System.Web.UI.WebControls.CheckBox OL;
         
         /// <summary>
-        /// partRadioButton control.
+        /// PL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton partRadioButton;
+        protected global::System.Web.UI.WebControls.CheckBox PL;
         
         /// <summary>
-        /// LPNRadioButton control.
+        /// LL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton LPNRadioButton;
+        protected global::System.Web.UI.WebControls.CheckBox LL;
         
         /// <summary>
         /// Label3 control.
@@ -562,31 +562,31 @@ namespace PoweredPIKCart {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// onePerPosRadioButton control.
+        /// B control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton onePerPosRadioButton;
+        protected global::System.Web.UI.WebControls.CheckBox B;
         
         /// <summary>
-        /// onePerPosPerCaseRadioButton control.
+        /// C control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton onePerPosPerCaseRadioButton;
+        protected global::System.Web.UI.WebControls.CheckBox C;
         
         /// <summary>
-        /// oneLabelRadioButton control.
+        /// A control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton oneLabelRadioButton;
+        protected global::System.Web.UI.WebControls.CheckBox A;
         
         /// <summary>
         /// Button1 control.
@@ -847,7 +847,7 @@ namespace PoweredPIKCart {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton shortPickButton;
+        protected global::System.Web.UI.WebControls.Button shortPickButton;
         
         /// <summary>
         /// fullToteButton control.
@@ -857,14 +857,5 @@ namespace PoweredPIKCart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton fullToteButton;
-        
-        /// <summary>
-        /// notifyHostLocnEmptyButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapButton notifyHostLocnEmptyButton;
     }
 }

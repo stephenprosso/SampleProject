@@ -29,14 +29,27 @@ function clearError() {
 
 }
 
+
+
 function sendSelectedZoneGrouping() {
 
-    var selectedZoneGrouping = "1";
+    var list = document.getElementById("MainContent_ListBox1");
+
+    var optsLength = list.options.length;
+    for (var i = 0; i < optsLength; i++) {
+
+        if (list.options[i].selected) {
+
+            var zone = list.options[i].value;
+        }
+
+    }
+
     var cart = new URLSearchParams(window.location.search).get("cart");
-    var data = JSON.stringify({ "Action": "Zone Group", "SubAction": "Response", "Cart": cart, "UserResponse1": selectedZoneGrouping });
-    console.log(data);
+    var data = JSON.stringify({ "Action": "Zone Group", "SubAction": "Response", "Cart": cart, "UserResponse1": zone });
+
     ws.send(data);
-    console.log("data sent");
+
 }
 
 function sendSelectedBucket(selectedBucket) {
@@ -47,6 +60,14 @@ function sendSelectedBucket(selectedBucket) {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+}
+function sendBackFromDashboard() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var data = JSON.stringify({ "Action": "Work Dashboard", "SubAction": "Back", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
 }
 
 function sendLPN() {
@@ -87,7 +108,7 @@ function sendBackFromStartAisle() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
 
-    var data = JSON.stringify({ "Action": "", "SubAction": "", "Cart": cart });
+    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Back", "Cart": cart });
     console.log(data);
     ws.send(data);
     console.log("data sent");
@@ -156,7 +177,7 @@ function sendReLightLastPick() {
     console.log("data sent");
 }
 
-//5 
+//5 ON DEMAN LABEL PRINTING 
 function sendReprintLabelsRequest() {
     var cart = new URLSearchParams(window.location.search).get("cart");
 
@@ -217,7 +238,7 @@ function sendChangeStartAisle() {
     document.getElementById("MainContent_startAisleTB").value = "";
 }
 
-//7
+//7 EARLY EIXT BUTTON FUNCTIONS
 function sendEarlyExit() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
@@ -226,6 +247,35 @@ function sendEarlyExit() {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+}
+
+function sendScanNewLPN() {
+
+    hideEarlyExit();
+    hideValidationBox();
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Early Exit", "SubAction": "Scan New LPN", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
+}
+
+function sendEarlyExitAbort() {
+
+
+    hideEarlyExit();
+    hideValidationBox();
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Early Exit", "SubAction": "Abort", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+
 }
 
 
@@ -250,13 +300,13 @@ function sendShortPickRequest() {
 function sendShortPick() {
     var cart = new URLSearchParams(window.location.search).get("cart");
     var qty = document.getElementById('MainContent_sendShortPickTB').value;
-    var data = JSON.stringify({ "Action": "Short Pick", "SubAction": "Request", "Cart": cart, "UserResponse1": qty });
+    var data = JSON.stringify({ "Action": "Short Pick", "SubAction": "Send Qty", "Cart": cart, "UserResponse1": qty });
     console.log(data);
     ws.send(data);
     console.log("data sent");
 }
 
-//10 
+//10 FULL TOTE BUTTON FUNCTIONS
 function sendFullTote() {
     var cart = new URLSearchParams(window.location.search).get("cart");
 
@@ -265,62 +315,49 @@ function sendFullTote() {
     ws.send(data);
     console.log("data sent");
 }
-//11 
+function sendCurrentFullTote() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var fullTote = document.getElementById('MainContent_promptFullToteTB').value;
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Scanned Tote", "Cart": cart, "UserResponse1": fullTote });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+    document.getElementById("MainContent_promptFullToteTB").value = "";
+
+}
+
+function sendCurrentQty() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var currentQty = document.getElementById('MainContent_promptCurrentQtyTB').value;
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Current Qty Response", "Cart": cart, "UserResponse1": currentQty });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+    document.getElementById("MainContent_promptCurrentQtyTB").value = "";
+}
+
+function sendNewTote() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var newTote = document.getElementById('MainContent_promptNewToteTB').value;
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "New Tote Response", "Cart": cart, "UserResponse1": newTote });
+    console.log(data);
+    ws.send(data);
+    console.log("data sent");
+    document.getElementById("MainContent_promptNewToteTB").value = "";
+
+
+}
+//11 THIS IS NOT CURRENTLY BEING USED FOR TOP KNOBS
 function sendLocnEmpty() {
-
     var cart = new URLSearchParams(window.location.search).get("cart");
-
     var data = JSON.stringify({ "Action": "Notify Host Locn Empty", "SubAction": "Request", "Cart": cart });
-
-
     ws.send(data);
-
-
-    //var xmlhttp = new XMLHttpRequest();
-    //var url = "http://192.168.128.152/cart/cart/batchpos";
-
-    //xmlhttp.onreadystatechange = function () {
-    //    if (this.readyState === 4 && this.status === 200) {
-    //        document.getElementById("id01").innerHTML = this.responseText;
-    //    }
-    //};
-    //xmlhttp.open("POST", url, true);
-
-    //xmlhttp.send(data);
-
-
 }
 
-//BUTTONS ON EARLY EXIT 
-function sendScanNewLPN() {
 
-    hideEarlyExit();
-    hideValidationBox();
-
-    var cart = new URLSearchParams(window.location.search).get("cart");
-
-    var data = JSON.stringify({ "Action": "Early Exit", "SubAction": "Scan New LPN", "Cart": cart });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
-
-}
-
-//BUTTONS ON EARLY EXIT
-function sendEarlyExitAbort() {
-
-
-    hideEarlyExit();
-    hideValidationBox();
-
-    var cart = new URLSearchParams(window.location.search).get("cart");
-
-    var data = JSON.stringify({ "Action": "Early Exit", "SubAction": "Abort", "Cart": cart });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
-
-}
 //FUCNTION TO HELP HIDE ELEMENTS
 function hideValidationBox() {
 
@@ -343,36 +380,7 @@ function hideEarlyExit() {
 }
 
 
-function sendCurrentFullTote() {
 
-    var cart = new URLSearchParams(window.location.search).get("cart");
-    var fullTote = document.getElementById('MainContent_promptFullToteTB').value;
-    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Scanned Tote", "Cart": cart, "UserResponse1": fullTote });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
-}
-
-function sendCurrentQty() {
-
-    var cart = new URLSearchParams(window.location.search).get("cart");
-    var currentQty = document.getElementById('MainContent_promptCurrentQtyTB').value;
-    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Current Qty Response", "Cart": cart, "UserResponse1": currentQty });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
-}
-
-function sendNewTote() {
-
-    var cart = new URLSearchParams(window.location.search).get("cart");
-    var newTote = document.getElementById('MainContent_promptNewToteTB').value;
-    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "New Tote Response", "Cart": cart, "UserResponse1": newTote });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
-
-}
 
 
 function sendBatchCompleteTaskComplete() {
@@ -402,6 +410,8 @@ function sendValidateLocation() {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+    document.getElementById("MainContent_validateLocationTB").value = "";
+
 }
 function sendValidatePart() {
 
@@ -412,6 +422,8 @@ function sendValidatePart() {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+    document.getElementById("MainContent_validatePartTB").value = "";
+
 }
 function sendValidateLPN() {
 
@@ -422,4 +434,14 @@ function sendValidateLPN() {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+    document.getElementById("MainContent_validateLPNTB").value = "";
+
+}
+
+function sendBackToCurrentPick() {
+
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var data = JSON.stringify({ "Action": "Re-Light Last Pick", "SubAction": "Current Pick", "Cart": cart });
+    ws.send(data);
+
 }

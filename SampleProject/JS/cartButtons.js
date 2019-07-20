@@ -114,7 +114,6 @@ function sendBackFromStartAisle() {
     console.log("data sent");
 }
 
-
 function sendClearCartFromBatchSetup() {
     confirm("Do you really want to clear the cart?");
     var cart = new URLSearchParams(window.location.search).get("cart");

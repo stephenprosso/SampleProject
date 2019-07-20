@@ -380,9 +380,6 @@ function hideEarlyExit() {
 }
 
 
-
-
-
 function sendBatchCompleteTaskComplete() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");

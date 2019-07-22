@@ -193,7 +193,6 @@
     <Content Include="AlertBoxTest.aspx" />
     <Content Include="CardViewScreen.aspx" />
     <Content Include="Content\poweredPik.css" />
-    <Content Include="Default1.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="JS\cart.js" />
     <Content Include="JS\cartButtons.js" />
@@ -303,13 +302,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default1.aspx.cs">
-      <DependentUpon>Default1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default1.aspx.designer.cs">
-      <DependentUpon>Default1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

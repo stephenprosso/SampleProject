@@ -30,7 +30,6 @@ function clearError() {
 }
 
 
-
 function sendSelectedZoneGrouping() {
 
     var list = document.getElementById("MainContent_ListBox1");

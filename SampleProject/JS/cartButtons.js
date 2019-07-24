@@ -48,7 +48,7 @@ function sendSelectedZoneGrouping() {
     var data = JSON.stringify({ "Action": "Zone Group", "SubAction": "Response", "Cart": cart, "UserResponse1": zone });
 
     ws.send(data);
-
+    document.getElementById('MainContent_ListBox1').selectedIndex = -1;
 }
 
 function sendSelectedBucket(selectedBucket) {

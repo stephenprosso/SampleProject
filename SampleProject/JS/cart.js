@@ -16,7 +16,7 @@
 
         var myObj = JSON.parse(evt.data);
         console.log(evt.data);
-        console.log(myObj);
+
 
         //xml code
 
@@ -90,7 +90,21 @@
             $("#LoginDiv").css('display', 'block');
             document.getElementById('nothingToSeeHere').value = userResponse1;
             console.log(document.getElementById('nothingToSeeHere').value);
+            document.getElementById("PoweredPikConnected").style.color = "Green";
+            document.getElementById("MainContent_UserID").focus();
 
+            hiMyNameIsWebApp();
+        }
+
+        function hiMyNameIsWebApp() {
+
+            var cart = new URLSearchParams(window.location.search).get("cart");
+            var ntsh = document.getElementById('nothingToSeeHere').value;
+            var data = JSON.stringify({ "Action": "WebSocketServer", "SubAction": "WebApp", "Cart": cart, "UserResponse1": ntsh });
+            console.log(data);
+            ws.send(data);
+            console.log("data sent");
+            $("#validateLPNDiv").css('display', 'none');
         }
 
         // 1 if statement variables PAGE 1 IN PICKING PROCESS
@@ -105,6 +119,10 @@
             checkForErrors();
 
             $("#LoginDiv").css('display', 'none');
+            //hide cart dashboard when routing back from cart dashboard
+            $("#dashboardTitle").css('display', 'none');
+            $("#workDashboardDiv").css('display', 'none');
+            //show zone select information
             $("#zoneSelectDiv").css('display', 'block');
             $("#zoneSelectTite").css('display', 'block');
 
@@ -123,6 +141,14 @@
             getDashboard("6");
 
             $("#LoginDiv").css('display', 'none');
+            //hide reprint label div if routing back to dashboard
+            $("#rePrintLabelsDiv").css('display', 'none');
+            //hide validation panels wen routing back to dashboard
+            $("#validateLocationDiv").css('display', 'none');
+            $("#validatePartDiv").css('display', 'none');
+            $("#validateLPNDiv").css('display', 'none');
+            //hide scan aisle div when reouting back from scan aisle
+            $("#StartAisleDiv").css('display', 'none');
             //hide short pick data if user clicks abort batch during short pick
             $("#shortPickDiv").css('display', 'none');
             //hide picking data when user routes back from abort batch
@@ -171,6 +197,7 @@
         if (action === "Start Aisle" && subAction === "Prompt") {
             hidePickingScreens();
             checkForErrors();
+            hideValidationBox();
             //HIDE
             $("#id01").css('display', 'none');
             $("#dashboardTitle").css('display', 'none');
@@ -184,12 +211,11 @@
         }
 
 
-        // 6 if statements for Action = Present Pick
+        // 6 if statements for validation
 
 
         if (action === "Location Validation" && subAction === "Prompt") {
             checkForErrors();
-
             populatePickingScreens();
             //hide reprint labels div after labels printed and return to picking or validation
             $("#rePrintLabelsDiv").css('display', 'none');
@@ -203,7 +229,6 @@
             document.getElementById("MainContent_taskCompleteButton").disabled = true;
             document.getElementById("MainContent_validateLocationTB").focus();
 
-            //hide the task complete button
         }
         if (action === "Part Validation" && subAction === "Prompt") {
             populatePickingScreens();
@@ -222,13 +247,12 @@
             $("#validatePartDiv").css('display', 'block');
             document.getElementById("MainContent_validatePartTB").focus();
 
-            //hide the task complete button
+
         }
         if (action === "Present Pick" && subAction === "Display Complete Task") {
             populatePickingScreens();
             getToteMatrix(evt.data);
             checkForErrors();
-
             //HIDE
             $("#rePrintLabelsDiv").css('display', 'none');
 
@@ -251,6 +275,7 @@
             $("#validatePartDiv").css('display', 'none');
             //SHOW
             $("#id01").css('display', 'block');
+            document.getElementById("MainContent_fullToteButton").disabled = false;
             document.getElementById("MainContent_taskCompleteButton").disabled = true;
             $("#validateLPNDiv").css('display', 'block');
             document.getElementById("MainContent_validateLPNTB").focus();
@@ -281,6 +306,7 @@
         }
 
         if (action === "Early Exit" && subAction === "Display") {
+            getToteMatrix(evt.data);
             checkForErrors();
 
             //HIDE
@@ -292,7 +318,7 @@
             $("#userFieldDiv").css('display', 'none');
             $("#directionalDisplayDiv").css('display', 'none');
             $("#validateLocationDiv").css('display', 'none');
-            $("#errorDiv").css('display', 'none');
+            $("#validateLPNDiv").css('display', 'none');
 
             $("#validatePartDiv").css('display', 'none');
 
@@ -307,7 +333,7 @@
         //if the same fields from lpn Validation i.e. Display data, batch data then full tote can be moved up with
         //the other if statements
 
-        if (action === "Full Tote" && subAction !== "Request" && subAction !== "Full Tote Response" && subAction !== "Current Qty Response" && subAction !== "New Tote Response" && subAction !== "Scanned Tote") {
+        if (action === "Full Tote" && subAction !== "Request" && subAction !== "Current Qty Response" && subAction !== "New Tote Response" && subAction !== "Scanned Tote" && subAction !== "Abort") {
 
             checkForErrors();
 
@@ -358,6 +384,8 @@
         }
 
         if (action === "Re-Light Last Pick" && subAction === "Light") {
+            populateDisplayData();
+            getToteMatrix(evt.data);
             checkForErrors();
             //HIDE
             $("#CartPickingTitle").css('display', 'none');
@@ -365,6 +393,8 @@
             $("#validateLocationDiv").css('display', 'none');
             $("#validatePartDiv").css('display', 'none');
             $("#validateLPNDiv").css('display', 'none');
+            $("#BatchDataDiv").css('display', 'none');
+
 
             //SHOW
             $("#lastPickTitle").css('display', 'block');
@@ -375,20 +405,22 @@
         if (action === "Short Pick" && subAction === "Display") {
 
             checkForErrors();
+            $("#validateLocationDiv").css('display', 'none');
+            $("#validatePartDiv").css('display', 'none');
+            $("#validateLPNDiv").css('display', 'none');
             $("#shortPickDiv").css('display', 'block');
             document.getElementById('MainContent_sendShortPickTB').focus();
-
-
 
         }
 
         if (action === "Short Pick" && subAction === "Response") {
 
             checkForErrors();
+            $("#validateLocationDiv").css('display', 'none');
+            $("#validatePartDiv").css('display', 'none');
+            $("#validateLPNDiv").css('display', 'none');
             $("#shortPickDiv").css('display', 'block');
             document.getElementById('MainContent_sendShortPickTB').focus();
-
-
 
         }
 
@@ -414,7 +446,12 @@
             $("#button-div").css('display', 'block');
 
             checkForErrors();
-            //Display Data Variables
+            populateDisplayData();
+            populateBatchData();
+        }
+
+        function populateDisplayData() {
+
             var part = myObj.DisplayData[0].Part;
             var partDesc1 = myObj.DisplayData[0].PartDesc1;
             var partDesc2 = myObj.DisplayData[0].PartDesc2;
@@ -423,16 +460,28 @@
             var totalPickQty = myObj.DisplayData[0].TotalPickQty;
             var directionalDisplay = myObj.DisplayData[0].DirectionalDisplay;
 
+            if (directionalDisplay === ">") {
+                $("#arrowRight").css('display', 'block');
+            } else {
+                $("#arrowRight").css('display', 'none');
+
+            }
+            if (directionalDisplay === "<") {
+                $("arrowLeft").css('display', 'block');
+            } else {
+                $("#arrowLeft").css('display', 'none');
+
+            }
+
             document.getElementById("partNumber").innerHTML = part;
             document.getElementById("partDesc1").innerHTML = partDesc1;
             document.getElementById("partDesc2").innerHTML = partDesc2;
             document.getElementById("location").innerHTML = location;
             document.getElementById("totalPickQty").innerHTML = totalPickQty;
             document.getElementById("userField").innerHTML = userField;
-            document.getElementById("directionalDisplay").innerHTML = directionalDisplay;
-
-            ////Batchdata Variables
-
+            //document.getElementById("directionalDisplay").innerHTML = directionalDisplay;
+        }
+        function populateBatchData() {
             var remainingPickLines = myObj.BatchData[0].RemainingPickLines;
             var remainingLocs = myObj.BatchData[0].RemainingLocs;
             var currentPicksPerHourRate = myObj.BatchData[0].CurrentPicksPerHourRate;
@@ -440,8 +489,10 @@
             document.getElementById("remainingPickLines").innerHTML = remainingPickLines;
             document.getElementById("remainingLocs").innerHTML = remainingLocs;
             document.getElementById("currentPicksPerHourRate").innerHTML = currentPicksPerHourRate;
-        }
 
+        }
+        // if was pass a parameter i.e. "info" to this funtion we can pass a varialbe (like a tote) and display that before the error message.
+        //i.e. info = LPN / info + error message = T9999 is not a valid tote. 
         function checkForErrors() {
 
             if (errorMessage !== '' && errorMessage !== undefined) {

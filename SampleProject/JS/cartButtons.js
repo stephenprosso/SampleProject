@@ -8,9 +8,10 @@ function sendLogin() {
 
     var data = JSON.stringify({ "action": "Login", "SubAction": "Initiate", "Cart": cart, "UserResponse1": UserID, "UserResponse2": Password, "UserResponse3": ntsh });
     console.log(data);
-    console.log("send data");
     ws.send(data);
-    console.log("data sent");
+    document.getElementById('MainContent_UserID').value = "";
+    document.getElementById('MainContent_PWD').value = "";
+
 }
 
 function sendLogout() {
@@ -29,6 +30,8 @@ function clearError() {
 
 }
 
+
+//SELECTED ZONE GROUPING BUTTONS
 function sendSelectedZoneGrouping() {
 
     var list = document.getElementById("MainContent_ListBox1");
@@ -48,22 +51,23 @@ function sendSelectedZoneGrouping() {
 
     ws.send(data);
     document.getElementById('MainContent_ListBox1').selectedIndex = -1;
-}
 
+}
+//WORK DASHBOARD BUTTONS
 function sendSelectedBucket(selectedBucket) {
+
 
     var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Work Dashboard", "SubAction": "Selected Bucket", "Cart": cart, "UserResponse1": selectedBucket });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
 }
 function sendBackFromDashboard() {
     var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Work Dashboard", "SubAction": "Back", "Cart": cart });
     console.log(data);
+
     ws.send(data);
-    console.log("data sent");
 
 }
 
@@ -73,9 +77,8 @@ function sendLPN() {
     var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "LPN Scanned", "Cart": cart, "UserResponse1": LPN });
     console.log(data);
-    console.log("send data");
+
     ws.send(data);
-    console.log("data sent");
     document.getElementById("MainContent_LPNTB").value = "";
 }
 
@@ -84,12 +87,12 @@ function processBatch() {
     var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Process Batch", "Cart": cart });
     console.log(data);
+
     ws.send(data);
-    console.log("data sent");
 }
 
 
-
+//START AISLE BUTTONS
 function sendStartAisle() {
 
     var aisle = document.getElementById('MainContent_startAisleTB').value;
@@ -97,27 +100,31 @@ function sendStartAisle() {
 
     var data = JSON.stringify({ "Action": "Start Aisle", "SubAction": "Response", "Cart": cart, "UserResponse1": aisle });
     console.log(data);
+
     ws.send(data);
-    console.log("data sent");
+    document.getElementById('MainContent_startAisleTB').value = "";
 }
 
 function sendBackFromStartAisle() {
 
     var cart = new URLSearchParams(window.location.search).get("cart");
 
-    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Back", "Cart": cart });
-    console.log(data);
+    var data = JSON.stringify({ "Action": "Start Aisle", "SubAction": "Back", "Cart": cart });
     ws.send(data);
-    console.log("data sent");
 }
 
+//BATCH SETUP BUTTONS
 function sendClearCartFromBatchSetup() {
-    confirm("Do you really want to clear the cart?");
-    var cart = new URLSearchParams(window.location.search).get("cart");
-    var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Clear Cart", "Cart": cart });
-    console.log(data);
-    ws.send(data);
-    console.log("data sent");
+    if (confirm("Do you really want to clear the cart?")) {
+        var cart = new URLSearchParams(window.location.search).get("cart");
+        var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Clear Cart", "Cart": cart });
+        console.log(data);
+
+        ws.send(data);
+    } else {
+        return false;
+    }
+
 
 }
 function sendBackFromBatchSetup() {
@@ -127,7 +134,6 @@ function sendBackFromBatchSetup() {
     var data = JSON.stringify({ "Action": "Batch Setup", "SubAction": "Back LPNs", "Cart": cart });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
 
 }
 //buttons on the picking screen
@@ -139,7 +145,6 @@ function sendExitBatch() {
     var data = JSON.stringify({ "Action": "Abort Batch", "SubAction": "Request", "Cart": cart });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
 
 }
 
@@ -151,7 +156,6 @@ function sendRetryLights() {
     var data = JSON.stringify({ "Action": "Retry Lights", "SubAction": "Request", "Cart": cart });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
 
 }
 //3
@@ -161,7 +165,6 @@ function sendCompletePick() {
     var data = JSON.stringify({ "Action": "Task Complete", "SubAction": "Request", "Cart": cart });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
 }
 //4 
 function sendReLightLastPick() {
@@ -170,7 +173,6 @@ function sendReLightLastPick() {
     var data = JSON.stringify({ "Action": "Re-Light Last Pick", "SubAction": "Request", "Cart": cart });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
 }
 
 //5 ON DEMAN LABEL PRINTING 
@@ -182,6 +184,15 @@ function sendReprintLabelsRequest() {
     ws.send(data);
 
 }
+
+function exitReprintLabels() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+    var data = JSON.stringify({ "Action": "Reprint Labels", "SubAction": "Back", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+
+}
+
 //the response from magic cart daemon will display the reprint labels div. below function send the data
 function sendReprintLabels() {
     var cart = new URLSearchParams(window.location.search).get("cart");
@@ -219,6 +230,8 @@ function sendReprintLabels() {
     var data = JSON.stringify({ "Action": "Reprint Labels", "SubAction": "Reprint", "Cart": cart, "UserResponse1": type, "UserResponse2": qty });
     console.log(data);
     ws.send(data);
+
+    $('input[type="checkbox"]').prop('checked', false);
 
 }
 //6
@@ -284,7 +297,7 @@ function sendSkipPick() {
     ws.send(data);
     console.log("data sent");
 }
-//9 
+//9 SHORT PICK PROGRAM BUTTONS
 function sendShortPickRequest() {
     var cart = new URLSearchParams(window.location.search).get("cart");
 
@@ -299,7 +312,10 @@ function sendShortPick() {
     var data = JSON.stringify({ "Action": "Short Pick", "SubAction": "Send Qty", "Cart": cart, "UserResponse1": qty });
     console.log(data);
     ws.send(data);
-    console.log("data sent");
+    $("#validateLPNDiv").css('display', 'none');
+    $("#validatePartDiv").css('display', 'none');
+    $("#validateLocationDiv").css('display', 'none');
+    document.getElementById('MainContent_sendShortPickTB').value = "";
 }
 
 //10 FULL TOTE BUTTON FUNCTIONS
@@ -310,6 +326,19 @@ function sendFullTote() {
     console.log(data);
     ws.send(data);
     console.log("data sent");
+    $("#validateLPNDiv").css('display', 'none');
+
+}
+
+function backFromFullTote() {
+    var cart = new URLSearchParams(window.location.search).get("cart");
+
+    var data = JSON.stringify({ "Action": "Full Tote", "SubAction": "Abort", "Cart": cart });
+    console.log(data);
+    ws.send(data);
+    $("#promptFullToteDiv").css('display', 'none');
+
+
 }
 function sendCurrentFullTote() {
 
@@ -374,6 +403,9 @@ function hideEarlyExit() {
     $("#userFieldDiv").css('display', 'none');
 
 }
+
+
+
 
 
 function sendBatchCompleteTaskComplete() {

@@ -57,17 +57,7 @@
 
         }
         window.onload = start;
-        //function wssend() {
-        //    console.log("wssend clicked");
-        //    var UserID = document.getElementById('UserID').value;
-        //    var Password = document.getElementById('PWD').value;
 
-        //    var data = JSON.stringify({ "action": "initializeSID", "username": UserID, "password": Password })
-        //    console.log(data);
-        //    console.log("send data");
-        //    ws.send(data);
-        //    console.log("data sent");
-        //}
 
         function START() {
             ws.send("START");

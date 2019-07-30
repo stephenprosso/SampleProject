@@ -57,17 +57,7 @@
 
         }
         window.onload = start;
-        //function wssend() {
-        //    console.log("wssend clicked");
-        //    var UserID = document.getElementById('UserID').value;
-        //    var Password = document.getElementById('PWD').value;
 
-        //    var data = JSON.stringify({ "action": "initializeSID", "username": UserID, "password": Password })
-        //    console.log(data);
-        //    console.log("send data");
-        //    ws.send(data);
-        //    console.log("data sent");
-        //}
 
         function START() {
             ws.send("START");
@@ -105,27 +95,6 @@
 
         <div class="row text-center">
 
-            <%-- <div class="group">
-                    <asp:Label ID="actionLabel" runat="server" Text="Action: "></asp:Label>
-                    <input id="action" type="text" runat="server" />
-                    <br />
-                </div>
-                <div class="group">
-                    <asp:Label ID="PartLabel" runat="server" Text="Part: "></asp:Label>
-                    <input id="Part" type="text" runat="server" />
-                    <p></p>
-                    <br />
-                </div>
-                <div class="group">
-                    <asp:Label ID="LocationLabel" runat="server" Text="Location: "></asp:Label>
-                    <input id="Location" type="text" runat="server" />
-                    <br />
-                </div>
-                <div class="group">
-                    <asp:Label ID="QuantityLabel" runat="server" Text="Quantity: "></asp:Label>
-                    <input id="Quantity" type="text" runat="server" />
-                    <br />
-                </div>--%>
         </div>
         <br />
         <div class="row text-center">

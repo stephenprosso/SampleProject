@@ -1,0 +1,70 @@
+﻿body {
+}
+<style >
+table, th {
+    width: 60px;
+    border: 2px solid black;
+    background-color: darkgray;
+}
+
+.poweredpik th {
+    width: 60px;
+    border: 2px solid black;
+    background-color: darkgray;
+}
+
+.poweredpik td {
+    width: 60px;
+    height: 10px;
+    text-align: center;
+    border: 2px solid black;
+    background-color: pink;
+}
+
+th.gray {
+    background-color: darkgray;
+    width: 20px;
+    border: 0px solid black;
+}
+
+td.gray {
+    background-color: darkgray;
+    width: 20px;
+    border: 0px solid black;
+}
+
+
+ppcellhdr {
+    width: 60px;
+    height: 10px;
+    display: inline-block;
+    text-align: center;
+    background-color: darkgray;
+}
+
+ppcelldtl {
+    width: 60px;
+    height: 10px;
+    display: inline-block;
+    text-align: center;
+    background-color: pink;
+}
+
+ppcellhdr.hidden {
+    visibility: hidden;
+    width: 60px;
+    border: 0px solid black;
+}
+
+ppcelldtl.hidden {
+    visibility: hidden;
+    width: 60px;
+    border: 0px solid black;
+}
+
+.content {
+    width: 60px;
+    height: 60px;
+}
+
+</style >

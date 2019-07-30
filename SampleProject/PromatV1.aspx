@@ -57,8 +57,6 @@
 
         }
         window.onload = start;
-
-
         function START() {
             ws.send("START");
         }
@@ -78,15 +76,12 @@
 
             <p id="action"></p>
             <br />
-
-
             <asp:Label ID="partNumberLabel" runat="server" Text="Part Number: "></asp:Label>
             <p id="Part"></p>
             <br />
             <asp:Label ID="Label1" runat="server" Text="Location: "></asp:Label>
             <p id="Location"></p>
             <br />
-
             <asp:Label ID="CartNumberLabel" runat="server" Text="Quantity: "></asp:Label>
             <p id="Quantity"></p>
             <br />

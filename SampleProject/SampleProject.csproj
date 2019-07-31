@@ -221,6 +221,7 @@
     <Content Include="JS\PickingCartStatus.js" />
     <Content Include="JS\PromatV1.js" />
     <Content Include="JS\PromatV2.js" />
+    <Content Include="maintenance\CartMaintenance.aspx" />
     <Content Include="ParseJSONObject.aspx" />
     <Content Include="PromatV1.aspx" />
     <Content Include="CartPicking.aspx" />
@@ -305,6 +306,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="maintenance\CartMaintenance.aspx.cs">
+      <DependentUpon>CartMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenance\CartMaintenance.aspx.designer.cs">
+      <DependentUpon>CartMaintenance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NestedMasterPage1.master.cs">
       <DependentUpon>NestedMasterPage1.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -379,7 +387,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="maintenance\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

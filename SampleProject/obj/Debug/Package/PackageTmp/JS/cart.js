@@ -210,9 +210,7 @@
             document.getElementById("MainContent_startAisleTB").focus();
         }
 
-
         // 6 if statements for validation
-
 
         if (action === "Location Validation" && subAction === "Prompt") {
             checkForErrors();

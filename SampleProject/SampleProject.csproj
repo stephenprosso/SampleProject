@@ -222,6 +222,7 @@
     <Content Include="JS\PromatV1.js" />
     <Content Include="JS\PromatV2.js" />
     <Content Include="maintenance\codeBehindPractice.aspx" />
+    <Content Include="maintenance\MasterChildGridExamples.aspx" />
     <Content Include="ParseJSONObject.aspx" />
     <Content Include="PromatV1.aspx" />
     <Content Include="CartPicking.aspx" />
@@ -312,6 +313,13 @@
     </Compile>
     <Compile Include="maintenance\codeBehindPractice.aspx.designer.cs">
       <DependentUpon>codeBehindPractice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maintenance\MasterChildGridExamples.aspx.cs">
+      <DependentUpon>MasterChildGridExamples.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maintenance\MasterChildGridExamples.aspx.designer.cs">
+      <DependentUpon>MasterChildGridExamples.aspx</DependentUpon>
     </Compile>
     <Compile Include="NestedMasterPage1.master.cs">
       <DependentUpon>NestedMasterPage1.master</DependentUpon>

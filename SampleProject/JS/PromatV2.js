@@ -16,7 +16,6 @@
     // when data is comming from the server, this metod is called
     ws.onmessage = function (evt) {
 
-
         inc.innerHTML += evt.data + '<br/>';
         var obj = JSON.parse(evt.data);
         document.getElementById("action").innerHTML = obj.action;

@@ -29,6 +29,5 @@ namespace SampleProject
             }
             return responseData;
         }
-
     }
 }

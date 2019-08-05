@@ -299,6 +299,7 @@
     <Compile Include="CardViewScreen.aspx.designer.cs">
       <DependentUpon>CardViewScreen.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClassOfFunctionsThatCanBeCalledFromOtherPages.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

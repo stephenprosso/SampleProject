@@ -220,7 +220,6 @@
     <Content Include="JS\complexJsonVariables.js" />
     <Content Include="JS\ParseJSONObject.js" />
     <Content Include="JS\PickingCartStatus.js" />
-    <Content Include="JS\PromatV1.js" />
     <Content Include="JS\PromatV2.js" />
     <Content Include="maintenance\ASPXwithJavaScriptFunctions.aspx" />
     <Content Include="maintenance\codeBehindPractice.aspx" />

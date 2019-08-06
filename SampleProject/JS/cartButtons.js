@@ -34,26 +34,26 @@ function clearError() {
 //SELECTED ZONE GROUPING BUTTONS
 function sendSelectedZoneGrouping() {
 
-    var list = document.getElementById("MainContent_ListBox1");
+    //var list = document.getElementById("MainContent_ASPxListBox1");
+   
+    //var optsLength = list.options.length;
+    //for (var i = 0; i < optsLength; i++) {
 
-    var optsLength = list.options.length;
-    for (var i = 0; i < optsLength; i++) {
+    //    if (list.options[i].selected) {
 
-        if (list.options[i].selected) {
-
-            var zone = list.options[i].value;
-        }
-
-    }
-
+    //        var zone = list.options[i].value;
+    //    }
+        
+    //}
+    var zone = ZoneList.GetSelectedItem().value;
+    console.log(zone);
     var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Zone Group", "SubAction": "Response", "Cart": cart, "UserResponse1": zone });
 
     ws.send(data);
-    document.getElementById('MainContent_ListBox1').selectedIndex = -1;
+    ZoneList.SetSelectedIndex(-1);
 
-}
-//WORK DASHBOARD BUTTONS
+}//WORK DASHBOARD BUTTONS
 function sendSelectedBucket(selectedBucket) {
 
 

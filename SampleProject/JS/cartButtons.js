@@ -33,17 +33,14 @@ function clearError() {
 
 //SELECTED ZONE GROUPING BUTTONS
 function sendSelectedZoneGrouping() {
-
+    //this is the code to make selected index change on standard ASP:ListBox
     //var list = document.getElementById("MainContent_ASPxListBox1");
-   
     //var optsLength = list.options.length;
     //for (var i = 0; i < optsLength; i++) {
-
     //    if (list.options[i].selected) {
-
     //        var zone = list.options[i].value;
     //    }
-        
+
     //}
     var zone = ZoneList.GetSelectedItem().value;
     console.log(zone);

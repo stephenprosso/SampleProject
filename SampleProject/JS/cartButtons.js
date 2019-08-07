@@ -53,7 +53,6 @@ function sendSelectedZoneGrouping() {
 }//WORK DASHBOARD BUTTONS
 function sendSelectedBucket(selectedBucket) {
 
-
     var cart = new URLSearchParams(window.location.search).get("cart");
     var data = JSON.stringify({ "Action": "Work Dashboard", "SubAction": "Selected Bucket", "Cart": cart, "UserResponse1": selectedBucket });
     console.log(data);

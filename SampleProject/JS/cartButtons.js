@@ -30,7 +30,6 @@ function clearError() {
 
 }
 
-
 //SELECTED ZONE GROUPING BUTTONS
 function sendSelectedZoneGrouping() {
     //this is the code to make selected index change on standard ASP:ListBox

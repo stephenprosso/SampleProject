@@ -225,6 +225,7 @@
     <Content Include="maintenance\MasterChildGridExamples.aspx" />
     <Content Include="maintenance\MasterDeatailGridViews.aspx" />
     <Content Include="ParseJSONObject.aspx" />
+    <Content Include="practiceNotes.aspx" />
     <Content Include="PromatV1.aspx" />
     <Content Include="CartPicking.aspx" />
     <Content Include="Scripts\application.js" />
@@ -343,6 +344,13 @@
     </Compile>
     <Compile Include="ParseJSONObject.aspx.designer.cs">
       <DependentUpon>ParseJSONObject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="practiceNotes.aspx.cs">
+      <DependentUpon>practiceNotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="practiceNotes.aspx.designer.cs">
+      <DependentUpon>practiceNotes.aspx</DependentUpon>
     </Compile>
     <Compile Include="PromatV1.aspx.cs">
       <DependentUpon>PromatV1.aspx</DependentUpon>

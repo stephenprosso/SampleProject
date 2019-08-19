@@ -189,7 +189,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="AlertBoxTest.aspx" />
     <Content Include="CardViewScreen.aspx" />
     <Content Include="Content\poweredPik.css" />
@@ -284,13 +283,6 @@
       <DependentUpon>AlertBoxTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="CardViewScreen.aspx.cs">
       <DependentUpon>CardViewScreen.aspx</DependentUpon>

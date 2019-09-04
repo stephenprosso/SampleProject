@@ -6,7 +6,6 @@
     <div class="jumbotron text-center">
         <h1>Welcome to the Card View</h1>
     </div>
-
     <div class="row text-center">
         <div class="col-xs-6">
             <dx:ASPxLabel ID="ASPxLabelCardView" runat="server" Text="Enter Cart Number:"></dx:ASPxLabel>

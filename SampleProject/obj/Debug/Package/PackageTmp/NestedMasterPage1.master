@@ -1,8 +1,0 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NestedMasterPage1.master.cs" Inherits="SampleProject.NestedMasterPage1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="container body-content">
-    
-        <asp:ContentPlaceHolder ID="Content" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
-</asp:Content>
